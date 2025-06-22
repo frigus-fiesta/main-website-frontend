@@ -13,18 +13,24 @@
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.5",
+    "@tabler/icons-react": "^3.34.0",
+    "clsx": "^2.1.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.3",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "motion": "^12.18.1",
     "next": "14.2.30",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/json5": "^2.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
