@@ -118,7 +118,7 @@ const HomeServices = () => {
       </motion.p>
       <div className="relative w-full flex justify-center z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl px-4">
-          {services.map((service, idx) => (
+          {services.map((service) => (
             <motion.div
               key={service.title}
               className="group bg-white/90 rounded-3xl shadow-xl border border-yellow-100 min-w-[270px] max-w-xs w-full flex flex-col items-center p-6 transition-all duration-300 hover:-translate-y-1 cursor-pointer mx-auto"
