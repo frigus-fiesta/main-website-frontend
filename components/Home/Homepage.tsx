@@ -82,7 +82,6 @@ const Homepage = () => {
         >
           Dream Weddings Made Easy.
         </motion.p>
-        
         <motion.h1 
           className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-6xl font-extrabold uppercase leading-none tracking-tighter text-transparent md:text-8xl"
           variants={itemVariants}
