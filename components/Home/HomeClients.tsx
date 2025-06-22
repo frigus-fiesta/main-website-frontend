@@ -128,11 +128,9 @@ const HomeClients = () => {
                 className="object-cover w-full h-full"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
-              {/* Subtle dark overlay on hover */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 pointer-events-none z-10" />
-              {/* Name overlay, always centered, animates in smoothly */}
               <div
-                className="absolute top-1/2 left-1/2 w-full px-4 py-3 flex justify-center -translate-x-1/2 -translate-y-1/2 z-20
+                className="absolute top-1/2 left-1/2 w-full px-4 py-3 flex justify-center -translate-x-1/2 z-20
                   opacity-0 translate-y-12 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
               >
                 <span className="text-white font-bold text-lg drop-shadow-lg text-center w-full truncate">
