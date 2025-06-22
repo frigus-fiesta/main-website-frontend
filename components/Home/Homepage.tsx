@@ -13,6 +13,7 @@ const Homepage = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -40,7 +41,6 @@ const Homepage = () => {
 
   return (
     <section className="relative flex h-screen items-center justify-center overflow-hidden text-white">
-      {/* Parallax Video Background */}
       <div 
         className="absolute z-0 size-full"
         style={{
@@ -58,16 +58,12 @@ const Homepage = () => {
           Your browser does not support the video tag.
         </video>
       </div>
-
-      {/* Parallax Overlay */}
       <div 
         className="absolute inset-0 z-10 bg-black/60"
         style={{
           transform: `translateY(${scrollY * 0.3}px)`,
         }}
       />
-
-      {/* Main Content with Parallax */}
       <motion.div 
         className="relative z-20 flex flex-col items-center px-4 text-center"
         variants={containerVariants}
@@ -97,7 +93,6 @@ const Homepage = () => {
         >
           Book Now
         </motion.h1>
-        
         <motion.h2 
           className="mt-2 text-5xl font-bold tracking-wide"
           variants={itemVariants}
@@ -107,7 +102,6 @@ const Homepage = () => {
         >
           Learn More
         </motion.h2>
-        
         <motion.div 
           className="mt-12" 
           variants={itemVariants}
@@ -122,8 +116,6 @@ const Homepage = () => {
           </Link>
         </motion.div>
       </motion.div>
-
-      {/* WhatsApp Button - Fixed position, no parallax */}
       <Link href="https://wa.link/t2d60w" target="_blank" rel="noopener noreferrer">
         <span className="fixed bottom-6 right-6 z-30 flex cursor-pointer items-center rounded-full bg-yellow-500 p-3 text-white transition-all duration-300 hover:bg-yellow-400 hover:scale-110">
           <FaWhatsapp className="size-6" />
