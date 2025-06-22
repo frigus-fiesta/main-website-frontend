@@ -1,5 +1,5 @@
 {
-  "name": "restaurants-cafes",
+  "name": "frigus-fiesta-main-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,9 +19,9 @@
     "eslint-plugin-react": "^7.37.3",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "eslint-plugin-unused-imports": "^4.1.4",
-    "next": "^15.3.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "14.2.30",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
     "typescript": "^5",
