@@ -22,11 +22,6 @@ const navLinks = [
     { 
         href: '/', 
         label: 'Our Services',
-        dropdown: [
-            { href: '/services/corporate', label: 'Corporate Events' },
-            { href: '/services/concerts', label: 'Live Concerts' },
-            { href: '/services/social', label: 'Social Events' }
-        ]
     },
     { href: '/gallery', label: 'Gallery' },
     { href: '/contact', label: 'Contact Us' },
@@ -72,7 +67,7 @@ const Header = () => {
         <div className="container mx-auto px-4 sm:px-6 xl:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="shrink-0">
-              <Image src="/assets/friguslogo.svg" alt='logo' width={100000} height={100000} className='mt-2 size-44 md:mt-0'/>
+              <Image src="/assets/friguslogo.svg" alt='logo' width={100000} height={100000} className='mt-2 size-44 lg:size-52 md:mt-1'/>
             </Link>
             <div className="hidden items-center space-x-6 xl:flex">
               <nav className="flex space-x-8">

@@ -116,7 +116,7 @@ const Homepage = () => {
         </motion.div>
       </motion.div>
       <Link href="https://wa.link/t2d60w" target="_blank" rel="noopener noreferrer">
-        <span className="fixed bottom-6 right-6 z-30 flex cursor-pointer items-center rounded-full bg-yellow-500 p-3 text-white transition-all duration-300 hover:bg-yellow-400 hover:scale-110">
+        <span className="fixed bottom-6 right-6 z-30 flex cursor-pointer items-center rounded-full bg-yellow-500 p-3 text-white transition-all duration-300 hover:bg-yellow-400">
           <FaWhatsapp className="size-6" />
         </span>
       </Link>

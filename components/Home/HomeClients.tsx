@@ -128,7 +128,11 @@ const HomeClients = () => {
                 className="object-cover w-full h-full"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
-              <div className="absolute left-0 bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent px-4 py-3 flex items-end justify-center">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 pointer-events-none z-10" />
+              <div
+                className="absolute top-1/2 left-1/2 w-full px-4 py-3 flex justify-center -translate-x-1/2 z-20
+                  opacity-0 translate-y-12 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
+              >
                 <span className="text-white font-bold text-lg drop-shadow-lg text-center w-full truncate">
                   {client.name}
                 </span>
