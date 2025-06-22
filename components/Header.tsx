@@ -68,7 +68,7 @@ const Header = () => {
     }
     
     return (
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${isTransparent ? 'bg-transparent' : 'bg-white/90 shadow-md backdrop-blur-sm'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isTransparent ? 'bg-transparent' : 'bg-white/90 shadow-md'}`}>
         <div className="container mx-auto px-4 sm:px-6 xl:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="shrink-0">
