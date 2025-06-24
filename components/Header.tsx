@@ -24,7 +24,7 @@ const navLinks = [
         label: 'Our Services',
     },
     { href: '/gallery', label: 'Gallery' },
-    { href: '/contact', label: 'Contact Us' },
+    { href: '/contactus', label: 'Contact Us' },
     { href: '/appointment', label: "Book Appointment" },
 ];
 
