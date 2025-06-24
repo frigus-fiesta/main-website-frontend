@@ -52,7 +52,7 @@ const Homepage = () => {
           loop
           muted
           playsInline
-          className="size-full object-cover scale-110"
+          className="size-full scale-110 object-cover"
         >
           <source src="/assets/homepagevideo.mp4" type="video/mp4" />
           Your browser does not support the video tag.
