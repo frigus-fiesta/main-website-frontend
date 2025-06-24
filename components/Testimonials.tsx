@@ -57,9 +57,9 @@ const floatingCircles = [
   ];
   
   const GoldAnimatedBackground = () => (
-    <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
+    <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
       <svg
-        className="absolute w-full h-full"
+        className="absolute size-full"
         preserveAspectRatio="xMidYMid slice"
         viewBox="0 0 1920 1080"
       >
@@ -102,7 +102,7 @@ const Testimonials = () => {
       {floatingCircles.map((circle, i) => (
         <motion.div
           key={i}
-          className="pointer-events-none absolute z-0 blur-2xl opacity-40"
+          className="pointer-events-none absolute z-0 opacity-40 blur-2xl"
           style={{
             width: circle.size,
             height: circle.size,
@@ -125,13 +125,13 @@ const Testimonials = () => {
           }}
         />
       ))}
-      <h2 className="text-5xl font-extrabold text-center mb-12 text-gray-900">Our <span className='text-yellow-400'>Reviews</span></h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto px-4 h-full">
+      <h2 className="mb-12 text-center text-5xl font-extrabold text-gray-900">Our <span className='text-yellow-400'>Reviews</span></h2>
+      <div className="mx-auto grid h-full max-w-5xl grid-cols-1 gap-10 px-4 md:grid-cols-2">
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}
-            className={`relative rounded-lg p-5 pt-7 transition-all duration-300 h-full flex flex-col justify-between ${
-              i % 2 === 0 ? 'bg-[#353237] text-white' : 'bg-gray-100 text-gray-900 border border-gray-100'
+            className={`relative flex h-full flex-col justify-between rounded-lg p-5 pt-7 transition-all duration-300 ${
+              i % 2 === 0 ? 'bg-[#353237] text-white' : 'border border-gray-100 bg-gray-100 text-gray-900'
             }`}
             initial="offscreen"
             whileInView="onscreen"
@@ -140,7 +140,7 @@ const Testimonials = () => {
           >
             <div>
               <p className="mb-3 text-base leading-relaxed">{t.text}</p>
-              <div className="flex items-center gap-1 mb-1 text-sm">
+              <div className="mb-1 flex items-center gap-1 text-sm">
                 {[...Array(5)].map((_, idx) => (
                   <span key={idx} className={idx < t.rating ? 'text-yellow-400' : 'text-gray-300'}>
                     ★
@@ -148,15 +148,15 @@ const Testimonials = () => {
                 ))}
               </div>
             </div>
-            <div className="flex items-center gap-3 mt-4">
+            <div className="mt-4 flex items-center gap-3">
               {/* Initials Avatar */}
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold ${i % 2 === 0 ? 'bg-white text-gray-800' : 'bg-gray-200 text-gray-700'}`}>{getInitials(t.name)}</div>
-              <span className="font-bold text-base">{t.name}</span>
+              <div className={`flex size-10 items-center justify-center rounded-full text-lg font-bold ${i % 2 === 0 ? 'bg-white text-gray-800' : 'bg-gray-200 text-gray-700'}`}>{getInitials(t.name)}</div>
+              <span className="text-base font-bold">{t.name}</span>
             </div>
             {/* Speech bubble tail at the bottom */}
             <div
-              className={`absolute left-8 -bottom-2 w-4 h-4 rotate-45 ${
-                i % 2 === 0 ? 'bg-[#353237]' : 'bg-gray-100 border-l border-b border-gray-100'
+              className={`absolute -bottom-2 left-8 size-4 rotate-45 ${
+                i % 2 === 0 ? 'bg-[#353237]' : 'border-b border-l border-gray-100 bg-gray-100'
               }`}
               style={{ zIndex: 1 }}
             />
