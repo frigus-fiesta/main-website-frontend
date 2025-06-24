@@ -21,9 +21,9 @@ const floatingCircles = [
 ];
 
 const GoldAnimatedBackground = () => (
-  <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
+  <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
     <svg
-      className="absolute w-full h-full"
+      className="absolute size-full"
       preserveAspectRatio="xMidYMid slice"
       viewBox="0 0 1920 1080"
     >
@@ -68,13 +68,13 @@ const GoldAnimatedBackground = () => (
 
 const HomeClients = () => {
   return (
-    <section className="relative py-24 min-h-[80vh] flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden py-24">
       <GoldAnimatedBackground />
       {/* Floating yellow circles (same as HomeAbout, now above SVG) */}
       {floatingCircles.map((circle, i) => (
         <motion.div
           key={i}
-          className="pointer-events-none absolute z-0 blur-2xl opacity-40"
+          className="pointer-events-none absolute z-0 opacity-40 blur-2xl"
           style={{
             width: circle.size,
             height: circle.size,
@@ -93,7 +93,7 @@ const HomeClients = () => {
         />
       ))}
       <motion.h2
-        className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-2 text-center relative z-10"
+        className="relative z-10 mb-2 text-center text-3xl font-extrabold text-gray-900 md:text-5xl"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
@@ -102,7 +102,7 @@ const HomeClients = () => {
         Our <span className="text-yellow-400">Clients</span>
       </motion.h2>
       <motion.p
-        className="text-lg text-gray-500 max-w-2xl mx-auto mb-12 text-center z-10"
+        className="z-10 mx-auto mb-12 max-w-2xl text-center text-lg text-gray-500"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -110,12 +110,12 @@ const HomeClients = () => {
       >
         Display logos of your clients on your website to show credibility and build trust.
       </motion.p>
-      <div className="w-full flex justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-6xl px-4">
+      <div className="flex w-full justify-center">
+        <div className="grid w-full max-w-6xl grid-cols-1 gap-8 px-4 sm:grid-cols-2 md:grid-cols-3">
           {clients.map((client, idx) => (
             <motion.div
               key={client.name}
-              className="rounded-xl overflow-hidden shadow-lg border border-yellow-100 bg-white flex flex-col justify-end aspect-[4/3] relative group transition-all duration-300"
+              className="group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-xl border border-yellow-100 bg-white shadow-lg transition-all duration-300"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: idx * 0.1 }}
@@ -125,15 +125,15 @@ const HomeClients = () => {
                 src={client.image}
                 alt={client.name}
                 fill
-                className="object-cover w-full h-full"
+                className="size-full object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 pointer-events-none z-10" />
+              <div className="pointer-events-none absolute inset-0 z-10 bg-black/0 transition-all duration-300 group-hover:bg-black/30" />
               <div
-                className="absolute top-1/2 left-1/2 w-full px-4 py-3 flex justify-center -translate-x-1/2 z-20
-                  opacity-0 translate-y-12 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
+                className="absolute left-1/2 top-1/2 z-20 flex w-full -translate-x-1/2 translate-y-12 justify-center px-4
+                  py-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
               >
-                <span className="text-white font-bold text-lg drop-shadow-lg text-center w-full truncate">
+                <span className="w-full truncate text-center text-lg font-bold text-white drop-shadow-lg">
                   {client.name}
                 </span>
               </div>

@@ -15,9 +15,9 @@ const floatingCircles = [
 ];
 
 const GoldAnimatedBackground = () => (
-  <div className="absolute top-0 left-0 w-full h-full -z-20 overflow-hidden pointer-events-none">
+  <div className="pointer-events-none absolute left-0 top-0 -z-20 size-full overflow-hidden">
     <svg
-      className="absolute w-full h-full"
+      className="absolute size-full"
       preserveAspectRatio="xMidYMid slice"
       viewBox="0 0 1920 1080"
     >
@@ -87,12 +87,12 @@ const HomeAbout = () => {
   }, [modalOpen]);
 
   return (
-    <section className="relative flex flex-col lg:flex-row items-center justify-center min-h-[70vh] overflow-hidden">
+    <section className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden lg:flex-row">
       <GoldAnimatedBackground />
       {floatingCircles.map((circle, i) => (
         <motion.div
           key={i}
-          className="pointer-events-none absolute z-0 blur-2xl opacity-40"
+          className="pointer-events-none absolute z-0 opacity-40 blur-2xl"
           style={{
             width: circle.size,
             height: circle.size,
@@ -115,19 +115,19 @@ const HomeAbout = () => {
           }}
         />
       ))}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 lg:px-16 py-12">
+      <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 lg:px-16">
         <motion.h2 
-          className="text-2xl lg:text-3xl font-extrabold text-gray-800 mb-2 relative"
+          className="relative mb-2 text-2xl font-extrabold text-gray-800 lg:text-3xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           Welcome to <span className='text-yellow-400'> Frigus Fiesta </span>
-          <span className="block w-16 h-0.5 bg-yellow-400 mt-2 rounded-full absolute left-1/2 -translate-x-1/2 -bottom-2" />
+          <span className="absolute -bottom-2 left-1/2 mt-2 block h-0.5 w-16 -translate-x-1/2 rounded-full bg-yellow-400" />
         </motion.h2>
         <motion.p 
-          className="lg:text-base text-gray-500 max-w-xl mt-4 text-center"
+          className="mt-4 max-w-xl text-center text-gray-500 lg:text-base"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
@@ -136,9 +136,9 @@ const HomeAbout = () => {
           Are you looking to add a touch of magic to your events in India? Look no further than Frigus Fiesta! As one of the leading entertainment websites in the country, Frigus Fiesta specializes in organizing a wide array of events and services, ranging from corporate gatherings to electrifying live concerts and vibrant social events. With a presence in key cities like Pune, Hyderabad, Delhi, and Bangalore, Frigus Fiesta brings the joy of celebration to every corner of the nation.
         </motion.p>
       </div>
-      <div className="flex-1 flex items-center justify-center px-6 py-12">
+      <div className="flex flex-1 items-center justify-center px-6 py-12">
         <motion.div
-          className="relative group cursor-pointer max-w-xl w-full flex items-center justify-center"
+          className="group relative flex w-full max-w-xl cursor-pointer items-center justify-center"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -153,11 +153,11 @@ const HomeAbout = () => {
             height={100000000000}
             src="/assets/aboutus.jpg"
             alt="Frigus Fiesta event preview"
-            className="rounded-md shadow-xl object-cover w-full h-80 lg:h-100 group-hover:brightness-75 transition"
+            className="lg:h-100 h-80 w-full rounded-md object-cover shadow-xl transition group-hover:brightness-75"
             style={{ background: '#eee' }}
           />
-          <span className="absolute inset-0 flex items-center justify-center animate-pulse">
-            <span className="bg-yellow-400 rounded-full p-4 shadow-lg transition-transform">
+          <span className="absolute inset-0 flex animate-pulse items-center justify-center">
+            <span className="rounded-full bg-yellow-400 p-4 shadow-lg transition-transform">
               <svg width="32" height="32" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="white" fillOpacity="0.7"/><polygon points="20,16 34,24 20,32" fill="#fbbf24"/></svg>
             </span>
           </span>
@@ -176,14 +176,14 @@ const HomeAbout = () => {
             role="dialog"
           >
             <motion.div
-              className="relative bg-black rounded-2xl shadow-2xl overflow-hidden"
+              className="relative overflow-hidden rounded-2xl bg-black shadow-2xl"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
               onClick={e => e.stopPropagation()}
             >
               <button
-                className="absolute top-2 right-2 z-10 text-white bg-black/50 rounded-full p-2 hover:bg-black/80 focus:outline-none"
+                className="absolute right-2 top-2 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/80 focus:outline-none"
                 onClick={() => setModalOpen(false)}
                 aria-label="Close video"
               >
@@ -196,7 +196,7 @@ const HomeAbout = () => {
                 title="Frigus Fiesta Video"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
-                className="w-[100vw] max-w-2xl h-[45vw] max-h-[70vh] rounded-sm"
+                className="h-[45vw] max-h-[70vh] w-screen max-w-2xl rounded-sm"
               />
             </motion.div>
           </motion.div>
