@@ -20,8 +20,8 @@ const navLinks = [
         ] 
     },
     { 
-        href: '/', 
-        label: 'Our Services',
+        href: '/scheduled-events', 
+        label: 'Scheduled Events',
     },
     { href: '/gallery', label: 'Gallery' },
     { href: '/contactus', label: 'Contact Us' },

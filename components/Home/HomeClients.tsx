@@ -108,7 +108,7 @@ const HomeClients = () => {
         transition={{ duration: 0.8, delay: 0.2 }}
         viewport={{ once: true }}
       >
-        Display logos of your clients on your website to show credibility and build trust.
+        We`ve had the privilege of working with renowned artists and musical legends from around the world. 
       </motion.p>
       <div className="flex w-full justify-center">
         <div className="grid w-full max-w-6xl grid-cols-1 gap-8 px-4 sm:grid-cols-2 md:grid-cols-3">

@@ -117,7 +117,7 @@ const HomeAbout = () => {
       ))}
       <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 lg:px-16">
         <motion.h2 
-          className="relative mb-2 text-2xl font-extrabold text-gray-800 lg:text-3xl"
+          className="relative mb-2 font-extrabold text-gray-800 text-3xl md:text-4xl text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
