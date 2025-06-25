@@ -1,16 +1,14 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, MapPin, Users, Star, ChevronLeft, ChevronRight, Filter, Search } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Star, Search } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const ScheduledEventsPage = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedService, setSelectedService] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -126,7 +124,7 @@ const ScheduledEventsPage = () => {
     const percentage = (booked / capacity) * 100;
     if (percentage >= 90) return 'text-red-500';
     if (percentage >= 70) return 'text-amber-500';
-    
+
     return 'text-green-500';
   };
 
@@ -190,15 +188,12 @@ const ScheduledEventsPage = () => {
               We are very proud of our client base and the lasting relationships we have forged over many years
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
             {services.map((service, index) => (
               <div 
                 key={service.id} 
                 className="relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-500 animate-fade-in-up cursor-pointer"
                 style={{ animationDelay: `${index * 200}ms` }}
-                onMouseEnter={() => setHoveredCard(service.id)}
-                onMouseLeave={() => setHoveredCard(null)}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10 transition-opacity duration-300`}></div>
                 <div className="relative p-8 text-center">
@@ -409,7 +404,7 @@ const ScheduledEventsPage = () => {
           animation-delay: 500ms;
         }
       `}</style>
-        <Footer/>
+      <Footer/>
     </div>
   );
 };
