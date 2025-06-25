@@ -106,45 +106,45 @@ const ContactUsLanding = () => {
           </div>
         </div>
         {/* Right Side */}
-        <div className="flex flex-1 flex-col items-end justify-center space-y-20 pr-2 text-right sm:pr-8 md:pr-16 lg:pr-24">
+        <div className="flex w-full flex-1 flex-col items-end justify-center space-y-10 pr-0 sm:space-y-20 sm:pr-8 md:pr-16 lg:pr-24">
           {/* Address */}
-          <div className="flex flex-col items-end space-y-4">
-            <div className="flex items-center gap-4">
-              <MapPinIcon className="size-12 text-[#FFD700]" />
-              <h3 className="text-5xl tracking-tighter text-black">Address</h3>
+          <div className="flex w-full flex-col items-end space-y-2 sm:items-end sm:space-y-4">
+            <div className="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <MapPinIcon className="size-8 text-[#FFD700] sm:size-12" />
+              <h3 className="text-xl tracking-tighter text-black sm:text-3xl md:text-5xl">Address</h3>
             </div>
-            <p className="max-w-sm text-2xl text-gray-400">
+            <p className="w-full max-w-xs text-left text-sm text-gray-400 sm:max-w-sm sm:text-lg md:text-2xl">
               FRIGUS FIESTA<br />
               Jawahar Nagar, Sainikpuri,<br />
               Hyderabad, Telangana, India – 500094
             </p>
           </div>
           {/* Phone */}
-          <div className="flex flex-col items-end space-y-4">
-            <div className="flex items-center gap-4">
-              <PhoneIcon className="size-12 text-[#FFD700]" />
-              <h3 className="text-5xl tracking-tighter text-black">Phone</h3>
+          <div className="flex w-full flex-col items-end space-y-2 sm:items-end sm:space-y-4">
+            <div className="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <PhoneIcon className="size-8 text-[#FFD700] sm:size-12" />
+              <h3 className="text-xl tracking-tighter text-black sm:text-3xl md:text-5xl">Phone</h3>
             </div>
-            <p className="text-2xl text-gray-400">+91-91826-84160</p>
+            <p className="w-full text-left text-sm text-gray-400 sm:text-lg md:text-2xl">+91-91826-84160</p>
           </div>
           {/* Mail */}
-          <div className="flex flex-col items-end space-y-4">
-            <div className="flex items-center gap-4">
-              <EnvelopeIcon className="size-12 text-[#FFD700]" />
-              <h3 className="text-5xl tracking-tighter text-black">Mail</h3>
+          <div className="flex w-full flex-col items-end space-y-2 sm:items-end sm:space-y-4">
+            <div className="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <EnvelopeIcon className="size-8 text-[#FFD700] sm:size-12" />
+              <h3 className="text-xl tracking-tighter text-black sm:text-3xl md:text-5xl">Mail</h3>
             </div>
-            <p className="text-2xl text-gray-400">info@frigusfiesta.com</p>
+            <p className="w-full text-left text-sm text-gray-400 sm:text-lg md:text-2xl">info@frigusfiesta.com</p>
           </div>
           {/* Social Links */}
-          <div className="flex flex-col items-end space-y-4">
-            <div className="flex items-center gap-4">
-              <HandThumbUpIcon className="size-12 text-[#FFD700]" />
-              <h3 className="text-5xl tracking-tighter text-black">Follow Us</h3>
+          <div className="flex w-full flex-col items-end space-y-2 sm:items-end sm:space-y-4">
+            <div className="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <HandThumbUpIcon className="size-8 text-[#FFD700] sm:size-12" />
+              <h3 className="text-xl tracking-tighter text-black sm:text-3xl md:text-5xl">Follow Us</h3>
             </div>
-            <div className="flex gap-4">
-              <a href="#" className="flex size-12 items-center justify-center rounded-full bg-white text-black transition hover:scale-110">in</a>
-              <a href="#" className="flex size-12 items-center justify-center rounded-full bg-white text-black transition hover:scale-110">𝕏</a>
-              <a href="#" className="flex size-12 items-center justify-center rounded-full bg-white text-black transition hover:scale-110">📸</a>
+            <div className="flex w-full gap-2 sm:gap-4">
+              <a href="#" className="flex size-8 items-center justify-center rounded-full bg-white text-black transition hover:scale-110 sm:size-12">in</a>
+              <a href="#" className="flex size-8 items-center justify-center rounded-full bg-white text-black transition hover:scale-110 sm:size-12">𝕏</a>
+              <a href="#" className="flex size-8 items-center justify-center rounded-full bg-white text-black transition hover:scale-110 sm:size-12">📸</a>
             </div>
           </div>
         </div>
@@ -152,11 +152,11 @@ const ContactUsLanding = () => {
       <div className="mt-40 flex w-full max-w-[1440px] flex-col-reverse gap-12 self-start lg:flex-row">
         {/* Left: Form */}
         <div className="min-w-[320px] flex-1">
-          <div className="mb-6 flex items-center gap-3">
-            <h2 className="text-7xl font-extrabold text-black">
-              Start a <span className="text-[#FFD700]">conversation.</span>
+          <div className="mb-6 flex w-full flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+            <h2 className="text-2xl font-extrabold text-black sm:text-4xl md:text-5xl lg:text-7xl">
+              Start a <span className="text-[#FFD700]">Conversation.</span>
             </h2>
-            <div className="group relative">
+            <div className="group relative mt-2 flex w-full justify-start sm:ml-2 sm:mt-0 sm:w-auto sm:justify-center">
               <button
                 type="button"
                 aria-label="Info"
@@ -164,7 +164,7 @@ const ContactUsLanding = () => {
               >
                 i
               </button>
-              <div className="pointer-events-none absolute left-full top-1/2 z-20 ml-4 w-[340px] -translate-y-1/2 rounded-lg bg-white/95 p-4 text-sm text-black opacity-0 shadow-xl transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 w-[90vw] max-w-xs -translate-x-1/2 rounded-lg bg-white/95 p-4 text-xs text-black opacity-0 shadow-xl transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 sm:text-sm">
                 <span className="mb-2 block text-base font-semibold">Welcome to our Contact Us page!</span>
                 We value your feedback, inquiries, and suggestions. Whether you have a question about our services, want to collaborate, or simply wish to say hello, we're here to listen and assist you.<br /><br />
                 Feel free to reach out to us using the contact information provided below. We strive to respond to all inquiries promptly.<br /><br />
