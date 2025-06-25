@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, MapPin, Users, Star, Search } from 'lucide-react';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
