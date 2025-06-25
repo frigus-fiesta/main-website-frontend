@@ -417,9 +417,9 @@ const MemoraPage: React.FC = () => {
   return (
     <div>
       <Header/>
-      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 min-h-screen pt-28 pb-10">
-      <h1 className='text-black text-4xl text-center mb-10 font-bold'>Our <span className='text-yellow-500'>Gallery</span></h1>
-    <div className="max-w-7xl mx-auto px-4">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 pb-10 pt-28">
+        <h1 className='mb-10 text-center text-4xl font-bold text-black'>Our <span className='text-yellow-500'>Gallery</span></h1>
+        <div className="mx-auto max-w-7xl px-4">
           <div className={`grid gap-4 ${
             columns === 2 ? 'grid-cols-2' : 
             columns === 3 ? 'grid-cols-3' : 
@@ -435,31 +435,31 @@ const MemoraPage: React.FC = () => {
                   return (
                     <div
                       key={image.id}
-                      className="group relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl cursor-pointer transition-all duration-300"
+                      className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-xl"
                       style={{ height: `${dynamicHeight}px` }}
                       onClick={() => openModal(image)}
                     >
-                      <div className="relative w-full h-full overflow-hidden rounded-2xl">
+                      <div className="relative size-full overflow-hidden rounded-2xl">
                         <Image
                           src={image.url}
                           alt={image.alt}
                           fill
-                          className="object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                           loading="lazy"
                           sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4">
+                        <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                           <div className="flex justify-end">
-                            <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
-                              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="rounded-full bg-white/20 p-2 backdrop-blur-sm">
+                              <svg className="size-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                               </svg>
                             </div>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-white text-lg font-medium">{image.alt}</span>
-                            <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
-                              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span className="text-lg font-medium text-white">{image.alt}</span>
+                            <div className="rounded-full bg-white/20 p-2 backdrop-blur-sm">
+                              <svg className="size-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                               </svg>
                             </div>
@@ -477,14 +477,14 @@ const MemoraPage: React.FC = () => {
       <AnimatePresence>
         {isModalOpen && selectedImage && (
           <motion.div
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
           >
             <motion.div
-              className="relative max-w-4xl max-h-[90vh] w-full"
+              className="relative max-h-[90vh] w-full max-w-4xl"
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.5, opacity: 0 }}
@@ -493,29 +493,29 @@ const MemoraPage: React.FC = () => {
             >
               <button
                 onClick={closeModal}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+                className="absolute -top-12 right-0 z-10 text-white transition-colors hover:text-gray-300"
               >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
               <button
                 onClick={() => navigateImage('prev')}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full p-3 text-white hover:bg-white/30 transition-colors z-10"
+                className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/20 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/30"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
               <button
                 onClick={() => navigateImage('next')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full p-3 text-white hover:bg-white/30 transition-colors z-10"
+                className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/20 p-3 text-white backdrop-blur-sm transition-colors hover:bg-white/30"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
-              <div className="relative w-full max-w-2xl aspect-[4/3] mx-auto rounded-2xl overflow-hidden bg-white" style={{ maxHeight: '80vh' }}>
+              <div className="relative mx-auto aspect-[4/3] w-full max-w-2xl overflow-hidden rounded-2xl bg-white" style={{ maxHeight: '80vh' }}>
                 <Image
                   src={selectedImage.url}
                   alt={selectedImage.alt}
