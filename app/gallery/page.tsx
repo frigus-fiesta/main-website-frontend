@@ -308,7 +308,6 @@ const pexelsImages: ImageItem[] = [
     }
   ];
   
-
 const MemoraPage: React.FC = () => {
   const [columns, setColumns] = useState<number>(4);
   const [columnImages, setColumnImages] = useState<ImageItem[][]>([]);
@@ -420,7 +419,7 @@ const MemoraPage: React.FC = () => {
       <Header/>
       <div className="bg-gradient-to-br from-indigo-50 to-purple-50 min-h-screen pt-28 pb-10">
       <h1 className='text-black text-4xl text-center mb-10 font-bold'>Our <span className='text-yellow-500'>Gallery</span></h1>
-        <div className="max-w-7xl mx-auto px-4">
+    <div className="max-w-7xl mx-auto px-4">
           <div className={`grid gap-4 ${
             columns === 2 ? 'grid-cols-2' : 
             columns === 3 ? 'grid-cols-3' : 
@@ -430,8 +429,9 @@ const MemoraPage: React.FC = () => {
           }`}>
             {columnImages.map((column, columnIndex) => (
               <div key={columnIndex} className="flex flex-col gap-4">
-                {column.map((image, imageIndex) => {
+                {column.map((image) => {
                   const dynamicHeight = calculateImageHeight(image);
+                  
                   return (
                     <div
                       key={image.id}
