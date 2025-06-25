@@ -6,6 +6,45 @@ import { Calendar, Clock, MapPin, Users, Star, Search } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+const GoldAnimatedBackground = () => (
+  <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
+    <svg
+      className="absolute w-full h-full"
+      preserveAspectRatio="xMidYMid slice"
+      viewBox="0 0 1920 1080"
+    >
+      <path
+        d="M 0 200 C 300 400, 600 100, 900 300 S 1200 500, 1500 200"
+        stroke="#FFD700"
+        strokeWidth="2.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 200 800 C 500 600, 800 900, 1100 700 S 1400 500, 1700 800"
+        stroke="#FFB300"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 400 100 C 700 300, 1000 50, 1300 250 S 1600 400, 1900 150"
+        stroke="#FFECB3"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 100 900 C 400 700, 700 950, 1000 750 S 1300 550, 1600 900"
+        stroke="#FFC107"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+    </svg>
+  </div>
+);
+
 const ScheduledEventsPage = () => {
   const [selectedService, setSelectedService] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -130,10 +169,11 @@ const ScheduledEventsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-yellow-50">
+    <div className="relative min-h-screen overflow-x-hidden">
+      <GoldAnimatedBackground />
       <Header/>
-      <div className="relative h-screen md:h-[70vh] pt-10 bg-gradient-to-br from-yellow-500 to-yellow-400 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-amber-900/50 to-transparent"></div>
+      <div className="relative h-screen md:h-[70vh] pt-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-yellow-500 to-yellow-600"></div>
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
             <div
@@ -193,7 +233,7 @@ const ScheduledEventsPage = () => {
             {services.map((service, index) => (
               <div 
                 key={service.id} 
-                className="relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-500 animate-fade-in-up cursor-pointer"
+                className="relative overflow-hidden rounded-2xl shadow-xl transition-all duration-500 animate-fade-in-up cursor-pointer"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10 transition-opacity duration-300`}></div>
@@ -213,13 +253,13 @@ const ScheduledEventsPage = () => {
           </div>
         </div>
       </div>
-      <div className="py-20 px-6 bg-gradient-to-r from-amber-50 to-yellow-50">
+      <div className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 animate-fade-in-up">Upcoming <span className='text-yellow-500'>Events</span></h2>
             <p className="text-xl text-gray-600 animate-fade-in-up animation-delay-200">Browse and book your next unforgettable experience</p>
           </div>
-          <div className="bg-white rounded-2xl shadow-lg p-6 mb-12 animate-slide-in-up">
+          <div className="rounded-2xl shadow-lg p-6 mb-12 animate-slide-in-up">
             <div className="flex flex-col gap-4 sm:gap-6 sm:flex-col lg:flex-row lg:items-center">
               <div className="w-full lg:flex-1">
                 <div className="relative group">
