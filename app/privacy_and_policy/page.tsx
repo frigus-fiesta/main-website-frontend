@@ -196,7 +196,7 @@ const PrivacyPolicyPage = () => {
               },
             }}
           >
-            {policySections.map((section, i) => (
+            {policySections.map((section, _i) => (
               <motion.div
                 key={section.title}
                 className="mb-2"

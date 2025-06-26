@@ -4,9 +4,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaFeatherAlt } from "react-icons/fa";
 
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import Image from "next/image";
 
 const floatingCircles = [
   { size: "120px", top: "10%", left: "5%", delay: 0 },
@@ -236,12 +237,13 @@ function ThreeDCardDemo() {
           Hover over this card to unleash the power of CSS perspective
         </CardItem>
         <CardItem translateZ="100" className="w-full mt-4">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            height="1000"
-            width="1000"
+            height={240}
+            width={400}
             className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
             alt="thumbnail"
+            priority
           />
         </CardItem>
         <div className="flex justify-between items-center mt-20">

@@ -181,9 +181,9 @@ const TermsAndConditionsPage = () => {
         >
           <FaFeatherAlt />
         </motion.div>
-        {floatingCircles.map((circle, i) => (
+        {floatingCircles.map((circle, _i) => (
           <motion.div
-            key={i}
+            key={_i}
             className="pointer-events-none absolute z-0 opacity-40 blur-2xl"
             style={{
               width: circle.size,
@@ -197,7 +197,7 @@ const TermsAndConditionsPage = () => {
             initial={{ y: 0, x: 0, opacity: 0.4 }}
             animate={{ y: -20, x: 10, opacity: 0.6 }}
             transition={{
-              duration: 2.5 + i,
+              duration: 2.5 + _i,
               delay: circle.delay,
               ease: "easeInOut",
             }}
@@ -239,7 +239,7 @@ const TermsAndConditionsPage = () => {
               },
             }}
           >
-            {terms.map((term, i) => (
+            {terms.map((term, _i) => (
               <motion.div
                 key={term.title}
                 className="mb-2"
