@@ -172,7 +172,7 @@ const ScheduledEventsPage = () => {
     <div className="relative min-h-screen overflow-x-hidden">
       <GoldAnimatedBackground />
       <Header/>
-      <div className="relative h-screen overflow-hidden pt-10 md:h-[70vh]">
+      <div className="relative h-[90vh] overflow-hidden pt-10 md:h-[70vh]">
         <div className="absolute inset-0 bg-gradient-to-t from-yellow-500 to-yellow-600"></div>
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
@@ -193,7 +193,7 @@ const ScheduledEventsPage = () => {
         }`}>
           <div className="max-w-4xl">
             <h1 className="animate-fade-in-up mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
-              <span className="animate-text-shimmer inline-block text-yellow-300">
+              <span className="animate-text-shimmer inline-block text-white">
                 Scheduled Events
               </span>
             </h1>

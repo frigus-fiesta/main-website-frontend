@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
@@ -16,6 +16,45 @@ interface ImageItem {
   span: string;
   aspectRatio?: number; 
 }
+
+const GoldAnimatedBackground = () => (
+  <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
+    <svg
+      className="absolute size-full"
+      preserveAspectRatio="xMidYMid slice"
+      viewBox="0 0 1920 1080"
+    >
+      <path
+        d="M 0 200 C 300 400, 600 100, 900 300 S 1200 500, 1500 200"
+        stroke="#FFD700"
+        strokeWidth="2.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 200 800 C 500 600, 800 900, 1100 700 S 1400 500, 1700 800"
+        stroke="#FFB300"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 400 100 C 700 300, 1000 50, 1300 250 S 1600 400, 1900 150"
+        stroke="#FFECB3"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 100 900 C 400 700, 700 950, 1000 750 S 1300 550, 1600 900"
+        stroke="#FFC107"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+    </svg>
+  </div>
+);
 
 const pexelsImages: ImageItem[] = [
     {
@@ -308,11 +347,12 @@ const pexelsImages: ImageItem[] = [
     }
   ];
   
-const MemoraPage: React.FC = () => {
+const GalleryPage: React.FC = () => {
   const [columns, setColumns] = useState<number>(4);
   const [columnImages, setColumnImages] = useState<ImageItem[][]>([]);
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
     const handleResize = (): void => {
@@ -370,20 +410,17 @@ const MemoraPage: React.FC = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const navigateImage = (direction: 'prev' | 'next'): void => {
+  const navigateImage = useCallback((direction: 'prev' | 'next'): void => {
     if (!selectedImage) return;
-    
     const currentIndex = pexelsImages.findIndex(img => img.id === selectedImage.id);
     let newIndex;
-    
     if (direction === 'next') {
       newIndex = (currentIndex + 1) % pexelsImages.length;
     } else {
       newIndex = currentIndex === 0 ? pexelsImages.length - 1 : currentIndex - 1;
     }
-    
     setSelectedImage(pexelsImages[newIndex]);
-  };
+  }, [selectedImage]);
 
   const calculateImageHeight = (image: ImageItem): number => {
     const baseWidth = 300;
@@ -399,7 +436,6 @@ const MemoraPage: React.FC = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isModalOpen) return;
-      
       if (e.key === 'Escape') {
         closeModal();
       } else if (e.key === 'ArrowLeft') {
@@ -408,17 +444,69 @@ const MemoraPage: React.FC = () => {
         navigateImage('next');
       }
     };
-
     document.addEventListener('keydown', handleKeyDown);
+    
+return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen, selectedImage, navigateImage]);
 
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen, selectedImage]);
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
-    <div>
+    <div className="relative min-h-screen overflow-x-hidden">
+      <GoldAnimatedBackground />
       <Header/>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 pb-10 pt-28">
-        <h1 className='mb-10 text-center text-4xl font-bold text-black'>Our <span className='text-yellow-500'>Gallery</span></h1>
+      <div className="relative h-[90vh] overflow-hidden pt-10 md:h-[70vh]">
+        <div className="absolute inset-0 bg-gradient-to-t from-yellow-500 to-yellow-600"></div>
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute size-2 rounded-full bg-yellow-300 opacity-20"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 2}s`
+              }}
+            ></div>
+          ))}
+        </div>
+        <div className={`relative z-10 flex h-full items-center justify-center px-6 text-center transition-all duration-1000 ease-out ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
+          <div className="max-w-4xl">
+            <h1 className="animate-fade-in-up mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
+              <span className="animate-text-shimmer inline-block text-white">
+                Our Gallery
+              </span>
+            </h1>
+            <p className={`text-md mb-8 leading-relaxed text-amber-100 transition-all delay-300 duration-1000 ease-out md:text-lg ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+            }`}>
+              Discover extraordinary experiences crafted for corporate excellence, 
+              live entertainment, and unforgettable social celebrations
+            </p>
+            <div className={`flex flex-col justify-center gap-4 transition-all delay-500 duration-1000 ease-out sm:flex-row ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+            }`}>
+              <button className="rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 px-8 py-4 font-semibold text-white shadow-2xl transition-all duration-300">
+                Explore Events
+              </button>
+              <button className="rounded-full border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300">
+                View Gallerty
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="flex h-10 w-6 animate-bounce justify-center rounded-full border-2 border-white">
+            <div className="mt-2 h-3 w-1 animate-pulse rounded-full bg-white"></div>
+          </div>
+        </div>
+      </div>
+      <div className="relative min-h-screen bg-gradient-to-br from-amber-50 to-yellow-50 pb-10 pt-28">
         <div className="mx-auto max-w-7xl px-4">
           <div className={`grid gap-4 ${
             columns === 2 ? 'grid-cols-2' : 
@@ -435,7 +523,7 @@ const MemoraPage: React.FC = () => {
                   return (
                     <div
                       key={image.id}
-                      className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-xl"
+                      className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:shadow-amber-200/50"
                       style={{ height: `${dynamicHeight}px` }}
                       onClick={() => openModal(image)}
                     >
@@ -448,7 +536,7 @@ const MemoraPage: React.FC = () => {
                           loading="lazy"
                           sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
                         />
-                        <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 opacity-90 transition-opacity duration-300">
                           <div className="flex justify-end">
                             <div className="rounded-full bg-white/20 p-2 backdrop-blur-sm">
                               <svg className="size-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -534,4 +622,4 @@ const MemoraPage: React.FC = () => {
   );
 };
 
-export default MemoraPage;
+export default GalleryPage;
