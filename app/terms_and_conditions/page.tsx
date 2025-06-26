@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { FaFeatherAlt } from "react-icons/fa";
 import Header from "../../components/Header";

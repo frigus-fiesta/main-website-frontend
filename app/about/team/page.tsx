@@ -3,11 +3,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaFeatherAlt } from "react-icons/fa";
+import Image from "next/image";
 
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import Image from "next/image";
 
 const floatingCircles = [
   { size: "120px", top: "10%", left: "5%", delay: 0 },
@@ -225,41 +225,41 @@ const OurTeamPage = () => {
 function ThreeDCardDemo() {
   return (
     <CardContainer className="inter-var">
-      <CardBody className="bg-white/90 border-yellow-100 group/card w-auto sm:w-[30rem] h-auto rounded-xl p-6 border shadow-lg">
-        <CardItem translateZ="50" className="text-xl font-bold text-yellow-700">
+      <CardBody className="group/card border border-yellow-100 bg-white/90 rounded-xl p-6 size-auto shadow-lg">
+        <CardItem translateZ="50" className="font-bold text-xl text-yellow-700">
           Make things float in air
         </CardItem>
         <CardItem
           as="p"
           translateZ="60"
-          className="text-yellow-700/80 text-sm max-w-sm mt-2"
+          className="max-w-sm mt-2 text-sm text-yellow-700/80"
         >
           Hover over this card to unleash the power of CSS perspective
         </CardItem>
-        <CardItem translateZ="100" className="w-full mt-4">
+        <CardItem translateZ="100" className="mt-4 w-full">
           <Image
             src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             height={240}
             width={400}
-            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+            className="object-cover h-60 w-full rounded-xl group-hover/card:shadow-xl"
             alt="thumbnail"
             priority
           />
         </CardItem>
-        <div className="flex justify-between items-center mt-20">
+        <div className="mt-20 flex items-center justify-between">
           <CardItem
             translateZ={20}
             as="a"
             href="https://twitter.com/mannupaaji"
             target="__blank"
-            className="px-4 py-2 rounded-xl text-xs font-normal text-yellow-700 hover:bg-yellow-100 transition"
+            className="px-4 py-2 text-xs font-normal rounded-xl text-yellow-700 transition hover:bg-yellow-100"
           >
             Try now →
           </CardItem>
           <CardItem
             translateZ={20}
             as="button"
-            className="px-4 py-2 rounded-xl bg-yellow-400 text-white text-xs font-bold hover:bg-yellow-500 transition"
+            className="px-4 py-2 text-xs font-bold rounded-xl bg-yellow-400 text-white transition hover:bg-yellow-500"
           >
             Sign up
           </CardItem>
