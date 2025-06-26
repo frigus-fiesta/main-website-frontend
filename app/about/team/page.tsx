@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { FaFeatherAlt } from "react-icons/fa";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 
-// GoldAnimatedBackground and floatingCircles copied from HomeServices/HomeAbout/Testimonials
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+
 const floatingCircles = [
   { size: "120px", top: "10%", left: "5%", delay: 0 },
   { size: "80px", top: "60%", left: "10%", delay: 0.5 },
@@ -61,52 +62,11 @@ const GoldAnimatedBackground = () => (
   </div>
 );
 
-const terms = [
-  {
-    title: "1. Acceptance of Terms",
-    text: "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.",
-  },
-  {
-    title: "2. Modification of Terms",
-    text: "We reserve the right to change, modify, or revise these terms at any time. Your continued use of the site will signify your acceptance of any adjustment to these terms.",
-  },
-  {
-    title: "3. User Responsibilities",
-    text: "You agree to use the website only for lawful purposes and in a way that does not infringe the rights of, restrict or inhibit anyone else's use and enjoyment of the website.",
-  },
-  {
-    title: "4. Intellectual Property",
-    text: "All content, trademarks, and data on this website, including but not limited to software, databases, text, graphics, icons, hyperlinks, private information, designs, and agreements, are the property of or licensed to us and as such are protected from infringement by local and international legislation and treaties.",
-  },
-  {
-    title: "5. Limitation of Liability",
-    text: "We will not be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or the inability to use the website or for the cost of procurement of substitute goods and services.",
-  },
-  {
-    title: "6. Governing Law",
-    text: "These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which the company operates.",
-  },
-];
-
-const textVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.2 + i * 0.2,
-      duration: 0.7,
-      stiffness: 60,
-    },
-  }),
-};
-
-// Sparkle/particle effect
 const Sparkles = () => (
   <div className="pointer-events-none absolute inset-0 -z-20">
-    {[...Array(18)].map((_, i) => (
+    {[...Array(18)].map((_, _i) => (
       <motion.span
-        key={i}
+        key={_i}
         className="absolute rounded-full bg-yellow-200 opacity-60 blur-sm"
         style={{
           width: `${6 + Math.random() * 8}px`,
@@ -129,43 +89,26 @@ const Sparkles = () => (
   </div>
 );
 
-// Animated divider
-const AnimatedDivider = () => (
-  <motion.div
-    className="mx-auto mb-8 h-1 w-24 rounded-full bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400"
-    initial={{ scaleX: 0 }}
-    whileInView={{ scaleX: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.7, type: "spring" }}
-    style={{ originX: 0 }}
-  />
-);
-
-const titleVariants = {
-  hidden: { opacity: 0, scale: 0.8, rotate: -8 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    transition: {
-      delay: 0.2 + i * 0.2,
-      duration: 0.7,
-      stiffness: 80,
-    },
-  }),
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95, y: 40 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.8, stiffness: 60 },
+const teamMembers = [
+  {
+    name: "John Doe",
+    role: "Founder & CEO",
+    bio: "Visionary leader with a passion for innovation.",
   },
-};
+  {
+    name: "Jane Smith",
+    role: "CTO",
+    bio: "Tech enthusiast and architect of scalable solutions.",
+  },
+  {
+    name: "Emily Johnson",
+    role: "Lead Designer",
+    bio: "Creative mind behind our brand's visual identity.",
+  },
+  // Add more team members as needed
+];
 
-const TermsAndConditionsPage = () => {
+const OurTeamPage = () => {
   return (
     <>
       <Header />
@@ -181,9 +124,9 @@ const TermsAndConditionsPage = () => {
         >
           <FaFeatherAlt />
         </motion.div>
-        {floatingCircles.map((circle, i) => (
+        {floatingCircles.map((circle, _i) => (
           <motion.div
-            key={i}
+            key={_i}
             className="pointer-events-none absolute z-0 opacity-40 blur-2xl"
             style={{
               width: circle.size,
@@ -197,14 +140,14 @@ const TermsAndConditionsPage = () => {
             initial={{ y: 0, x: 0, opacity: 0.4 }}
             animate={{ y: -20, x: 10, opacity: 0.6 }}
             transition={{
-              duration: 2.5 + i,
+              duration: 2.5 + _i,
               delay: circle.delay,
               ease: "easeInOut",
             }}
           />
         ))}
         <motion.div
-          className="relative z-10 w-full max-w-3xl rounded-3xl border border-yellow-100 bg-white/80 p-10 shadow-2xl backdrop-blur-lg animate-border-glow flex flex-col items-center"
+          className="relative z-10 w-full max-w-5xl rounded-3xl border border-yellow-100 bg-white/80 p-10 shadow-2xl backdrop-blur-lg animate-border-glow flex flex-col items-center"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, type: "spring", stiffness: 80 }}
@@ -215,7 +158,7 @@ const TermsAndConditionsPage = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
           >
-            Terms <span className="text-yellow-400">&amp; Conditions</span>
+            Our <span className="text-yellow-400">Team</span>
           </motion.h1>
           <motion.p
             className="mb-8 text-gray-700 text-base font-medium text-center"
@@ -223,56 +166,29 @@ const TermsAndConditionsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, type: "spring", stiffness: 100 }}
           >
-            Please read these Terms and Conditions carefully before using our
-            website.
+            Meet the passionate people who drive our mission and vision.
           </motion.p>
-          <motion.div
-            className="w-full flex flex-col gap-8"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.08,
-                },
-              },
-            }}
-          >
-            {terms.map((term, i) => (
-              <motion.div
-                key={term.title}
-                className="mb-2"
-                variants={{
-                  hidden: { opacity: 0, y: 18 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.35,
-                      type: "spring",
-                      stiffness: 100,
-                    },
-                  },
-                }}
+          <div className="w-full flex flex-col gap-12">
+            {[...Array(4)].map((_, idx) => (
+              <div
+                key={idx}
+                className={`flex flex-col md:flex-row items-center justify-between gap-8 ${idx % 2 === 1 ? "md:flex-row-reverse" : ""}`}
               >
-                <motion.h2
-                  className="mb-2 text-xl font-bold text-yellow-600"
-                  initial={false}
-                  animate={false}
-                >
-                  {term.title}
-                </motion.h2>
-                <motion.p
-                  className="text-gray-700 text-base"
-                  initial={false}
-                  animate={false}
-                >
-                  {term.text}
-                </motion.p>
-              </motion.div>
+                <div className="flex-1 flex justify-center">
+                  <ThreeDCardDemo />
+                </div>
+                <div className="flex-1 flex flex-col justify-center items-center md:items-start">
+                  <h2 className="text-xl font-bold text-yellow-700 mb-2">
+                    Team Member {idx + 1}
+                  </h2>
+                  <p className="text-gray-700 text-base max-w-md text-center md:text-left">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Pellentesque vitae velit ex.
+                  </p>
+                </div>
+              </div>
             ))}
-          </motion.div>
+          </div>
           <div className="mt-10 text-xs text-gray-400 text-center w-full">
             &copy; {new Date().getFullYear()} Frigus Fiesta. All rights
             reserved.
@@ -305,4 +221,50 @@ const TermsAndConditionsPage = () => {
   );
 };
 
-export default TermsAndConditionsPage;
+function ThreeDCardDemo() {
+  return (
+    <CardContainer className="inter-var">
+      <CardBody className="bg-white/90 border-yellow-100 group/card w-auto sm:w-[30rem] h-auto rounded-xl p-6 border shadow-lg">
+        <CardItem translateZ="50" className="text-xl font-bold text-yellow-700">
+          Make things float in air
+        </CardItem>
+        <CardItem
+          as="p"
+          translateZ="60"
+          className="text-yellow-700/80 text-sm max-w-sm mt-2"
+        >
+          Hover over this card to unleash the power of CSS perspective
+        </CardItem>
+        <CardItem translateZ="100" className="w-full mt-4">
+          <img
+            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            height="1000"
+            width="1000"
+            className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+            alt="thumbnail"
+          />
+        </CardItem>
+        <div className="flex justify-between items-center mt-20">
+          <CardItem
+            translateZ={20}
+            as="a"
+            href="https://twitter.com/mannupaaji"
+            target="__blank"
+            className="px-4 py-2 rounded-xl text-xs font-normal text-yellow-700 hover:bg-yellow-100 transition"
+          >
+            Try now →
+          </CardItem>
+          <CardItem
+            translateZ={20}
+            as="button"
+            className="px-4 py-2 rounded-xl bg-yellow-400 text-white text-xs font-bold hover:bg-yellow-500 transition"
+          >
+            Sign up
+          </CardItem>
+        </div>
+      </CardBody>
+    </CardContainer>
+  );
+}
+
+export default OurTeamPage;
