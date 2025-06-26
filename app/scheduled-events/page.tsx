@@ -7,9 +7,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const GoldAnimatedBackground = () => (
-  <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
+  <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
     <svg
-      className="absolute w-full h-full"
+      className="absolute size-full"
       preserveAspectRatio="xMidYMid slice"
       viewBox="0 0 1920 1080"
     >
@@ -172,13 +172,13 @@ const ScheduledEventsPage = () => {
     <div className="relative min-h-screen overflow-x-hidden">
       <GoldAnimatedBackground />
       <Header/>
-      <div className="relative h-screen md:h-[70vh] pt-10 overflow-hidden">
+      <div className="relative h-screen overflow-hidden pt-10 md:h-[70vh]">
         <div className="absolute inset-0 bg-gradient-to-t from-yellow-500 to-yellow-600"></div>
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-2 h-2 bg-yellow-300 rounded-full opacity-20"
+              className="absolute size-2 rounded-full bg-yellow-300 opacity-20"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -188,63 +188,63 @@ const ScheduledEventsPage = () => {
             ></div>
           ))}
         </div>
-        <div className={`relative z-10 flex items-center justify-center h-full text-center px-6 transition-all duration-1000 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        <div className={`relative z-10 flex h-full items-center justify-center px-6 text-center transition-all duration-1000 ease-out ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight animate-fade-in-up">
-              <span className="text-yellow-300 inline-block animate-text-shimmer">
+            <h1 className="animate-fade-in-up mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
+              <span className="animate-text-shimmer inline-block text-yellow-300">
                 Scheduled Events
               </span>
             </h1>
-            <p className={`text-md md:text-lg text-amber-100 mb-8 leading-relaxed transition-all duration-1000 delay-300 ease-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            <p className={`text-md mb-8 leading-relaxed text-amber-100 transition-all delay-300 duration-1000 ease-out md:text-lg ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}>
               Discover extraordinary experiences crafted for corporate excellence, 
               live entertainment, and unforgettable social celebrations
             </p>
-            <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-500 ease-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            <div className={`flex flex-col justify-center gap-4 transition-all delay-500 duration-1000 ease-out sm:flex-row ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}>
-              <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-amber-500 text-white font-semibold rounded-full transition-all duration-300 shadow-2xl">
+              <button className="rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 px-8 py-4 font-semibold text-white shadow-2xl transition-all duration-300">
                 Explore Events
               </button>
-              <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-full transition-all duration-300">
+              <button className="rounded-full border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300">
                 View Calendar
               </button>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center animate-bounce">
-            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <div className="flex h-10 w-6 animate-bounce justify-center rounded-full border-2 border-white">
+            <div className="mt-2 h-3 w-1 animate-pulse rounded-full bg-white"></div>
           </div>
         </div>
       </div>
-      <div className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 animate-fade-in-up">Our <span className='text-yellow-500'>Services</span></h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up animation-delay-200">
+      <div className="px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 text-center">
+            <h2 className="animate-fade-in-up mb-6 text-4xl font-bold text-black md:text-5xl">Our <span className='text-yellow-500'>Services</span></h2>
+            <p className="animate-fade-in-up animation-delay-200 mx-auto max-w-3xl text-xl text-gray-600">
               We are very proud of our client base and the lasting relationships we have forged over many years
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <div className="mb-20 grid grid-cols-1 gap-8 md:grid-cols-3">
             {services.map((service, index) => (
               <div 
                 key={service.id} 
-                className="relative overflow-hidden rounded-2xl shadow-xl transition-all duration-500 animate-fade-in-up cursor-pointer"
+                className="animate-fade-in-up relative cursor-pointer overflow-hidden rounded-2xl shadow-xl transition-all duration-500"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10 transition-opacity duration-300`}></div>
                 <div className="relative p-8 text-center">
-                  <div className="text-6xl mb-4">
+                  <div className="mb-4 text-6xl">
                     {service.icon}
                   </div>
-                  <h3 className="text-2xl font-bold text-amber-900 mb-4">
+                  <h3 className="mb-4 text-2xl font-bold text-amber-900">
                     {service.name}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="leading-relaxed text-gray-600">
                     Professional {service.name.toLowerCase()} services tailored to create memorable experiences
                   </p>
                 </div>
@@ -253,31 +253,31 @@ const ScheduledEventsPage = () => {
           </div>
         </div>
       </div>
-      <div className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 animate-fade-in-up">Upcoming <span className='text-yellow-500'>Events</span></h2>
-            <p className="text-xl text-gray-600 animate-fade-in-up animation-delay-200">Browse and book your next unforgettable experience</p>
+      <div className="px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
+            <h2 className="animate-fade-in-up mb-6 text-4xl font-bold text-black md:text-5xl">Upcoming <span className='text-yellow-500'>Events</span></h2>
+            <p className="animate-fade-in-up animation-delay-200 text-xl text-gray-600">Browse and book your next unforgettable experience</p>
           </div>
-          <div className="rounded-2xl shadow-lg p-6 mb-12 animate-slide-in-up">
-            <div className="flex flex-col gap-4 sm:gap-6 sm:flex-col lg:flex-row lg:items-center">
+          <div className="animate-slide-in-up mb-12 rounded-2xl p-6 shadow-lg">
+            <div className="flex flex-col gap-4 sm:flex-col sm:gap-6 lg:flex-row lg:items-center">
               <div className="w-full lg:flex-1">
-                <div className="relative group">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 transition-colors duration-300 group-focus-within:text-amber-500" />
+                <div className="group relative">
+                  <Search className="absolute left-3 top-1/2 size-5 -translate-y-1/2 text-gray-400 transition-colors duration-300 group-focus-within:text-amber-500" />
                   <input
                     type="text"
                     placeholder="Search events or locations..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all duration-300 hover:border-amber-300"
+                    className="w-full rounded-xl border border-gray-200 py-3 pl-10 pr-4 transition-all duration-300 hover:border-amber-300 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-amber-400"
                   />
                 </div>
               </div>
-              <div className="w-full lg:w-auto overflow-x-auto">
-                <div className="flex flex-wrap sm:flex-nowrap gap-2 sm:gap-3 min-w-[300px]">
+              <div className="w-full overflow-x-auto lg:w-auto">
+                <div className="flex min-w-[300px] flex-wrap gap-2 sm:flex-nowrap sm:gap-3">
                   <button
                     onClick={() => setSelectedService('all')}
-                    className={`flex-1 min-w-[120px] px-4 py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
+                    className={`min-w-[120px] flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 sm:text-base ${
                       selectedService === 'all' 
                         ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-white shadow-lg shadow-amber-400/25' 
                         : 'bg-gray-100 text-gray-600'
@@ -289,7 +289,7 @@ const ScheduledEventsPage = () => {
                     <button
                       key={service.id}
                       onClick={() => setSelectedService(service.id)}
-                      className={`flex-1 min-w-[120px] px-4 py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
+                      className={`min-w-[120px] flex-1 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 sm:text-base ${
                         selectedService === service.id 
                           ? 'bg-gradient-to-r from-amber-400 to-yellow-500 text-white shadow-lg shadow-amber-400/25' 
                           : 'bg-gray-100 text-gray-600'
@@ -303,54 +303,54 @@ const ScheduledEventsPage = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredEvents.map((event, index) => (
               <div 
                 key={event.id} 
-                className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-500 transform  hover:shadow-2xl animate-fade-in-up group cursor-pointer"
+                className="animate-fade-in-up group cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg  transition-all duration-500 hover:shadow-2xl"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="relative h-48 bg-gradient-to-br from-amber-400 to-yellow-600 flex items-center justify-center overflow-hidden">
-                  <div className="text-6xl text-white opacity-80 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                <div className="relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-br from-amber-400 to-yellow-600">
+                  <div className="text-6xl text-white opacity-80 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">
                     {event.type === 'corporate' ? '🏢' : event.type === 'concert' ? '🎵' : '🎉'}
                   </div>
-                  <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 transition-all duration-300 group-hover:bg-white/30">
-                    <span className="text-white font-semibold text-sm">{event.price}</span>
+                  <div className="absolute right-4 top-4 rounded-full bg-white/20 px-3 py-1 backdrop-blur-sm transition-all duration-300 group-hover:bg-white/30">
+                    <span className="text-sm font-semibold text-white">{event.price}</span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-amber-900 mb-3 line-clamp-2 group-hover:text-amber-700 transition-colors duration-300">
+                  <h3 className="mb-3 line-clamp-2 text-xl font-bold text-amber-900 transition-colors duration-300 group-hover:text-amber-700">
                     {event.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{event.description}</p>
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-gray-500 group-hover:text-gray-600 transition-colors duration-300">
-                      <Calendar className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                  <p className="mb-4 text-sm leading-relaxed text-gray-600">{event.description}</p>
+                  <div className="mb-4 space-y-2">
+                    <div className="flex items-center text-gray-500 transition-colors duration-300 group-hover:text-gray-600">
+                      <Calendar className="mr-2 size-4 transition-transform duration-300 group-hover:scale-110" />
                       <span className="text-sm">{formatDate(event.date)}</span>
                     </div>
-                    <div className="flex items-center text-gray-500 group-hover:text-gray-600 transition-colors duration-300">
-                      <Clock className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                    <div className="flex items-center text-gray-500 transition-colors duration-300 group-hover:text-gray-600">
+                      <Clock className="mr-2 size-4 transition-transform duration-300 group-hover:scale-110" />
                       <span className="text-sm">{event.time}</span>
                     </div>
-                    <div className="flex items-center text-gray-500 group-hover:text-gray-600 transition-colors duration-300">
-                      <MapPin className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
+                    <div className="flex items-center text-gray-500 transition-colors duration-300 group-hover:text-gray-600">
+                      <MapPin className="mr-2 size-4 transition-transform duration-300 group-hover:scale-110" />
                       <span className="text-sm">{event.location}</span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="mb-4 flex items-center justify-between">
                     <div className="flex items-center">
-                      <Users className="w-4 h-4 mr-2 text-gray-400 transition-transform duration-300 group-hover:scale-110" />
+                      <Users className="mr-2 size-4 text-gray-400 transition-transform duration-300 group-hover:scale-110" />
                       <span className={`text-sm font-semibold ${getAvailabilityColor(event.booked, event.capacity)} transition-colors duration-300`}>
                         {event.booked}/{event.capacity} booked
                       </span>
                     </div>
                     <div className="flex items-center">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current transition-transform duration-300 group-hover:scale-110 group-hover:animate-pulse" />
-                      <span className="text-sm text-gray-600 ml-1">4.8</span>
+                      <Star className="size-4 fill-current text-yellow-400 transition-transform duration-300 group-hover:scale-110 group-hover:animate-pulse" />
+                      <span className="ml-1 text-sm text-gray-600">4.8</span>
                     </div>
                   </div>
-                  <button className="w-full bg-gradient-to-r from-amber-400 to-yellow-500 text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-amber-400/25 transform  active:scale-95 group-hover:from-amber-500 group-hover:to-yellow-600">
+                  <button className="w-full rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-amber-400/25 active:scale-95  group-hover:from-amber-500 group-hover:to-yellow-600">
                     <span className="group-hover:animate-pulse">Book Now</span>
                   </button>
                 </div>
@@ -358,9 +358,9 @@ const ScheduledEventsPage = () => {
             ))}
           </div>
           {filteredEvents.length === 0 && (
-            <div className="text-center py-12 animate-fade-in">
-              <div className="text-6xl mb-4 opacity-50">😔</div>
-              <p className="text-gray-500 text-lg">No events found matching your criteria.</p>
+            <div className="animate-fade-in py-12 text-center">
+              <div className="mb-4 text-6xl opacity-50">😔</div>
+              <p className="text-lg text-gray-500">No events found matching your criteria.</p>
             </div>
           )}
         </div>

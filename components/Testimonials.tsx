@@ -150,7 +150,7 @@
         ))}
         <div className="container relative z-10 mx-auto px-6 py-16">
           <div className="mb-16 text-center">
-            <h1 className="mb-6 text-3xl md:text-5xl font-bold text-black">
+            <h1 className="mb-6 text-3xl font-bold text-black md:text-5xl">
               Our <span className='text-yellow-500'>Testimonials</span>
             </h1>
             <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-700">
