@@ -127,7 +127,7 @@ const PrivacyPolicyPage = () => {
   return (
     <>
       <Header />
-      <section className="relative min-h-screen flex flex-col items-center justify-center py-24 overflow-hidden">
+      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden py-24">
         <GoldAnimatedBackground />
         <Sparkles />
         {/* Floating/rotating feather icon */}
@@ -162,13 +162,13 @@ const PrivacyPolicyPage = () => {
           />
         ))}
         <motion.div
-          className="relative z-10 w-full max-w-3xl rounded-3xl border border-yellow-100 bg-white/80 p-10 shadow-2xl backdrop-blur-lg animate-border-glow flex flex-col items-center"
+          className="animate-border-glow relative z-10 flex w-full max-w-3xl flex-col items-center rounded-3xl border border-yellow-100 bg-white/80 p-10 shadow-2xl backdrop-blur-lg"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, type: "spring", stiffness: 80 }}
         >
           <motion.h1
-            className="mb-4 text-center text-3xl md:text-4xl font-extrabold text-gray-900"
+            className="mb-4 text-center text-3xl font-extrabold text-gray-900 md:text-4xl"
             initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
@@ -176,7 +176,7 @@ const PrivacyPolicyPage = () => {
             Privacy <span className="text-yellow-400">&amp; Policy</span>
           </motion.h1>
           <motion.p
-            className="mb-8 text-gray-700 text-base font-medium text-center"
+            className="mb-8 text-center text-base font-medium text-gray-700"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, type: "spring", stiffness: 100 }}
@@ -185,7 +185,7 @@ const PrivacyPolicyPage = () => {
             information and protect your privacy when you use our website.
           </motion.p>
           <motion.div
-            className="w-full flex flex-col gap-8"
+            className="flex w-full flex-col gap-8"
             initial="hidden"
             animate="visible"
             variants={{
@@ -222,7 +222,7 @@ const PrivacyPolicyPage = () => {
                   {section.title}
                 </motion.h2>
                 <motion.p
-                  className="text-gray-700 text-base"
+                  className="text-base text-gray-700"
                   initial={false}
                   animate={false}
                 >
@@ -231,7 +231,7 @@ const PrivacyPolicyPage = () => {
               </motion.div>
             ))}
           </motion.div>
-          <div className="mt-10 text-xs text-gray-400 text-center w-full">
+          <div className="mt-10 w-full text-center text-xs text-gray-400">
             &copy; {new Date().getFullYear()} Frigus Fiesta. All rights
             reserved.
           </div>

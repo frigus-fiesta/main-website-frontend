@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaFeatherAlt } from "react-icons/fa";
+
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -88,19 +89,6 @@ const terms = [
   },
 ];
 
-const textVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.2 + i * 0.2,
-      duration: 0.7,
-      stiffness: 60,
-    },
-  }),
-};
-
 // Sparkle/particle effect
 const Sparkles = () => (
   <div className="pointer-events-none absolute inset-0 -z-20">
@@ -129,47 +117,11 @@ const Sparkles = () => (
   </div>
 );
 
-// Animated divider
-const AnimatedDivider = () => (
-  <motion.div
-    className="mx-auto mb-8 h-1 w-24 rounded-full bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400"
-    initial={{ scaleX: 0 }}
-    whileInView={{ scaleX: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.7, type: "spring" }}
-    style={{ originX: 0 }}
-  />
-);
-
-const titleVariants = {
-  hidden: { opacity: 0, scale: 0.8, rotate: -8 },
-  visible: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    transition: {
-      delay: 0.2 + i * 0.2,
-      duration: 0.7,
-      stiffness: 80,
-    },
-  }),
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.95, y: 40 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.8, stiffness: 60 },
-  },
-};
-
 const TermsAndConditionsPage = () => {
   return (
     <>
       <Header />
-      <section className="relative min-h-screen flex flex-col items-center justify-center py-24 overflow-hidden">
+      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden py-24">
         <GoldAnimatedBackground />
         <Sparkles />
         {/* Floating/rotating feather icon */}
@@ -204,13 +156,13 @@ const TermsAndConditionsPage = () => {
           />
         ))}
         <motion.div
-          className="relative z-10 w-full max-w-3xl rounded-3xl border border-yellow-100 bg-white/80 p-10 shadow-2xl backdrop-blur-lg animate-border-glow flex flex-col items-center"
+          className="animate-border-glow relative z-10 flex w-full max-w-3xl flex-col items-center rounded-3xl border border-yellow-100 bg-white/80 p-10 shadow-2xl backdrop-blur-lg"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, type: "spring", stiffness: 80 }}
         >
           <motion.h1
-            className="mb-4 text-center text-3xl md:text-4xl font-extrabold text-gray-900"
+            className="mb-4 text-center text-3xl font-extrabold text-gray-900 md:text-4xl"
             initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
@@ -218,7 +170,7 @@ const TermsAndConditionsPage = () => {
             Terms <span className="text-yellow-400">&amp; Conditions</span>
           </motion.h1>
           <motion.p
-            className="mb-8 text-gray-700 text-base font-medium text-center"
+            className="mb-8 text-center text-base font-medium text-gray-700"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, type: "spring", stiffness: 100 }}
@@ -227,7 +179,7 @@ const TermsAndConditionsPage = () => {
             website.
           </motion.p>
           <motion.div
-            className="w-full flex flex-col gap-8"
+            className="flex w-full flex-col gap-8"
             initial="hidden"
             animate="visible"
             variants={{
@@ -264,7 +216,7 @@ const TermsAndConditionsPage = () => {
                   {term.title}
                 </motion.h2>
                 <motion.p
-                  className="text-gray-700 text-base"
+                  className="text-base text-gray-700"
                   initial={false}
                   animate={false}
                 >
@@ -273,7 +225,7 @@ const TermsAndConditionsPage = () => {
               </motion.div>
             ))}
           </motion.div>
-          <div className="mt-10 text-xs text-gray-400 text-center w-full">
+          <div className="mt-10 w-full text-center text-xs text-gray-400">
             &copy; {new Date().getFullYear()} Frigus Fiesta. All rights
             reserved.
           </div>
