@@ -100,6 +100,7 @@ const HomeClients = () => {
         viewport={{ once: true }}
       >
         Our <span className="text-yellow-400">Clients</span>
+        <span className="mx-auto mt-2 block h-1 w-24 rounded-full bg-yellow-400 mb-3" />
       </motion.h2>
       <motion.p
         className="z-10 mx-auto mb-12 max-w-2xl text-center text-lg text-gray-500"

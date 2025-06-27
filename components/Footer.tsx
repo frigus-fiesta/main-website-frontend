@@ -148,7 +148,7 @@ const Footer = () => {
           <div className="border-t border-white border-opacity-30 pt-8 text-center">
             <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
               <p className="text-sm text-white">
-                Â©2025 Frigus Fiesta | Developed by{" "}
+                ©2025 Frigus Fiesta | Developed by{" "}
                 <Link
                   href={`https://www.electroplix.com/`}
                   className="cursor-pointer font-semibold text-yellow-200 transition-colors duration-300 hover:underline hover:underline-offset-1"
