@@ -1,8 +1,10 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import React, { useEffect, useState } from "react";
 
 const GoldAnimatedBackground = () => (
   <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
@@ -160,7 +162,9 @@ const TeamCard: React.FC<TeamCardProps> = ({ member, index }) => {
       <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 border border-gray-100">
         <div className="absolute inset-0 bg-gradient-to-t from-amber-400/30 via-yellow-300/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
         <div className="relative h-80 overflow-hidden">
-          <img
+          <Image
+            width={100000}
+            height={100000}
             src={member.image}
             alt={member.name}
             className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110 filter group-hover:brightness-110"
@@ -229,6 +233,7 @@ export default function AboutTeamPage() {
     const timer = setTimeout(() => {
       setTeamVisible(true);
     }, 800);
+
     return () => clearTimeout(timer);
   }, []);
 

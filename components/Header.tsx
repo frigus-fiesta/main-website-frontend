@@ -71,82 +71,82 @@ const Header = () => {
 
   return (
     <div>
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${getGlassBackground()} rounded-bl-3xl rounded-br-3xl shadow-lg`}>
-      <div className="container mx-auto px-4 sm:px-6 xl:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="shrink-0">
-            <Image src="/assets/friguslogo.svg" alt='logo' width={100000} height={100000} className='mt-2 size-44 lg:size-52 md:mt-1' />
-          </Link>
-          <div className="hidden items-center space-x-6 xl:flex">
-            <nav className="flex space-x-8">
-              {navLinks.map((link) => (
-                <div
-                  key={link.label}
-                  className="relative"
-                  onMouseEnter={() => link.dropdown && setHoveredItem(link.label)}
-                  onMouseLeave={() => link.dropdown && setHoveredItem(null)}
-                >
-                  <Link
-                    href={link.href}
-                    className={`group relative flex items-center text-sm font-bold transition-colors duration-300 ${navTextColor} ${goldHoverColor} drop-shadow-sm`}
-                  >
-                    {link.label}
-                    {link.dropdown && <FaChevronDown className="ml-1.5 size-3 opacity-70" />}
-                  </Link>
-                  <AnimatePresence>
-                    {link.dropdown && hoveredItem === link.label && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-0 top-full mt-2 w-48 rounded-xl bg-white/95 backdrop-blur-md p-2 uppercase shadow-xl ring-1 ring-white/20 border border-white/20"
-                      >
-                        {link.dropdown.map(subLink => (
-                          <Link
-                            key={subLink.label}
-                            href={subLink.href}
-                            className={`block px-3 py-2 text-sm text-gray-800 hover:text-yellow-500 rounded-lg hover:bg-white/50 transition-all duration-200`}
-                          >
-                            {subLink.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
-            </nav>
-            <Link href="/pay" className={`rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-3 py-1 font-bold text-white shadow-lg hover:shadow-xl transition-all duration-300`}>
-              Pay Now
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${getGlassBackground()} rounded-bl-3xl rounded-br-3xl shadow-lg`}>
+        <div className="container mx-auto px-4 sm:px-6 xl:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <Link href="/" className="shrink-0">
+              <Image src="/assets/friguslogo.svg" alt='logo' width={100000} height={100000} className='mt-2 size-44 lg:size-52 md:mt-1' />
             </Link>
-          </div>
-          <div className="flex items-center xl:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className={`focus:outline-none ${navTextColor} drop-shadow-sm`}>
-              <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-              </svg>
-            </button>
+            <div className="hidden items-center space-x-6 xl:flex">
+              <nav className="flex space-x-8">
+                {navLinks.map((link) => (
+                  <div
+                    key={link.label}
+                    className="relative"
+                    onMouseEnter={() => link.dropdown && setHoveredItem(link.label)}
+                    onMouseLeave={() => link.dropdown && setHoveredItem(null)}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`group relative flex items-center text-sm font-bold transition-colors duration-300 ${navTextColor} ${goldHoverColor} drop-shadow-sm`}
+                    >
+                      {link.label}
+                      {link.dropdown && <FaChevronDown className="ml-1.5 size-3 opacity-70" />}
+                    </Link>
+                    <AnimatePresence>
+                      {link.dropdown && hoveredItem === link.label && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          className="absolute left-0 top-full mt-2 w-48 rounded-xl bg-white/95 backdrop-blur-md p-2 uppercase shadow-xl ring-1 ring-white/20 border border-white/20"
+                        >
+                          {link.dropdown.map(subLink => (
+                            <Link
+                              key={subLink.label}
+                              href={subLink.href}
+                              className={`block px-3 py-2 text-sm text-gray-800 hover:text-yellow-500 rounded-lg hover:bg-white/50 transition-all duration-200`}
+                            >
+                              {subLink.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </nav>
+              <Link href="/pay" className={`rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-3 py-1 font-bold text-white shadow-lg hover:shadow-xl transition-all duration-300`}>
+                Pay Now
+              </Link>
+            </div>
+            <div className="flex items-center xl:hidden">
+              <button onClick={() => setIsOpen(!isOpen)} className={`focus:outline-none ${navTextColor} drop-shadow-sm`}>
+                <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-    <AnimatePresence>
-          {isOpen && (
+      </header>
+      <AnimatePresence>
+        {isOpen && (
           <>
             <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm xl:hidden"
-                    onClick={() => setIsOpen(false)}
-                />
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm xl:hidden"
+              onClick={() => setIsOpen(false)}
+            />
             <motion.div 
-                    initial={{ x: '100%' }}
-                    animate={{ x: 0 }}
-                    exit={{ x: '100%' }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    className="fixed right-0 top-0 z-50 h-full w-72 bg-white shadow-xl xl:hidden"
-                >
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="fixed right-0 top-0 z-50 h-full w-72 bg-white shadow-xl xl:hidden"
+            >
               <div className="flex h-full flex-col p-5">
                 <div className="flex justify-end">
                   <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-gray-700">
@@ -166,28 +166,28 @@ const Header = () => {
                           </button>
                           <AnimatePresence>
                             {openDropdown === link.label && (
-                            <motion.div 
-                                                    initial={{ height: 0, opacity: 0 }}
-                                                    animate={{ height: 'auto', opacity: 1 }}
-                                                    exit={{ height: 0, opacity: 0 }}
-                                                    className="overflow-hidden pl-8"
-                                                >
-                              {link.dropdown.map(subLink => (
-                                <Link key={subLink.label} href={subLink.href} onClick={() => setIsOpen(false)} className={`block px-4 py-2 text-sm uppercase text-gray-600 ${goldHoverColor}`}>
-                                  {subLink.label}
-                                </Link>
-                                                    ))}
-                            </motion.div>
-                                            )}
+                              <motion.div 
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="overflow-hidden pl-8"
+                              >
+                                {link.dropdown.map(subLink => (
+                                  <Link key={subLink.label} href={subLink.href} onClick={() => setIsOpen(false)} className={`block px-4 py-2 text-sm uppercase text-gray-600 ${goldHoverColor}`}>
+                                    {subLink.label}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
                           </AnimatePresence>
                         </div>
-                                    ) : (
-                                      <Link href={link.href} onClick={() => setIsOpen(false)} className={`block px-4 py-2 text-gray-700 ${goldHoverColor}`}>
-                                        {link.label}
-                                      </Link>
-                                    )}
+                      ) : (
+                        <Link href={link.href} onClick={() => setIsOpen(false)} className={`block px-4 py-2 text-gray-700 ${goldHoverColor}`}>
+                          {link.label}
+                        </Link>
+                      )}
                     </div>
-                            ))}
+                  ))}
                 </nav>
                 <div className="mt-auto p-4">
                   <Link href="/pay" className={`block w-full rounded-full bg-gradient-to-r from-yellow-500 to-yellow-500 px-5 py-2.5 text-center font-bold text-white`}>
@@ -197,8 +197,8 @@ const Header = () => {
               </div>
             </motion.div>
           </>
-            )}
-        </AnimatePresence>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
