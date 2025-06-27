@@ -75,18 +75,18 @@ const Footer = () => {
         <div className="container relative z-10 mx-auto px-6 py-16">
           <nav className="mb-12 flex flex-wrap justify-center gap-8">
             {[
-              "Home",
-              "About Us",
-              "Gallery",
-              "Contact Us",
-              "Book Appointment",
-            ].map((link) => (
+              { label: "Home", href: "/" },
+              { label: "About Us", href: "/about/story" },
+              { label: "Gallery", href: "/gallery" },
+              { label: "Contact Us", href: "/contactus" },
+              { label: "Book Appointment", href: "/appointment" },
+            ].map(({ label, href }) => (
               <a
-                key={link}
-                href="#"
+                key={label}
+                href={href}
                 className="group relative text-lg font-semibold text-white transition-all duration-300 hover:text-yellow-200"
               >
-                {link}
+                {label}
               </a>
             ))}
           </nav>

@@ -56,6 +56,7 @@ const teamMembers = [
       { platform: "LinkedIn", url: "https://linkedin.com/in/naveencheery" },
       { platform: "Instagram", url: "https://instagram.com/naveencheery" },
       { platform: "Facebook", url: "https://facebook.com/naveencheery" },
+      { platform: "X", url: "#" },
     ],
   },
   {
@@ -68,6 +69,7 @@ const teamMembers = [
       { platform: "LinkedIn", url: "https://linkedin.com/in/saibhardwaj" },
       { platform: "Instagram", url: "https://instagram.com/saibhardwaj" },
       { platform: "Facebook", url: "https://facebook.com/saibhardwaj" },
+      { platform: "X", url: "#" },
     ],
   },
   {
@@ -80,6 +82,7 @@ const teamMembers = [
       { platform: "LinkedIn", url: "https://linkedin.com/in/manisha" },
       { platform: "Instagram", url: "https://instagram.com/manisha" },
       { platform: "Facebook", url: "https://facebook.com/manisha" },
+      { platform: "X", url: "#" },
     ],
   },
 ];
@@ -99,6 +102,12 @@ const InstagramIcon = () => (
 const FacebookIcon = () => (
   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+);
+
+const XIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.53 3H21.5L13.62 10.99L22.93 21H16.28L10.97 15.13L4.97 21H1L9.32 12.56L0.27 3H7.09L11.88 8.36L17.53 3ZM16.34 19.13H18.23L6.7 4.76H4.68L16.34 19.13Z" fill="currentColor"/>
   </svg>
 );
 
@@ -133,6 +142,8 @@ const TeamCard: React.FC<TeamCardProps> = ({ member, index }) => {
         return <InstagramIcon />;
       case 'Facebook':
         return <FacebookIcon />;
+      case 'X':
+        return <XIcon />;
       default:
         return null;
     }
@@ -141,11 +152,13 @@ const TeamCard: React.FC<TeamCardProps> = ({ member, index }) => {
   const getSocialColor = (platform: string) => {
     switch (platform) {
       case 'LinkedIn':
-        return 'hover:bg-blue-600';
+        return 'hover:bg-[#0077B5]';
       case 'Instagram':
-        return 'hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500';
+        return 'hover:bg-gradient-to-br hover:from-[#f58529] hover:via-[#dd2a7b] hover:to-[#515bd4]';
       case 'Facebook':
-        return 'hover:bg-blue-700';
+        return 'hover:bg-[#1877F3]';
+      case 'X':
+        return 'hover:bg-black';
       default:
         return 'hover:bg-yellow-500';
     }
