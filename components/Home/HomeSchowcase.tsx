@@ -126,7 +126,7 @@ const HomeShowcase = () => {
                 </div>
                 <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                   Crafting Moments with 
-                  <span className="text-amber-600"> Precision</span>
+                  <span className="text-yellow-500"> Precision</span>
                 </h2>
               </motion.div>
               <motion.div
@@ -184,7 +184,7 @@ const HomeShowcase = () => {
                 </div>
                 <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                   Recognized Excellence in 
-                  <span className="text-yellow-600"> Events</span>
+                  <span className="text-yellow-500"> Events</span>
                 </h2>
               </motion.div>
               <motion.div
