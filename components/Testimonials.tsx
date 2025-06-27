@@ -152,7 +152,7 @@
           <div className="mb-16 text-center">
             <h1 className="mb-6 text-3xl font-bold text-black md:text-5xl">
               Our <span className='text-yellow-500'>Testimonials</span>
-            <div className="mx-auto mt-3 h-1 w-24 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500"></div>
+              <div className="mx-auto mt-3 h-1 w-24 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500"></div>
             </h1>
             <p className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-700">
               Discover what our amazing clients have to say about their experiences with us
