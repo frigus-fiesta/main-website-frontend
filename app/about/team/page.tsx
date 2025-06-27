@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import { motion } from "framer-motion";
 
 const GoldAnimatedBackground = () => (
   <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">

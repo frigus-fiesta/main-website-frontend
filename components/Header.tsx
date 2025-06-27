@@ -29,8 +29,6 @@ const navLinks = [
 ];
 
 const goldHoverColor = "hover:text-yellow-400";
-const transparentNavTextColor = "text-white";
-const solidNavTextColor = "text-gray-800";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,17 +43,13 @@ const Header = () => {
     };
     window.addEventListener("scroll", handleScroll);
     handleScroll();
+    
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const isStaticBlack =
     pathname === "/terms_and_conditions" || pathname === "/privacy_and_policy";
   const isTransparent = !isStaticBlack && !hasScrolled;
-  const navTextColor = isStaticBlack
-    ? "text-white"
-    : isTransparent
-      ? "text-gray-900"
-      : "text-white";
 
   const toggleMobileDropdown = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label);
