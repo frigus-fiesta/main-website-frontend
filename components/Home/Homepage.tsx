@@ -74,13 +74,13 @@ const Homepage = () => {
         }}
       >
         <motion.p 
-          className="mb-4 text-lg uppercase tracking-wide md:text-xl"
+          className="mb-4 text-sm md:text-md uppercase md:tracking-wide"
           variants={itemVariants}
           style={{
             transform: `translateY(${scrollY * -0.1}px)`,
           }}
         >
-          Dream Weddings Made Easy.
+          Unforgettable Moments, Effortlessly Delivered.
         </motion.p>
         <motion.h1 
           className="bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-6xl font-extrabold uppercase leading-none tracking-tighter text-transparent md:text-8xl"
@@ -108,7 +108,7 @@ const Homepage = () => {
             transform: `translateY(${scrollY * -0.3}px)`,
           }}
         >
-          <Link href="/contact">
+          <Link href="/contactus">
             <span className="cursor-pointer rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 px-10 py-4 font-bold uppercase text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               Curate Event With Us
             </span>
