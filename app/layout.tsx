@@ -8,7 +8,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Frigus Friesta",
+  title: "Frigus Fiesta",
   description: "Empowering students and young professionals with immersive internship programs in Full Stack Development, Data Science, Cyber Security, and more.",
 };
 
