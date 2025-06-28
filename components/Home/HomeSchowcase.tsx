@@ -16,7 +16,7 @@ const EnhancedGoldBackground = () => (
   <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-50/20 to-orange-50/30" />
     <svg
-      className="absolute w-full h-full"
+      className="absolute size-full"
       preserveAspectRatio="xMidYMid slice"
       viewBox="0 0 1920 1080"
     >
@@ -56,7 +56,7 @@ const EnhancedGoldBackground = () => (
 
 const SectionCard: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => (
   <motion.div
-    className={`relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-amber-100/50 hover:shadow-2xl transition-all duration-500 ${className}`}
+    className={`relative rounded-3xl border border-amber-100/50 bg-white/80 p-8 shadow-xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl ${className}`}
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -68,21 +68,21 @@ const SectionCard: React.FC<{ children: React.ReactNode; className?: string }> =
 )
 
 const VideoPlayer: React.FC<{ src: string; poster: string; className?: string }> = ({ src, poster, className = "" }) => (
-  <div className={`relative group ${className}`}>
-    <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-yellow-600/20 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500" />
+  <div className={`group relative ${className}`}>
+    <div className="absolute inset-0 rotate-3 rounded-2xl bg-gradient-to-br from-amber-400/20 to-yellow-600/20 transition-transform duration-500 group-hover:rotate-6" />
     <video
       src={src}
       controls
-      className="relative rounded-2xl shadow-2xl w-96 max-w-full mx-auto max-h-[400px] object-contain hover:shadow-amber-200/50 transition-all duration-500"
+      className="relative mx-auto max-h-[400px] w-96 max-w-full rounded-2xl object-contain shadow-2xl transition-all duration-500 hover:shadow-amber-200/50"
       poster={poster}
     />
-    <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
+    <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/10 to-transparent" />
   </div>
 )
 
 const HomeShowcase = () => {
   return (
-    <div className="relative min-h-screen py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
       <EnhancedGoldBackground />
       {floatingCircles.map((circle, i) => (
         <motion.div
@@ -108,12 +108,12 @@ const HomeShowcase = () => {
             repeat: Infinity,
           }}
         >
-          <div className={`w-full h-full rounded-full bg-gradient-to-br ${circle.color}`} />
+          <div className={`size-full rounded-full bg-gradient-to-br ${circle.color}`} />
         </motion.div>
       ))}
-      <div className="relative z-10 max-w-7xl mx-auto space-y-16">
+      <div className="relative z-10 mx-auto max-w-7xl space-y-16">
         <SectionCard>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="space-y-6">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -121,10 +121,10 @@ const HomeShowcase = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="inline-flex items-center px-4 py-2 bg-amber-100 rounded-full text-amber-700 font-medium text-sm mb-4">
+                <div className="mb-4 inline-flex items-center rounded-full bg-amber-100 px-4 py-2 text-sm font-medium text-amber-700">
                   ✨ Premium Event Planning
                 </div>
-                <h2 className="text-3xl font-bold text-gray-800 leading-tight">
+                <h2 className="text-3xl font-bold leading-tight text-gray-800">
                   Crafting Moments with 
                   <span className="text-yellow-500"> Precision</span>
                 </h2>
@@ -136,10 +136,10 @@ const HomeShowcase = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="space-y-4"
               >
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg leading-relaxed text-gray-600">
                   From intimate gatherings to grand celebrations, we transform your vision into reality. Our meticulous attention to detail and innovative approach ensures every event becomes a cherished memory.
                 </p>
-                <div className="flex items-center space-x-2 text-amber-600 font-semibold">
+                <div className="flex items-center space-x-2 font-semibold text-amber-600">
                   <span className="text-2xl">🎯</span>
                   <span>"Where every detail matters, every moment counts"</span>
                 </div>
@@ -159,7 +159,7 @@ const HomeShowcase = () => {
           </div>
         </SectionCard>
         <SectionCard>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -172,17 +172,17 @@ const HomeShowcase = () => {
                 poster="/assets/default.jpg"
               />
             </motion.div>
-            <div className="space-y-6 order-1 lg:order-2">
+            <div className="order-1 space-y-6 lg:order-2">
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="inline-flex items-center px-4 py-2 bg-yellow-100 rounded-full text-yellow-700 font-medium text-sm mb-4">
+                <div className="mb-4 inline-flex items-center rounded-full bg-yellow-100 px-4 py-2 text-sm font-medium text-yellow-700">
                   🏆 Award-Winning Service
                 </div>
-                <h2 className="text-3xl font-bold text-gray-800 leading-tight">
+                <h2 className="text-3xl font-bold leading-tight text-gray-800">
                   Recognized Excellence in 
                   <span className="text-yellow-500"> Events</span>
                 </h2>
@@ -194,10 +194,10 @@ const HomeShowcase = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="space-y-4"
               >
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg leading-relaxed text-gray-600">
                   Our commitment to excellence has earned recognition from industry leaders and countless satisfied clients. We don't just plan events – we create experiences that leave lasting impressions.
                 </p>
-                <div className="flex items-center space-x-2 text-yellow-600 font-semibold">
+                <div className="flex items-center space-x-2 font-semibold text-yellow-600">
                   <span className="text-2xl">🌟</span>
                   <span>"Excellence recognized, memories treasured"</span>
                 </div>

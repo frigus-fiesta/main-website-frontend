@@ -157,14 +157,14 @@ const Footer = () => {
                 </Link>
               </p>
               <Link
-                href="/terms_and_conditions"
+                href="/terms"
                 className="text-sm text-yellow-200 underline transition-colors duration-300 hover:text-white hover:no-underline"
               >
                 Terms and Conditions
               </Link>
               <span className="mx-2 text-yellow-200">|</span>
               <Link
-                href="/privacy_and_policy"
+                href="/privacy-policy"
                 className="text-sm text-yellow-200 underline transition-colors duration-300 hover:text-white hover:no-underline"
               >
                 Privacy Policy

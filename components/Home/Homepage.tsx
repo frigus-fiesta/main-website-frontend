@@ -73,7 +73,7 @@ const Homepage = () => {
         }}
       >
         <motion.p 
-          className="mb-4 text-sm md:text-md uppercase md:tracking-wide"
+          className="md:text-md mb-4 text-sm uppercase md:tracking-wide"
           variants={itemVariants}
           style={{
             transform: `translateY(${scrollY * -0.1}px)`,
