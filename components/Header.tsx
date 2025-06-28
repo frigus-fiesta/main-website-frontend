@@ -71,11 +71,11 @@ const Header = () => {
 
   return (
     <div>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${getGlassBackground()} rounded-bl-3xl rounded-br-3xl shadow-lg`}>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${getGlassBackground()} rounded-b-3xl shadow-lg`}>
         <div className="container mx-auto px-4 sm:px-6 xl:px-8">
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="shrink-0">
-              <Image src="/assets/friguslogo.svg" alt='logo' width={100000} height={100000} className='mt-2 size-44 lg:size-52 md:mt-1' />
+              <Image src="/assets/friguslogo.svg" alt='logo' width={100000} height={100000} className='mt-2 size-44 md:mt-1 lg:size-52' />
             </Link>
             <div className="hidden items-center space-x-6 xl:flex">
               <nav className="flex space-x-8">
@@ -99,13 +99,13 @@ const Header = () => {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
-                          className="absolute left-0 top-full mt-2 w-48 rounded-xl bg-white/95 backdrop-blur-md p-2 uppercase shadow-xl ring-1 ring-white/20 border border-white/20"
+                          className="absolute left-0 top-full mt-2 w-48 rounded-xl border border-white/20 bg-white/95 p-2 uppercase shadow-xl ring-1 ring-white/20 backdrop-blur-md"
                         >
                           {link.dropdown.map(subLink => (
                             <Link
                               key={subLink.label}
                               href={subLink.href}
-                              className={`block px-3 py-2 text-sm text-gray-800 hover:text-yellow-500 rounded-lg hover:bg-white/50 transition-all duration-200`}
+                              className={`block rounded-lg px-3 py-2 text-sm text-gray-800 transition-all duration-200 hover:bg-white/50 hover:text-yellow-500`}
                             >
                               {subLink.label}
                             </Link>
@@ -116,7 +116,7 @@ const Header = () => {
                   </div>
                 ))}
               </nav>
-              <Link href="/pay" className={`rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-3 py-1 font-bold text-white shadow-lg hover:shadow-xl transition-all duration-300`}>
+              <Link href="/pay" className={`rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-3 py-1 font-bold text-white shadow-lg transition-all duration-300 hover:shadow-xl`}>
                 Pay Now
               </Link>
             </div>
