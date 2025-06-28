@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.5",
+    "@supabase/supabase-js": "^2.49.4",
     "@heroicons/react": "^2.2.0",
     "@react-three/drei": "^10.3.0",
     "@react-three/fiber": "^9.1.2",
