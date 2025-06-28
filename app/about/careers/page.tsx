@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Send, Star } from 'lucide-react';
+import { Instagram, Send, Star } from 'lucide-react';
+import Link from "next/link";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -78,9 +79,8 @@ export default function CareersPage() {
     <div className="relative min-h-screen overflow-x-hidden">
       <GoldAnimatedBackground />
       <Header />
-      {/* Hero Section with floating gold dots and shimmer text */}
       <section
-        className="relative flex h-[60vh] flex-col items-center justify-center overflow-hidden bg-gradient-to-t from-yellow-500 to-yellow-600 text-center md:h-[50vh]"
+        className="relative flex h-[60vh] flex-col items-center justify-center overflow-hidden bg-gradient-to-t from-yellow-500 to-yellow-600 text-center md:h-[70vh]"
       >
         {/* Floating gold dots */}
         <div className="absolute inset-0 z-0">
@@ -97,13 +97,13 @@ export default function CareersPage() {
             ></div>
           ))}
         </div>
-        <div className={`z-10 px-6 transition-all duration-1000 ease-out ${isHeroVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
+        <div className={`z-10 px-6 transition-all duration-1000 ease-out`}>
+          <h1 className={`mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl transition-all duration-1000 ease-out ${isHeroVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
             <span className="inline-block text-white">
               Careers
             </span>
           </h1>
-          <p className={`text-md mb-8 leading-relaxed text-amber-100 transition-all delay-300 duration-1000 ease-out md:text-lg ${isHeroVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>Start your golden journey with us. Shape the future with passion and creativity!</p>
+          <p className={`text-md mb-8 leading-relaxed max-w-4xl text-amber-100 transition-all delay-300 duration-1000 ease-out md:text-lg ${isHeroVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>Start your golden journey with us. Shape the future with passion and creativity! Inspire change, spark ideas, and build legacy.</p>
         </div>
         <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
           <div className="flex h-10 w-6 animate-bounce justify-center rounded-full border-2 border-white">
@@ -111,8 +111,7 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
-      {/* Careers Application Form Section (styled like Contact Us) */}
-      <section className="bg-gradient-to-br from-amber-50 to-yellow-50 px-6 py-20">
+      <section className={`px-6 py-20 transition-all duration-1000 ease-out ${isHeroVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
         <div className="max-w-8xl mx-auto">
           <div className="mb-12 text-center">
             <h2 className="animate-fade-in-up mb-6 text-4xl font-bold text-black md:text-5xl">Apply for a <span className='text-yellow-500'>Career</span></h2>
@@ -120,7 +119,7 @@ export default function CareersPage() {
           </div>
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
             <div className="relative">
-              <div className="animate-slide-in-up w-full rounded-2xl border-2 border-yellow-400 bg-white p-8 shadow-lg transition-all duration-500">
+              <div className="animate-slide-in-up w-full rounded-2xl border-2 border-gray-400 bg-white p-8 shadow-lg transition-all duration-500">
                 <div className="absolute -right-4 -top-4 size-8 animate-ping rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 opacity-20" />
                 <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-amber-900">
                   <Send className="size-6 text-yellow-500 transition-transform duration-300 hover:rotate-12" />
@@ -204,31 +203,31 @@ export default function CareersPage() {
               </div>
             </div>
             <div className="space-y-8">
-              <div className="animate-slide-in-up animation-delay-200 relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-500  p-8 text-white shadow-xl transition-all duration-500">
+              <div className="animate-slide-in-up animation-delay-200 relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-400 to-gray-400 border-2 border-gray-400 p-8 text-white shadow-xl transition-all duration-500">
                 <div className="absolute right-0 top-0 size-32 -translate-y-16 translate-x-16 rounded-full bg-white/10" />
                 <div className="absolute bottom-0 left-0 size-24 -translate-x-12 translate-y-12 rounded-full bg-white/10" />
                 <div className="relative z-10">
                   <div className="mb-4 flex items-center gap-3">
-                    <Star className="size-8 animate-pulse" />
-                    <h3 className="text-2xl font-bold">
+                    <Star className="size-8 text-yellow-500" />
+                    <h3 className="text-2xl font-bold text-yellow-500">
                       Why Join Us?
                     </h3>
                   </div>
-                  <p className="mb-6 leading-relaxed text-yellow-100">
+                  <p className="mb-6 leading-relaxed text-gray-400">
                     Ready to turn your career into golden reality? We're here to make it happen with style, innovation, and unmatched dedication to excellence.
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                      <span className="text-yellow-100">Growth Opportunities</span>
+                      <div className="size-2 animate-pulse rounded-full bg-yellow-200" />
+                      <span className="text-gray-400">Growth Opportunities</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                      <span className="text-yellow-100">Creative Environment</span>
+                      <div className="size-2 animate-pulse rounded-full bg-yellow-200" />
+                      <span className="text-gray-400">Creative Environment</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                      <span className="text-yellow-100">Supportive Team</span>
+                      <div className="size-2 animate-pulse rounded-full bg-yellow-200" />
+                      <span className="text-gray-400">Supportive Team</span>
                     </div>
                   </div>
                 </div>
@@ -237,20 +236,19 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
-      {/* Did You Know Section styled like Contact Us gold card */}
-      <section className="relative z-10 flex flex-col items-center justify-center px-4 py-12">
-        <div className="animate-fade-in-up w-full max-w-2xl rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-500 p-8 text-center shadow-xl">
-          <h2 className="animate-text-shimmer mb-4 text-3xl font-bold text-white">Did You Know?</h2>
-          <p className="mb-4 text-lg text-yellow-100">Start the collaboration with us while figuring out the best solution based on your needs.</p>
+      <section className={`relative z-10 flex flex-col items-center justify-center px-4 py-12 transition-all duration-1000 ease-out ${isHeroVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
+        <div className="animate-fade-in-up w-full border-2 border-gray-400 max-w-2xl rounded-2xl bg-white p-8 text-center shadow-xl">
+          <h2 className="animate-text-shimmer mb-4 text-3xl font-bold text-yellow-500">Did You Know?</h2>
+          <p className="mb-4 text-md text-gray-400">Start the collaboration with us while figuring out the best solution based on your needs.</p>
           <div className="mt-4 flex flex-col items-center justify-center gap-4 md:flex-row">
-            <span className="inline-block rounded-full bg-white/20 px-4 py-2 text-lg font-semibold text-yellow-100 shadow">📞 +91 91826 84160</span>
+            <Link href={`tel:+91-9182684160`} className="inline-block rounded-full bg-white/20 px-4 py-2 text-lg font-semibold text-gray-400 shadow border border-gray-700">📞 +91 91826 84160</Link>
             <div className="mt-2 flex gap-3 md:mt-0">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 font-semibold text-white shadow transition-all duration-200 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/40">
+              <Link href="https://www.linkedin.com/company/frigus-fiesta-entertainments" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full bg-white/20 border border-gray-700 px-4 py-2 font-semibold text-gray-400">
                 <LinkedInIcon /> LinkedIn
-              </a>
-              <a href="https://internshala.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 font-semibold text-white shadow transition-all duration-200 hover:scale-110 hover:shadow-lg hover:ring-2 hover:ring-white/40">
-                <InternshalaIcon /> Internshala
-              </a>
+              </Link>
+              <Link href="https://www.instagram.com/frigusfiesta?igsh=OHcyeGlwZmlkbWtn" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full bg-white/20 border border-gray-700 px-4 py-2 font-semibold text-gray-400">
+                <Instagram /> Instagram
+              </Link>
             </div>
           </div>
         </div>
