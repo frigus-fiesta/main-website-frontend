@@ -1,4 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <h2>Frigus Fiesta Main-Website</h2>
+  <!-- <img alt="Status" src="https://img.shields.io/badge/status-production-brightgreen" /> -->
+  <img alt="Status" src="https://img.shields.io/badge/status-under--development-orange" />
+  <!-- <img alt="Status" src="https://img.shields.io/badge/status-production--in--progress-yellow" /> -->
+  <!-- <img alt="Status" src="https://img.shields.io/badge/status-beta-blue" /> -->
+</div>
+
+## Frigus Fiesta – Event Management Platform
+
+Frigus Fiesta is a full-featured event management platform designed to simplify the planning, hosting, and attending of events. From showcasing upcoming and past events to offering real-time booking, admin scheduling, and user reviews, it delivers a seamless end-to-end experience.
+
+<div style="flex: 1; min-width: 250px;">
+    <h3>Built With</h3>
+    <p>
+      <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white" />
+      <img alt="NextJS" src="https://img.shields.io/badge/-NextJS-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
+      <img alt="Bun" src="https://img.shields.io/badge/-Bun.js-000000?style=flat-square&logo=bun&logoColor=white" />
+      <img alt="TailwindCSS" src="https://img.shields.io/badge/-Tailwind CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
+      <img alt="Cloudflare" src="https://img.shields.io/badge/Cloudflare-F38020?style=flat&logo=Cloudflare&logoColor=white" />
+      <img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
+      <img alt="Supabase" src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" />
+      <img alt="Razorpay" src="https://img.shields.io/badge/Razorpay-02042B?style=flat-square&logo=razorpay&logoColor=white" />
+      <img alt="Google OAuth" src="https://img.shields.io/badge/Google%20OAuth-via%20GCP-4285F4?style=flat-square&logo=google&logoColor=white" />
+      <img alt="Supabase Auth" src="https://img.shields.io/badge/Supabase-Auth-3FCF8E?style=flat-square&logo=supabase&logoColor=white" />
+      <img alt="Mailtrap" src="https://img.shields.io/badge/Mailtrap-Email%20Services-5A4FCF?style=flat-square&logo=mailtrap&logoColor=white" />
+      <img alt="PayPal" src="https://img.shields.io/badge/PayPal-Payments-00457C?style=flat-square&logo=paypal&logoColor=white" />
+      <img alt="Redis" src="https://img.shields.io/badge/Redis-InMemory%20Store-DC382D?style=flat-square&logo=redis&logoColor=white" />
+    </p>
+
+  </div>
+</div>
+
+## Developed and Maintained by **Team Electroplix** under active agreement
+
+<br>
+
+## Key Features
+- 🗓 **Event Listings**: Explore detailed pages for each event with descriptions, media galleries, and attendee reviews  
+- 🔐 **Admin Portal**: Easily manage, schedule, and update upcoming events through a secure admin dashboard  
+- 💬 **User Reviews**: Share thoughts and feedback directly on event pages  
+- 🎟 **Ticket Booking**: Reserve spots for upcoming events with real-time confirmation  
+- 📅 **Host Booking**: Event organizers can book appointments to host their own experiences  
+- 📧 **Bulk & Confirmation Emails**: Integrated email services for announcements and confirmations  
+- 💳 **Payment Gateway Support**: Multiple domestic and international payment options for seamless transactions  
+- 🤖 **AI Chatbot**: Real-time support and queries through an intelligent chatbot assistant  
+- 🖼 **Gallery & Animations**: A vibrant gallery and smooth animations to capture the event atmosphere  
+
+Frigus Fiesta is your all-in-one solution for seamless celebration planning, ticketing, and hosting.
 
 ## Getting Started
 
@@ -20,26 +68,13 @@ npm install bun -g
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Built With
 
-
-<div>
-  <p>
-    <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white" />
-    <img alt="NextJS" src="https://img.shields.io/badge/-NextJS-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
-    <img alt="Bun" src="https://img.shields.io/badge/-Bun.js-000000?style=flat-square&logo=bun&logoColor=white" />
-    <img alt="TailwindCSS" src="https://img.shields.io/badge/-Tailwind CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
-    <img alt="Cloudflare" src="https://img.shields.io/badge/Cloudflare-F38020?style=flat&logo=Cloudflare&logoColor=white" />
-    <img alt="git" src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" />
-  </p>
-</div>
-
-# Contributing Guidelines
+# Working Guidelines
 
 ## 1. Branching Strategy
 Start from dev branch: When starting any work, always create your branch from the dev branch.
 Branch naming convention:
-* For new features: feat/featurename
+* For new features: feat/feature-name
 * For bug fixes: fix/whatyouarefixing
 * For updating content: update/whereyouareupdating
 * For documentation updates: docs/whatyouupdated
@@ -70,16 +105,13 @@ source ~/.bashrc
 ```
 bun --version
 ```
-**Now test the deployement locally**
+**Now test the deployment locally**
 ```
 bun run deploy
 ```
 
-At least 2 members must review and approve the PR before merging into the test branch.
 ### Step 3: Production
 After successful testing, create a PR from the test branch to the main branch.
-This PR must be approved by the CTO and at least 1 other member.
-Once approved, the changes will be deployed to production.
 ## 3. Commit Message Guidelines
 Use the following prefixes for clear and consistent commit messages:
 
@@ -99,8 +131,10 @@ Example: feat: add user authentication to login page.
 The CI/CD pipeline must run error-free.
 Both ESLint checks and Next.js build must pass successfully for the PR to be valid.
 ## 5. Conflict Resolution
-If any merge conflicts arise, contributors should immediately contact the CTO for resolution.
+If any merge conflicts arise, contributors should immediately contact CTO for resolution.
 ## 6. PR Review Time
 All PRs should be reviewed and resolved within 5 days of submission.
 
-## Deployed on CloudFlare
+### Deployed on CloudFlare
+Frigus Fiesta is deployed on Cloudflare for enhanced speed, security, and scalability.
+
