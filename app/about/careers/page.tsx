@@ -109,7 +109,7 @@ export default function CareersPage() {
           </div>
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
             <div className="relative">
-              <div className="animate-slide-in-up w-full rounded-2xl border-2 border-gray-400 bg-white p-8 shadow-lg transition-all duration-500">
+              <div className="animate-slide-in-up w-full rounded-2xl border-2 border-gray-200 bg-white p-8 shadow-lg transition-all duration-500">
                 <div className="absolute -right-4 -top-4 size-8 animate-ping rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 opacity-20" />
                 <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-amber-900">
                   <Send className="size-6 text-yellow-500 transition-transform duration-300 hover:rotate-12" />
@@ -193,7 +193,7 @@ export default function CareersPage() {
               </div>
             </div>
             <div className="space-y-8">
-              <div className="animate-slide-in-up animation-delay-200 relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-400 to-gray-400 border-2 border-gray-400 p-8 text-white shadow-xl transition-all duration-500">
+              <div className="animate-slide-in-up animation-delay-200 relative overflow-hidden rounded-2xl bg-gray-50 border-2 border-gray-200 p-8 text-white shadow-xl transition-all duration-500">
                 <div className="absolute right-0 top-0 size-32 -translate-y-16 translate-x-16 rounded-full bg-white/10" />
                 <div className="absolute bottom-0 left-0 size-24 -translate-x-12 translate-y-12 rounded-full bg-white/10" />
                 <div className="relative z-10">
@@ -227,16 +227,16 @@ export default function CareersPage() {
         </div>
       </section>
       <section className={`relative z-10 flex flex-col items-center justify-center px-4 py-12 transition-all duration-1000 ease-out ${isHeroVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
-        <div className="animate-fade-in-up w-full border-2 border-gray-400 max-w-2xl rounded-2xl bg-white p-8 text-center shadow-xl">
+        <div className="animate-fade-in-up w-full border-2 border-gray-200 max-w-2xl rounded-2xl bg-white p-8 text-center shadow-xl">
           <h2 className="animate-text-shimmer mb-4 text-3xl font-bold text-yellow-500">Did You Know?</h2>
           <p className="mb-4 text-md text-gray-400">Start the collaboration with us while figuring out the best solution based on your needs.</p>
           <div className="mt-4 flex flex-col items-center justify-center gap-4 md:flex-row">
-            <Link href={`tel:+91-9182684160`} className="inline-block rounded-full bg-white/20 px-4 py-2 text-lg font-semibold text-gray-400 shadow border border-gray-700">📞 +91 91826 84160</Link>
+            <Link href={`tel:+91-9182684160`} className="inline-block rounded-full bg-white/20 px-4 py-2 text-lg font-semibold text-gray-400 shadow border border-gray-200">📞 +91 91826 84160</Link>
             <div className="mt-2 flex gap-3 md:mt-0">
-              <Link href="https://www.linkedin.com/company/frigus-fiesta-entertainments" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full bg-white/20 border border-gray-700 px-4 py-2 font-semibold text-gray-400">
+              <Link href="https://www.linkedin.com/company/frigus-fiesta-entertainments" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full bg-white/20 border border-gray-200 px-4 py-2 font-semibold text-gray-400">
                 <LinkedInIcon /> LinkedIn
               </Link>
-              <Link href="https://www.instagram.com/frigusfiesta?igsh=OHcyeGlwZmlkbWtn" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full bg-white/20 border border-gray-700 px-4 py-2 font-semibold text-gray-400">
+              <Link href="https://www.instagram.com/frigusfiesta?igsh=OHcyeGlwZmlkbWtn" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-full bg-white/20 border border-gray-200 px-4 py-2 font-semibold text-gray-400">
                 <Instagram /> Instagram
               </Link>
             </div>
