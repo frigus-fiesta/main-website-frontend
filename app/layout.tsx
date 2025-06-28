@@ -23,6 +23,7 @@ export default function RootLayout({
         <div>
           <main className="relative z-10 overflow-hidden">
             {children}
+            <script defer src="https://app.fastbots.ai/embed.js" data-bot-id="cmcf1okrl06m8rily3gipi149"></script>
           </main>
         </div>
       </body>
