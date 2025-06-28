@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FaWhatsapp } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Homepage = () => {
