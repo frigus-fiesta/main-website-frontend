@@ -415,29 +415,29 @@ export default function BookAppointmentPage() {
       {/* Why Choose Us Section */}
       <div className="px-6 py-20">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
-          <div className="animate-slide-in-up relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-500 p-8  text-white shadow-xl transition-all duration-500">
+          <div className="animate-slide-in-up relative overflow-hidden rounded-2xl bg-gray-50 p-8  text-white shadow-xl transition-all duration-500 border border-yellow-300">
             <div className="absolute right-0 top-0 size-32 -translate-y-16 translate-x-16 rounded-full bg-white/10" />
             <div className="absolute bottom-0 left-0 size-24 -translate-x-12 translate-y-12 rounded-full bg-white/10" />
             <div className="relative z-10">
               <div className="mb-4 flex items-center gap-3">
-                <Star className="size-8 animate-pulse" />
-                <h3 className="text-2xl font-bold">Premium Experience</h3>
+                <Star className="size-8 animate-pulse text-yellow-500" />
+                <h3 className="text-2xl font-bold text-yellow-500">Premium Experience</h3>
               </div>
-              <p className="mb-6 leading-relaxed text-yellow-100">
+              <p className="mb-6 leading-relaxed text-gray-400">
                 Experience the golden standard of service with our expert team, premium facilities, and personalized approach to every appointment.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                  <span className="text-yellow-100">Expert Consultation</span>
+                  <span className="text-gray-400">Expert Consultation</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                  <span className="text-yellow-100">Flexible Scheduling</span>
+                  <span className="text-gray-400">Flexible Scheduling</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                  <span className="text-yellow-100">Premium Quality Service</span>
+                  <span className="text-gray-400">Premium Quality Service</span>
                 </div>
               </div>
             </div>
