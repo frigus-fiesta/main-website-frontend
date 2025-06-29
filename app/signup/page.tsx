@@ -350,7 +350,7 @@ export default function SignUp() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-md bg-yellow-500 px-4 py-2 text-white font-medium hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-md bg-yellow-500 px-4 py-2 text-white font-medium hover:bg-yellow-400 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
@@ -376,7 +376,7 @@ export default function SignUp() {
               type="button"
               onClick={handleGoogleSignUp}
               disabled={loading}
-              className="mt-6 w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-700 font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50"
+              className="mt-6 w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-700 font-medium hover:bg-gray-50 focus:outline-none disabled:opacity-50"
             >
               <div className="flex items-center justify-center">
                 <FaGoogle className="mr-2 size-4" />
