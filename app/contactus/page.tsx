@@ -287,39 +287,39 @@ export default function ContactUsPage() {
               </div>
             </div>
             <div className="space-y-8">
-              <div className="animate-slide-in-up animation-delay-200 relative overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-500  p-8 text-white shadow-xl transition-all duration-500">
+              <div className="animate-slide-in-up animation-delay-200 relative overflow-hidden rounded-2xl bg-white  p-8 text-white shadow-xl transition-all duration-500">
                 <div className="absolute right-0 top-0 size-32 -translate-y-16 translate-x-16 rounded-full bg-white/10" />
                 <div className="absolute bottom-0 left-0 size-24 -translate-x-12 translate-y-12 rounded-full bg-white/10" />
                 <div className="relative z-10">
                   <div className="mb-4 flex items-center gap-3">
-                    <Sparkles className="size-8 animate-pulse" />
-                    <h3 className="text-2xl font-bold">
+                    <Sparkles className="size-8 animate-pulse text-yellow-500" />
+                    <h3 className="text-2xl font-bold text-yellow-500">
                       Why Choose Us?
                     </h3>
                   </div>
-                  <p className="mb-6 leading-relaxed text-yellow-100">
+                  <p className="mb-6 leading-relaxed text-gray-400">
                     Ready to turn your dreams into golden reality? We're here to make it happen with style, innovation, and unmatched dedication to excellence.
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                      <span className="text-yellow-100">24/7 Premium Support</span>
+                      <span className="text-gray-400">24/7 Premium Support</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                      <span className="text-yellow-100">Fast Response Time</span>
+                      <span className="text-gray-400">Fast Response Time</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="size-2 animate-pulse rounded-full bg-yellow-300" />
-                      <span className="text-yellow-100">Expert Team</span>
+                      <span className="text-gray-400">Expert Team</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="animate-slide-in-up animation-delay-400 rounded-2xl border-2 border-yellow-200 bg-white  p-6 transition-all duration-300 hover:shadow-lg">
+              <div className="animate-slide-in-up animation-delay-400 rounded-2xl shadow-xl bg-white  p-6 transition-all duration-300 hover:shadow-lg">
                 <div className="mb-4 flex items-center gap-3">
                   <Users className="size-6 text-yellow-500" />
-                  <h4 className="text-xl font-bold text-amber-900">Join Our Community</h4>
+                  <h4 className="text-xl font-bold text-yellow-500">Join Our Community</h4>
                 </div>
                 <p className="mb-4 text-gray-600">
                   Connect with thousands of satisfied clients who trust us with their most important events and projects.
