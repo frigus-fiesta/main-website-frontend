@@ -1,9 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const MinimalBackground = () => (
   <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
