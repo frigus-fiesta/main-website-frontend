@@ -3,7 +3,8 @@ export const API_BASE_URL = process.env.BACKEND_API_BASE_URL || 'http://127.0.0.
 export const API_ENDPOINTS = {
     // Admin Endpoints
     createEvent: `${API_BASE_URL}/admin/events`, // Scheduling an event
-    cancelEvent: `${API_BASE_URL}/admin/events/cancel`, // Canceling an event
+    updateEventbyId: (eventId: string) => `${API_BASE_URL}/admin/events/update/${eventId}`, // Updating an event by id takes all paramaeters else fails with status 400
+    deleteEventbyId: (eventId: string) => `${API_BASE_URL}/admin/events/delete/${eventId}`, // Deleting an event by id
     confirmationEmail: `${API_BASE_URL}/admin/mail/confirmation`, // Sending Confirmation Email
     announcementEmail: `${API_BASE_URL}/admin/mail/announcement`, // Sending Announcement Email
     newsletterEmail: `${API_BASE_URL}/admin/mail/newsletter`, // Sending Newsletter Email
