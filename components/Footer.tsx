@@ -130,7 +130,7 @@ const Footer = () => {
             <Link
               key={index}
               href={href}
-              className="transition-all duration-500 group relative flex size-12 items-center justify-center"
+              className="group relative flex size-12 items-center justify-center transition-all duration-500"
               aria-label={label}
               target="_blank"
               rel="noopener noreferrer"
@@ -149,7 +149,7 @@ const Footer = () => {
               ©2025 Frigus Fiesta | Developed by{" "}
               <Link
                 href="https://www.electroplix.com/"
-                className="transition-all duration-300 font-semibold text-yellow-400 hover:text-yellow-300 hover:underline hover:underline-offset-2"
+                className="font-semibold text-yellow-400 transition-all duration-300 hover:text-yellow-300 hover:underline hover:underline-offset-2"
               >
                 Electroplix
               </Link>
@@ -157,14 +157,14 @@ const Footer = () => {
             <div className="flex items-center space-x-4 text-xs">
               <Link
                 href="/terms_and_conditions"
-                className="transition-all duration-300 text-yellow-100 hover:text-yellow-400 hover:underline hover:underline-offset-2"
+                className="text-yellow-100 transition-all duration-300 hover:text-yellow-400 hover:underline hover:underline-offset-2"
               >
                 Terms & Conditions
               </Link>
               <div className="h-3 w-px bg-gradient-to-b from-transparent via-yellow-400/50 to-transparent"></div>
               <Link
                 href="/privacy_and_policy"
-                className="transition-all duration-300 text-yellow-100 hover:text-yellow-400 hover:underline hover:underline-offset-2"
+                className="text-yellow-100 transition-all duration-300 hover:text-yellow-400 hover:underline hover:underline-offset-2"
               >
                 Privacy Policy
               </Link>

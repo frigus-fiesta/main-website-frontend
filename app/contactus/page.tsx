@@ -316,7 +316,7 @@ export default function ContactUsPage() {
                   </div>
                 </div>
               </div>
-              <div className="animate-slide-in-up animation-delay-400 rounded-2xl shadow-xl bg-white  p-6 transition-all duration-300 hover:shadow-lg">
+              <div className="animate-slide-in-up animation-delay-400 rounded-2xl bg-white p-6  shadow-xl transition-all duration-300 hover:shadow-lg">
                 <div className="mb-4 flex items-center gap-3">
                   <Users className="size-6 text-yellow-500" />
                   <h4 className="text-xl font-bold text-yellow-500">Join Our Community</h4>
