@@ -19,7 +19,7 @@ export const metadata = {
       "Discover Frigus Fiesta’s magic with stunning weddings, dynamic corporate events, and unforgettable live entertainment across India.",
     url: "https://www.frigusfiesta.com",
     type: "website",
-    image: "https://frigus-fiesta-main-website.pages.dev/assets/frigusfiesta_og_image.png",
+    image: "/assets/frigusfiesta_og_image.png",
   },
   openGraph: {
     title: "Frigus Fiesta | India's Premier Event Management Company",
@@ -30,7 +30,7 @@ export const metadata = {
     siteName: "Frigus Fiesta",
     images: [
       {
-        url: "https://frigus-fiesta-main-website.pages.dev/assets/frigusfiesta_og_image.png",
+        url: "/assets/frigusfiesta_og_image.png",
         width: 1200,
         height: 630,
         alt: "Frigus Fiesta Event Management & Entertainment",
@@ -43,7 +43,7 @@ export const metadata = {
     title: "Frigus Fiesta | India's Premier Event Management Company",
     description:
       "Frigus Fiesta creates unforgettable events — from corporate gatherings to music festivals and destination weddings across India.",
-    image: "https://frigus-fiesta-main-website.pages.dev/assets/frigusfiesta_og_image.png",
+    image: "/assets/frigusfiesta_og_image.png",
   },
   structuredData: {
     "@context": "https://schema.org",
