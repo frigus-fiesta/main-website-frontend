@@ -35,43 +35,43 @@ const MinimalBackground = () => (
 );
 
 const GoldAnimatedBackground = () => (
-    <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
-      <svg
-        className="absolute size-full"
-        preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 1920 1080"
-      >
-        <path
-          d="M 0 200 C 300 400, 600 100, 900 300 S 1200 500, 1500 200"
-          stroke="#FFD700"
-          strokeWidth="2.5"
-          fill="none"
-          opacity="0.13"
-        />
-        <path
-          d="M 200 800 C 500 600, 800 900, 1100 700 S 1400 500, 1700 800"
-          stroke="#FFB300"
-          strokeWidth="1.5"
-          fill="none"
-          opacity="0.13"
-        />
-        <path
-          d="M 400 100 C 700 300, 1000 50, 1300 250 S 1600 400, 1900 150"
-          stroke="#FFECB3"
-          strokeWidth="1.5"
-          fill="none"
-          opacity="0.13"
-        />
-        <path
-          d="M 100 900 C 400 700, 700 950, 1000 750 S 1300 550, 1600 900"
-          stroke="#FFC107"
-          strokeWidth="1.5"
-          fill="none"
-          opacity="0.13"
-        />
-      </svg>
-    </div>
-  );
+  <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
+    <svg
+      className="absolute size-full"
+      preserveAspectRatio="xMidYMid slice"
+      viewBox="0 0 1920 1080"
+    >
+      <path
+        d="M 0 200 C 300 400, 600 100, 900 300 S 1200 500, 1500 200"
+        stroke="#FFD700"
+        strokeWidth="2.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 200 800 C 500 600, 800 900, 1100 700 S 1400 500, 1700 800"
+        stroke="#FFB300"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 400 100 C 700 300, 1000 50, 1300 250 S 1600 400, 1900 150"
+        stroke="#FFECB3"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+      <path
+        d="M 100 900 C 400 700, 700 950, 1000 750 S 1300 550, 1600 900"
+        stroke="#FFC107"
+        strokeWidth="1.5"
+        fill="none"
+        opacity="0.13"
+      />
+    </svg>
+  </div>
+);
 
 const eventOptions = [
   { 
