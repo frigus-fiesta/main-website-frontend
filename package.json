@@ -3,15 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "next lint",
-  "pages:build": "bunx @cloudflare/next-on-pages",
-  "build-pages": "npm run pages:build && rm -rf backend",
-  "preview": "npm run build-pages && wrangler pages dev",
-  "deploy":  "npm run build-pages && wrangler pages deploy"
-},
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "pages:build": "bunx @cloudflare/next-on-pages",
+    "preview": "bun run pages:build && wrangler pages dev",
+    "deploy": "bun run pages:build && wrangler pages deploy"
+  },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.5",
     "@supabase/supabase-js": "^2.49.4",
