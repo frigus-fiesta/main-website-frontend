@@ -1,0 +1,7 @@
+{
+  "buildCommand": "bun run build",
+  "ignoreCommand": "echo Skipping backend",
+  "ignoreBuildStep": [
+    "backend/**"
+  ]
+}
