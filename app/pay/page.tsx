@@ -103,6 +103,7 @@ export default function PaymentPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [paypalReady, setPaypalReady] = useState(false);
 
   useEffect(() => { 
     setIsVisible(true); 
@@ -342,6 +343,12 @@ export default function PaymentPage() {
                 </div>
               </div>
               <div className="mb-6">
+                {!paypalReady && (
+                  <div className="flex flex-col items-center justify-center py-8">
+                    <div className="w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <span className="text-amber-700">Loading payment options...</span>
+                  </div>
+                )}
                 <PayPalScriptProvider options={{ 
                   clientId: PAYPAL_CLIENT_ID || '', 
                   currency: selectedCurrency,
@@ -355,6 +362,7 @@ export default function PaymentPage() {
                       label: "pay",
                       height: 50
                     }}
+                    forceReRender={[selectedCurrency, selectedEvent]}
                     createOrder={(data, actions) => {
                       const price = selectedCurrency === 'USD' 
                         ? eventOptions[selectedEvent].priceUSD 
@@ -373,6 +381,7 @@ export default function PaymentPage() {
                         ]
                       }) || Promise.resolve("");
                     }}
+                    onInit={() => setPaypalReady(true)}
                     onApprove={async (data, actions) => {
                       try {
                         const details = await actions.order?.capture();
@@ -382,6 +391,7 @@ export default function PaymentPage() {
                         setFormData({ name: '', email: '', phone: '' });
                         setSelectedEvent(null);
                         setCurrentStep(1);
+                        setPaypalReady(false);
                       } catch (error) {
                         console.error('Payment failed:', error);
                         alert('Payment failed. Please try again.');
