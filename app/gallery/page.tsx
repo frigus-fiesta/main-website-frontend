@@ -506,7 +506,7 @@ return () => document.removeEventListener('keydown', handleKeyDown);
           </div>
         </div>
       </div>
-      <div className="relative min-h-screen bg-gradient-to-br from-amber-50 to-yellow-50 pb-10 pt-28">
+      <div className="relative min-h-screen pb-10 pt-28">
         <div className="mx-auto max-w-7xl px-4">
           <div className={`grid gap-4 ${
             columns === 2 ? 'grid-cols-2' : 

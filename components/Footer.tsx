@@ -15,99 +15,74 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="relative overflow-hidden bg-gray-900">
-      {/* Subtle background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div
-            className="size-full"
-            style={{
-              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(251, 191, 36, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(251, 191, 36, 0.1) 0%, transparent 50%)`,
-            }}
-          />
-        </div>
-      </div>
+    <footer className="relative mt-10 overflow-hidden bg-gray-100">
+      <div
+        className="absolute inset-0 size-full opacity-20"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(0deg, #FFD700, #FFD700 1px, transparent 1px, transparent 50px), repeating-linear-gradient(90deg, #FFD700, #FFD700 1px, transparent 1px, transparent 50px)",
+        }}
+      ></div>
       <div className="container relative z-10 mx-auto px-6 py-8">
-        {/* Logo with golden glow effect */}
         <div className="mb-6 flex flex-col items-center">
-          <div className="group relative mb-4">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 blur-xl transition-all duration-500 group-hover:blur-2xl"></div>
-            <div className="relative">
-              <Image
-                src="/assets/friguslogo.svg"
-                width={120}
-                height={120}
-                alt="Frigus Fiesta"
-                className="h-14 w-auto transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-          </div>
-          {/* Contact info with premium styling */}
-          <div className="grid w-full max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="group text-center">
-              <div className="mb-3 inline-flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 blur-lg transition-all duration-300 group-hover:blur-xl"></div>
-                  <div className="relative rounded-full border border-yellow-400/20 bg-gradient-to-r from-yellow-400/10 to-yellow-500/10 p-3 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:border-yellow-400/40 group-hover:bg-gradient-to-r group-hover:from-yellow-400/20 group-hover:to-yellow-500/20">
-                    <MapPin className="size-5 text-yellow-400 transition-colors duration-300 group-hover:text-yellow-300" />
-                  </div>
-                </div>
+          <Link href={`/`} className="mb-4">
+            <Image
+              src="/assets/friguslogo.svg"
+              width={120}
+              height={120}
+              alt="Frigus Fiesta"
+              className="h-14 w-auto mb-10 mt-5"
+            />
+          </Link>
+          <div className="grid w-full max-w-4xl grid-cols-1 gap-6 text-center md:grid-cols-3">
+            <div>
+              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 backdrop-blur-sm ring-1 ring-black/5">
+                <MapPin className="size-5 text-gray-700" />
               </div>
-              <p className="mb-1 text-base font-bold text-white transition-colors duration-300 group-hover:text-yellow-400">
+              <p className="mb-1 text-base font-bold text-gray-800">
                 Our Location
               </p>
               <a
                 href="https://maps.google.com/?q=Jawahar+Nagar,+Sainikpuri,+Hyderabad,+Telangana,+India-+500094"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer text-sm text-yellow-100 transition-colors duration-300 hover:underline group-hover:text-yellow-200"
+                className="cursor-pointer text-sm text-gray-600 hover:text-black hover:underline"
               >
                 Jawahar Nagar, Sainikpuri,
                 <br />
                 Hyderabad, Telangana, India- 500094
               </a>
             </div>
-            <div className="group text-center">
-              <div className="mb-3 inline-flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 blur-lg transition-all duration-300 group-hover:blur-xl"></div>
-                  <div className="relative rounded-full border border-yellow-400/20 bg-gradient-to-r from-yellow-400/10 to-yellow-500/10 p-3 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:border-yellow-400/40 group-hover:bg-gradient-to-r group-hover:from-yellow-400/20 group-hover:to-yellow-500/20">
-                    <Phone className="size-5 text-yellow-400 transition-colors duration-300 group-hover:text-yellow-300" />
-                  </div>
-                </div>
+            <div>
+              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 backdrop-blur-sm ring-1 ring-black/5">
+                <Phone className="size-5 text-gray-700" />
               </div>
-              <p className="mb-1 text-base font-bold text-white transition-colors duration-300 group-hover:text-yellow-400">
+              <p className="mb-1 text-base font-bold text-gray-800">
                 Contact Phone
               </p>
               <a
                 href="tel:+919182684160"
-                className="cursor-pointer text-sm text-yellow-100 transition-colors duration-300 hover:underline group-hover:text-yellow-200"
+                className="cursor-pointer text-sm text-gray-600 hover:text-black hover:underline"
               >
                 91-91826-84160
               </a>
             </div>
-            <div className="group text-center">
-              <div className="mb-3 inline-flex items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 blur-lg transition-all duration-300 group-hover:blur-xl"></div>
-                  <div className="relative rounded-full border border-yellow-400/20 bg-gradient-to-r from-yellow-400/10 to-yellow-500/10 p-3 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:border-yellow-400/40 group-hover:bg-gradient-to-r group-hover:from-yellow-400/20 group-hover:to-yellow-500/20">
-                    <Mail className="size-5 text-yellow-400 transition-colors duration-300 group-hover:text-yellow-300" />
-                  </div>
-                </div>
+            <div>
+              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 backdrop-blur-sm ring-1 ring-black/5">
+                <Mail className="size-5 text-gray-700" />
               </div>
-              <p className="mb-1 text-base font-bold text-white transition-colors duration-300 group-hover:text-yellow-400">
+              <p className="mb-1 text-base font-bold text-gray-800">
                 Email Address
               </p>
               <a
                 href="mailto:info@frigusfiesta.com"
-                className="cursor-pointer text-sm text-yellow-100 transition-colors duration-300 hover:underline group-hover:text-yellow-200"
+                className="cursor-pointer text-sm text-gray-600 hover:text-black hover:underline"
               >
                 info@frigusfiesta.com
               </a>
             </div>
           </div>
         </div>
-        {/* Social media links with premium effects */}
         <div className="mb-6 flex justify-center space-x-4">
           {[
             { Icon: Facebook, href: "/", label: "Facebook" },
@@ -130,41 +105,37 @@ const Footer = () => {
             <Link
               key={index}
               href={href}
-              className="group relative flex size-12 items-center justify-center transition-all duration-500"
+              className="flex size-12 items-center justify-center rounded-full bg-white/50 text-gray-700 backdrop-blur-sm ring-1 ring-black/5 transition-all duration-300 hover:bg-white hover:text-black"
               aria-label={label}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 blur-lg transition-all duration-300 group-hover:blur-xl"></div>
-              <div className="relative rounded-full border-2 border-yellow-400/30 bg-gradient-to-r from-yellow-400/10 to-yellow-500/10 p-3 backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:border-yellow-400 group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-yellow-500 group-hover:shadow-2xl group-hover:shadow-yellow-400/25">
-                <Icon className="size-5 text-yellow-400 transition-all duration-500 group-hover:text-white" />
-              </div>
+              <Icon className="size-5" />
             </Link>
           ))}
         </div>
-        {/* Bottom section with premium styling */}
-        <div className="border-t border-yellow-400/30 pt-4">
+        <div className="border-t border-black/10 pt-4">
           <div className="flex flex-col items-center justify-between space-y-3 md:flex-row md:space-y-0">
-            <p className="text-xs text-yellow-100">
+            <p className="text-xs text-gray-600">
               ©2025 Frigus Fiesta | Developed by{" "}
               <Link
                 href="https://www.electroplix.com/"
-                className="font-semibold text-yellow-400 transition-all duration-300 hover:text-yellow-300 hover:underline hover:underline-offset-2"
+                className="font-semibold text-gray-800 hover:text-black hover:underline"
               >
                 Electroplix
               </Link>
             </p>
             <div className="flex items-center space-x-4 text-xs">
               <Link
-                href="/terms_and_conditions"
-                className="text-yellow-100 transition-all duration-300 hover:text-yellow-400 hover:underline hover:underline-offset-2"
+                href="/terms"
+                className="text-gray-600 hover:text-black hover:underline"
               >
                 Terms & Conditions
               </Link>
-              <div className="h-3 w-px bg-gradient-to-b from-transparent via-yellow-400/50 to-transparent"></div>
+              <div className="h-3 w-px bg-black/20"></div>
               <Link
-                href="/privacy_and_policy"
-                className="text-yellow-100 transition-all duration-300 hover:text-yellow-400 hover:underline hover:underline-offset-2"
+                href="/privacy-policy"
+                className="text-gray-600 hover:text-black hover:underline"
               >
                 Privacy Policy
               </Link>
