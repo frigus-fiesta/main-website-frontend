@@ -107,7 +107,7 @@ const Homepage = () => {
             transform: `translateY(${scrollY * -0.3}px)`,
           }}
         >
-          <Link href="/contactus">
+          <Link href="/appointment">
             <span className="cursor-pointer rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 px-10 py-4 font-bold uppercase text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl">
               Curate Event With Us
             </span>

@@ -72,10 +72,9 @@ const AboutStoryPage = () => {
   useEffect(() => { setIsVisible(true); }, []);
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-amber-50 to-yellow-50">
+    <div className="relative min-h-screen overflow-x-hidden">
       <GoldAnimatedBackground />
       <Header />
-      {/* Hero Section */}
       <div className="relative h-[90vh] overflow-hidden pt-10 md:h-[70vh]">
         <div className="absolute inset-0 bg-gradient-to-t from-yellow-500 to-yellow-600"></div>
         <div className="absolute inset-0">
@@ -116,7 +115,6 @@ const AboutStoryPage = () => {
           </div>
         </div>
       </div>
-      {/* Fun Facts / Stats Section */}
       <div className="relative z-10 bg-gradient-to-br from-yellow-50 to-amber-100 py-16">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 md:grid-cols-4">
           {funFacts.map((fact) => (
@@ -129,14 +127,13 @@ const AboutStoryPage = () => {
           ))}
         </div>
       </div>
-      {/* Company History Section */}
       <div className="px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 text-center">
-            <h2 className="animate-fade-in-up mb-6 text-4xl font-extrabold text-black md:text-5xl">
+            <h2 className="animate-fade-in-up mb-10 text-4xl font-extrabold text-black md:text-5xl">
               Company <span className="text-yellow-500">History</span>
             </h2>
-            <div className="mx-auto mb-10 flex max-w-4xl flex-col items-center gap-8 md:flex-row md:items-center md:gap-16">
+            <div className="mx-auto mb-10 flex max-w-6xl flex-col items-center gap-8 md:flex-row md:items-center md:gap-16">
               <div className="flex-1">
                 <Image src="/assets/aboutus.jpg" alt="Company History" width={800} height={384} className="h-80 w-full rounded-2xl object-cover shadow-xl md:h-96" />
               </div>
@@ -147,23 +144,11 @@ const AboutStoryPage = () => {
               </div>
             </div>
           </div>
-          {/* Our Team */}
-          <div className="mb-16 text-center">
-            <h2 className="animate-fade-in-up mb-6 text-4xl font-extrabold text-black md:text-5xl">
-              Our <span className="text-yellow-500">Team</span>
+          <div className="mb-16 text-center mt-40">
+            <h2 className="animate-fade-in-up mb-10 text-4xl font-extrabold text-black md:text-5xl">
+              <span className="text-black">Locations</span>
             </h2>
-            <div className="mx-auto max-w-4xl text-left text-gray-700 md:text-lg">
-              <p>
-                Behind every successful event at Frigus Fiesta is a team of talented professionals who are passionate about their craft. From event planners and designers to technicians and performers, our diverse team brings together a wealth of experience and expertise to create magic on stage and off.
-              </p>
-            </div>
-          </div>
-          {/* Locations */}
-          <div className="mb-16 text-center">
-            <h2 className="animate-fade-in-up mb-6 text-4xl font-extrabold text-black md:text-5xl">
-              <span className="text-yellow-500">Locations</span>
-            </h2>
-            <div className="mx-auto max-w-4xl text-left text-gray-700 md:text-lg">
+            <div className="mx-auto max-w-4xl text-gray-700 md:text-lg text-center">
               <p>
                 With a presence in key cities across India, including Pune, Hyderabad, Delhi, and Bangalore, Frigus Fiesta is strategically positioned to serve clients nationwide. Whether you're planning an event in the heart of the city or a scenic countryside retreat, we have the resources and infrastructure to bring your vision to life.
               </p>
@@ -171,23 +156,11 @@ const AboutStoryPage = () => {
           </div>
         </div>
       </div>
-      {/* Clients Section */}
-      <div className="relative z-10 bg-gradient-to-br from-yellow-100 to-amber-50 py-20">
+      <div className="relative z-10 py-20">
         <HomeClients />
       </div>
-      {/* Testimonials Section */}
-      <div className="relative z-10 bg-gradient-to-br from-amber-50 to-yellow-100 py-20">
+      <div className="relative z-10 py-20">
         <Testimonials />
-      </div>
-      {/* Call to Action */}
-      <div className="relative z-10 flex flex-col items-center justify-center bg-gradient-to-r from-yellow-400 to-amber-500 py-16 text-center">
-        <h2 className="mb-4 text-4xl font-extrabold text-white drop-shadow-lg md:text-5xl">Ready to Make Your Event Unforgettable?</h2>
-        <p className="mb-8 max-w-2xl text-lg text-white/90 md:text-xl">
-          Contact Frigus Fiesta today and let us bring your vision to life with creativity, passion, and excellence.
-        </p>
-        <a href="/contactus" className="rounded-full bg-white px-10 py-4 text-lg font-bold text-yellow-600 shadow-xl transition-all duration-300 hover:bg-yellow-100 hover:text-yellow-700">
-          Get In Touch
-        </a>
       </div>
       <style jsx>{`
         @keyframes float {
