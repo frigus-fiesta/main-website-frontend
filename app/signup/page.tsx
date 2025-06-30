@@ -194,7 +194,7 @@ export default function SignUp() {
           <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
             <div className="mb-6 text-center">
               <h1 className="text-2xl font-bold text-gray-900">Sign Up</h1>
-              <p className="mt-2 text-gray-600 text-sm">Create your account</p>
+              <p className="mt-2 text-sm text-gray-600">Create your account</p>
             </div>
             <form className="space-y-4" onSubmit={handleEmailSignUp}>
               <div>
@@ -267,7 +267,7 @@ export default function SignUp() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full rounded-md border border-gray-300 py-2 pl-10 pr-10 focus:outline-none"
+                    className="block w-full rounded-md border border-gray-300 px-10 py-2 focus:outline-none"
                     placeholder="••••••••"
                   />
                   <button
@@ -317,7 +317,7 @@ export default function SignUp() {
                     required
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className={`block w-full rounded-md py-2 pl-10 pr-10 focus:outline-none border ${
+                    className={`block w-full rounded-md border px-10 py-2 focus:outline-none ${
                       confirmPassword && !passwordsMatch
                         ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                         : confirmPassword && passwordsMatch
@@ -350,7 +350,7 @@ export default function SignUp() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-md bg-yellow-500 px-4 py-2 text-white font-medium hover:bg-yellow-400 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-md bg-yellow-500 px-4 py-2 font-medium text-white hover:bg-yellow-400 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
@@ -376,7 +376,7 @@ export default function SignUp() {
               type="button"
               onClick={handleGoogleSignUp}
               disabled={loading}
-              className="mt-6 w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-700 font-medium hover:bg-gray-50 focus:outline-none disabled:opacity-50"
+              className="mt-6 w-full rounded-md border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none disabled:opacity-50"
             >
               <div className="flex items-center justify-center">
                 <FaGoogle className="mr-2 size-4" />
@@ -404,7 +404,7 @@ export default function SignUp() {
           </div>
         </div>
       </div>
-      <footer className='p-3 bg-gray-50 flex items-center justify-center mt-10'>
+      <footer className='mt-10 flex items-center justify-center bg-gray-50 p-3'>
         <h1 className='text-gray-700'>© {new Date().getFullYear()} Frigus Fiesta</h1>
       </footer>
     </div>

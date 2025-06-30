@@ -415,7 +415,7 @@ export default function BookAppointmentPage() {
       {/* Why Choose Us Section */}
       <div className="px-6 py-20">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
-          <div className="animate-slide-in-up relative overflow-hidden rounded-2xl bg-gray-50 p-8  text-white shadow-xl transition-all duration-500 border border-yellow-300">
+          <div className="animate-slide-in-up relative overflow-hidden rounded-2xl border border-yellow-300  bg-gray-50 p-8 text-white shadow-xl transition-all duration-500">
             <div className="absolute right-0 top-0 size-32 -translate-y-16 translate-x-16 rounded-full bg-white/10" />
             <div className="absolute bottom-0 left-0 size-24 -translate-x-12 translate-y-12 rounded-full bg-white/10" />
             <div className="relative z-10">
