@@ -67,22 +67,23 @@ const GoldAnimatedBackground = () => (
 );
 
 const HomeClients = () => {
+  const repeatedClients = [...clients, ...clients, ...clients]; // 15 images for smooth loop
+
   return (
-    <section className="relative flex min-h-[80vh] flex-col items-center justify-center overflow-hidden py-24">
+    <section className="relative flex min-h-[60vh] flex-col items-center justify-center overflow-hidden py-24">
       <GoldAnimatedBackground />
-      {/* Floating yellow circles (same as HomeAbout, now above SVG) */}
       {floatingCircles.map((circle, i) => (
         <motion.div
           key={i}
-          className="pointer-events-none absolute z-0 opacity-40 blur-2xl"
+          className={`pointer-events-none absolute z-0 opacity-40 blur-2xl`}
           style={{
-            width: circle.size,
-            height: circle.size,
             top: circle.top,
             left: circle.left,
             background: 'radial-gradient(circle at 60% 40%, #fde047 60%, #fbbf24 100%)',
             borderRadius: '50%',
-          }}
+            width: circle.size,
+            height: circle.size,
+          } as any}
           initial={{ y: 0, x: 0, opacity: 0.4 }}
           animate={{ y: -20, x: 10, opacity: 0.6 }}
           transition={{
@@ -111,15 +112,13 @@ const HomeClients = () => {
       >
         We`ve had the privilege of working with renowned artists and musical legends from around the world. 
       </motion.p>
-      <div className="flex w-full justify-center">
-        <div className="grid w-full max-w-6xl grid-cols-1 gap-8 px-4 sm:grid-cols-2 md:grid-cols-3">
-          {clients.map((client, idx) => (
+      <div className="relative w-full max-w-8xl overflow-x-hidden mt-10">
+        <div className="scrolling-carousel flex items-center gap-12" style={{ width: 'max-content', overflowY: 'hidden' }}>
+          {repeatedClients.map((client, idx) => (
             <motion.div
-              key={client.name}
-              className="group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-xl border border-yellow-100 bg-white shadow-lg transition-all duration-300"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: idx * 0.1 }}
+              key={idx + client.name}
+              className="group relative flex aspect-[4/3] w-96 min-w-[24rem] flex-col justify-end overflow-hidden rounded-2xl border border-yellow-100 bg-white shadow-xl transition-all duration-300"
+              transition={{ duration: 0.7, delay: (idx % 5) * 0.1 }}
               viewport={{ once: true }}
             >
               <Image
@@ -127,20 +126,32 @@ const HomeClients = () => {
                 alt={client.name}
                 fill
                 className="size-full object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 90vw, 24rem"
               />
               <div className="pointer-events-none absolute inset-0 z-10 bg-black/0 transition-all duration-300 group-hover:bg-black/30" />
               <div
-                className="absolute left-1/2 top-1/2 z-20 flex w-full -translate-x-1/2 translate-y-12 justify-center px-4
-                  py-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+                className="absolute left-1/2 top-1/2 z-20 flex w-full -translate-x-1/2 translate-y-12 justify-center px-4 py-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
               >
-                <span className="w-full truncate text-center text-lg font-bold text-white drop-shadow-lg">
+                <span className="w-full truncate text-center text-2xl font-bold text-white drop-shadow-lg">
                   {client.name}
                 </span>
               </div>
             </motion.div>
           ))}
         </div>
+        <style jsx>{`
+          .scrolling-carousel {
+            animation: scroll-x 30s linear infinite;
+          }
+          @keyframes scroll-x {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-33.333%);
+            }
+          }
+        `}</style>
       </div>
     </section>
   );

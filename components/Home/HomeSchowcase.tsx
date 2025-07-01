@@ -153,7 +153,7 @@ const HomeShowcase = () => {
             >
               <VideoPlayer
                 src="/assets/ss1.mp4"
-                poster="/assets/default.jpg"
+                poster="/assets/thumb.png"
               />
             </motion.div>
           </div>
@@ -169,7 +169,7 @@ const HomeShowcase = () => {
             >
               <VideoPlayer
                 src="/assets/ss2.mp4"
-                poster="/assets/default.jpg"
+                poster="/assets/thumb1.png"
               />
             </motion.div>
             <div className="order-1 space-y-6 lg:order-2">
