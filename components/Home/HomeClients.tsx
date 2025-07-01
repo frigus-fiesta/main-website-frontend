@@ -5,11 +5,15 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const clients = [
-  { name: 'Robert M. Weiss', image: '/assets/client1.jpg' },
-  { name: 'Margaret Smith', image: '/assets/client2.jpg' },
-  { name: 'Bonnie McKee', image: '/assets/client3.jpg' },
-  { name: 'Leland Duncan', image: '/assets/client4.jpg' },
-  { name: 'Over The Board', image: '/assets/client5.jpg' },
+  { image: '/assets/clients/c1.png' },
+  { image: '/assets/clients/c2.png' },
+  { image: '/assets/clients/c3.png' },
+  { image: '/assets/clients/c4.png' },
+  { image: '/assets/clients/c5.webp' },
+  { image: '/assets/clients/c6.png' },
+  { image: '/assets/clients/c8.png' },
+  { image: '/assets/clients/c9.webp' },
+  { image: '/assets/clients/c10.png' },
 ];
 
 const floatingCircles = [
@@ -116,26 +120,19 @@ const HomeClients = () => {
         <div className="scrolling-carousel flex items-center gap-12" style={{ width: 'max-content', overflowY: 'hidden' }}>
           {repeatedClients.map((client, idx) => (
             <motion.div
-              key={idx + client.name}
+              key={client.image + idx}
               className="group relative flex aspect-[4/3] w-96 min-w-[24rem] flex-col justify-end overflow-hidden rounded-2xl border border-yellow-100 bg-white shadow-xl transition-all duration-300"
               transition={{ duration: 0.7, delay: (idx % 5) * 0.1 }}
               viewport={{ once: true }}
             >
               <Image
                 src={client.image}
-                alt={client.name}
+                alt="Client Logo"
                 fill
-                className="size-full object-cover"
+                className="size-full object-contain"
                 sizes="(max-width: 768px) 90vw, 24rem"
               />
               <div className="pointer-events-none absolute inset-0 z-10 bg-black/0 transition-all duration-300 group-hover:bg-black/30" />
-              <div
-                className="absolute left-1/2 top-1/2 z-20 flex w-full -translate-x-1/2 translate-y-12 justify-center px-4 py-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
-              >
-                <span className="w-full truncate text-center text-2xl font-bold text-white drop-shadow-lg">
-                  {client.name}
-                </span>
-              </div>
             </motion.div>
           ))}
         </div>
