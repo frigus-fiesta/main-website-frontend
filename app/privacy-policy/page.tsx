@@ -90,36 +90,32 @@ const Sparkles = () => (
 
 const policySections = [
   {
-    title: "1. Introduction",
-    text: "We value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you visit our website.",
+    title: "1. Information We Collect",
+    text: `Contact details such as name, phone number, email address.\n\nEvent preferences or customization details.\n\nPayment details for transaction purposes.\n\nAutomatically collected data such as IP address, browser type, etc., for analytics.`,
   },
   {
-    title: "2. Information We Collect",
-    text: "We may collect personal information such as your name, email address, phone number, and any other information you voluntarily provide through forms on our website.",
+    title: "2. How We Use Your Information",
+    text: `To confirm bookings and process payments.\n\nTo communicate updates regarding your event or queries.\n\nFor internal use like data analysis, service improvement, and marketing insights.`,
   },
   {
-    title: "3. How We Use Your Information",
-    text: "Your information is used to provide and improve our services, respond to your inquiries, and communicate important updates. We do not sell or share your personal data with third parties except as required by law.",
+    title: "3. Data Sharing",
+    text: `Your information may be shared with trusted third-party vendors (e.g., decorators, caterers) involved in delivering the booked services.\n\nWe do not sell, trade, or rent your personal data to anyone.`,
   },
   {
-    title: "4. Cookies and Tracking Technologies",
-    text: "We use cookies and similar technologies to enhance your experience on our website. You can control cookies through your browser settings.",
+    title: "4. Data Security",
+    text: `We use appropriate technological and organizational measures to protect your data against unauthorized access, loss, or misuse.`,
   },
   {
-    title: "5. Data Security",
-    text: "We implement industry-standard security measures to protect your data from unauthorized access, alteration, or disclosure.",
+    title: "5. Cookies & Analytics",
+    text: `Our website may use cookies to improve user experience and track anonymous website activity.`,
   },
   {
-    title: "6. Your Rights",
-    text: "You have the right to access, update, or delete your personal information. To exercise these rights, please contact us using the information provided on our website.",
+    title: "6. User Rights",
+    text: `You may request to view, modify, or delete your personal information stored with us at any time by contacting our support.`,
   },
   {
-    title: "7. Changes to This Policy",
-    text: "We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date.",
-  },
-  {
-    title: "8. Contact Us",
-    text: "If you have any questions or concerns about this Privacy Policy, please contact us at info@frigusfiesta.com.",
+    title: "7. Changes to Policy",
+    text: `We reserve the right to update this Privacy Policy from time to time. Any changes will be posted on this page with a revised effective date.`,
   },
 ];
 
@@ -221,13 +217,16 @@ const PrivacyPolicyPage = () => {
                 >
                   {section.title}
                 </motion.h2>
-                <motion.p
-                  className="text-base text-gray-700"
-                  initial={false}
-                  animate={false}
-                >
-                  {section.text}
-                </motion.p>
+                {section.text.split("\n\n").map((para, idx) => (
+                  <motion.p
+                    key={idx}
+                    className="text-base text-gray-700 mb-2"
+                    initial={false}
+                    animate={false}
+                  >
+                    {para}
+                  </motion.p>
+                ))}
               </motion.div>
             ))}
           </motion.div>

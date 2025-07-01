@@ -64,28 +64,32 @@ const GoldAnimatedBackground = () => (
 
 const terms = [
   {
-    title: "1. Acceptance of Terms",
-    text: "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.",
+    title: "1. Pricing & Currency",
+    text: "All event services start from INR 15,000. Prices listed are in Indian Rupees (INR) for Indian clients and US Dollars (USD) for international clients. Applicable taxes (GST or others) are charged separately as per prevailing government rates.",
   },
   {
-    title: "2. Modification of Terms",
-    text: "We reserve the right to change, modify, or revise these terms at any time. Your continued use of the site will signify your acceptance of any adjustment to these terms.",
+    title: "2. Service Availability",
+    text: "We strive to ensure that all services listed are available and accurately priced. However, Frigus Fiesta reserves the right to modify or discontinue any service without prior notice.",
   },
   {
-    title: "3. User Responsibilities",
-    text: "You agree to use the website only for lawful purposes and in a way that does not infringe the rights of, restrict or inhibit anyone else's use and enjoyment of the website.",
+    title: "3. Booking & Payment",
+    text: "A confirmed booking requires advance payment as communicated during booking. Accepted payment methods include: Credit/Debit Card, UPI, Net Banking, IMPS, NEFT, RTGS, and Cheque (India only). Overseas clients can pay via international cards or wire transfers.",
   },
   {
-    title: "4. Intellectual Property",
-    text: "All content, trademarks, and data on this website, including but not limited to software, databases, text, graphics, icons, hyperlinks, private information, designs, and agreements, are the property of or licensed to us and as such are protected from infringement by local and international legislation and treaties.",
+    title: "4. Cancellation & Refund Policy",
+    text: "Refunds, if applicable, will be processed within 15–20 working days from the cancellation request. Refunds depend on confirmation from our vendors or service partners. Credit card payments will be refunded back to the card. Other payments will be refunded via NEFT/RTGS/IMPS or cheque within 30 days. All refunds are subject to approval and processing timelines from third-party vendors. Frigus Fiesta acts only as a facilitator and is not liable for delays or failures in refunds beyond our control.",
   },
   {
-    title: "5. Limitation of Liability",
-    text: "We will not be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use or the inability to use the website or for the cost of procurement of substitute goods and services.",
+    title: "5. Liability Disclaimer",
+    text: "Frigus Fiesta shall not be held responsible for any delays, service deficiencies, vendor-related issues, pricing changes, or other unforeseen circumstances. We do not accept liability for any personal loss, damage, accident, or disruption during or due to the service booked.",
   },
   {
-    title: "6. Governing Law",
-    text: "These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which the company operates.",
+    title: "6. Intellectual Property",
+    text: "All content on our website, including logos, event designs, images, and text, are the intellectual property of Frigus Fiesta. Unauthorized use is prohibited.",
+  },
+  {
+    title: "7. Jurisdiction",
+    text: "These Terms are governed by the laws of India. Any disputes arising will be handled in the courts of Hyderabad, Telangana.",
   },
 ];
 
