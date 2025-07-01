@@ -16,7 +16,6 @@ const clients = [
   { image: '/assets/clients/c10.png' },
 ];
 
-
 const floatingCircles = [
   { size: '120px', top: '10%', left: '5%', delay: 0 },
   { size: '80px', top: '60%', left: '10%', delay: 0.5 },
