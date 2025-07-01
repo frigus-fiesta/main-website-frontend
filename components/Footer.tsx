@@ -15,12 +15,12 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="relative mt-10 overflow-hidden bg-gray-100">
+    <footer className="relative mt-10 overflow-hidden bg-gray-200">
       <div
         className="absolute inset-0 size-full opacity-20"
         style={{
           backgroundImage:
-            "repeating-linear-gradient(0deg, #FFD700, #FFD700 1px, transparent 1px, transparent 50px), repeating-linear-gradient(90deg, #FFD700, #FFD700 1px, transparent 1px, transparent 50px)",
+            "repeating-linear-gradient(0deg, #8B7500, #8B7500 1px, transparent 1px, transparent 50px), repeating-linear-gradient(90deg, #8B7500, #8B7500 1px, transparent 1px, transparent 50px)",
         }}
       ></div>
       <div className="container relative z-10 mx-auto px-6 py-8">
@@ -105,7 +105,7 @@ const Footer = () => {
             <Link
               key={index}
               href={href}
-              className="flex size-12 items-center justify-center rounded-full bg-white/50 text-gray-700 backdrop-blur-sm ring-1 ring-black/5 transition-all duration-300 hover:bg-white hover:text-black"
+              className="flex size-12 items-center justify-center rounded-full bg-white/50 text-gray-700 backdrop-blur-sm ring-1 ring-black/5 transition-all duration-300 hover:bg-yellow-300 hover:text-black"
               aria-label={label}
               target="_blank"
               rel="noopener noreferrer"
@@ -114,7 +114,7 @@ const Footer = () => {
             </Link>
           ))}
         </div>
-        <div className="border-t border-black/10 pt-4">
+        <div className="pt-4">
           <div className="flex flex-col items-center justify-between space-y-3 md:flex-row md:space-y-0">
             <p className="text-xs text-gray-600">
               ©2025 Frigus Fiesta | Developed by{" "}
