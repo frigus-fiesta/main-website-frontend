@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send, Star, Sparkles, Clock, Users } from 'lucide-react';
+import { Toaster, toast } from 'react-hot-toast';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -50,20 +51,48 @@ export default function ContactUsPage() {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    description: ''
   });
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitError(null);
+    setSubmitSuccess(null);
+    try {
+      const response = await fetch('https://backend-server.developer-frigus-fiesta.workers.dev/general/contactus', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to send message. Please try again.');
+      }
+      setIsSubmitted(true);
+      setSubmitSuccess('Your message has been sent successfully!');
+      setFormData({ name: '', email: '', subject: '', description: '' });
+      toast.success('Message sent!');
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setSubmitSuccess(null);
+      }, 3000);
+    } catch (error: any) {
+      setSubmitError(error.message || 'Something went wrong.');
+      setTimeout(() => setSubmitError(null), 4000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
@@ -108,6 +137,7 @@ export default function ContactUsPage() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      <Toaster position="top-right" />
       <GoldAnimatedBackground />
       <Header />
       <div className="relative h-[90vh] overflow-hidden pt-10 md:h-[70vh]">
@@ -205,10 +235,10 @@ export default function ContactUsPage() {
           </div>
         </div>
       </div>
-      <div className="bg-gradient-to-br from-amber-50 to-yellow-50 px-6 py-20">
+      <div className="px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <h2 className="animate-fade-in-up mb-6 text-4xl font-bold text-black md:text-5xl">Send us a <span className='text-yellow-500'>Message</span></h2>
+            <h2 className="animate-fade-in-up mb-6 text-4xl font-bold text-black md:text-5xl">Send us a <span className='text-yellow-500'>description</span></h2>
             <p className="animate-fade-in-up animation-delay-200 text-xl text-gray-600">We'd love to hear from you and discuss your next project</p>
           </div>
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
@@ -257,8 +287,8 @@ export default function ContactUsPage() {
                   </div>
                   <div className="group relative">
                     <textarea
-                      name="message"
-                      value={formData.message}
+                      name="description"
+                      value={formData.description}
                       onChange={handleChange}
                       rows={6}
                       className="w-full resize-none rounded-xl border border-gray-200 px-4 py-3 transition-all duration-300 hover:border-amber-300 hover:shadow-lg focus:outline-none"
@@ -268,21 +298,32 @@ export default function ContactUsPage() {
                   </div>
                   <button
                     onClick={handleSubmit}
-                    disabled={isSubmitted}
+                    disabled={isSubmitted || isSubmitting}
                     className="group flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 py-4 font-semibold text-white  shadow-lg transition-all duration-300 hover:shadow-amber-400/25 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
                   >
-                    {isSubmitted ? (
+                    {isSubmitting ? (
                       <>
                         <Star className="size-5 animate-spin" />
-                        Message Sent! ✨
+                        Sending...
+                      </>
+                    ) : isSubmitted ? (
+                      <>
+                        <Star className="size-5 animate-spin" />
+                        description Sent! ✨
                       </>
                     ) : (
                       <>
                         <Send className="size-5 transition-transform duration-300 hover:rotate-12" />
-                        <span className="hover:animate-pulse">Send Golden Message</span>
+                        <span className="hover:animate-pulse">Send Golden description</span>
                       </>
                     )}
                   </button>
+                  {submitSuccess && (
+                    <div className="mt-4 text-green-600 font-semibold text-center">{submitSuccess}</div>
+                  )}
+                  {submitError && (
+                    <div className="mt-4 text-red-600 font-semibold text-center">{submitError}</div>
+                  )}
                 </div>
               </div>
             </div>
