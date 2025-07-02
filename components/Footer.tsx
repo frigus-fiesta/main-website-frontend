@@ -18,10 +18,6 @@ const Footer = () => {
     <footer className="relative mt-10 overflow-hidden bg-gray-200">
       <div
         className="absolute inset-0 size-full opacity-20"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg, #8B7500, #8B7500 1px, transparent 1px, transparent 50px), repeating-linear-gradient(90deg, #8B7500, #8B7500 1px, transparent 1px, transparent 50px)",
-        }}
       ></div>
       <div className="container relative z-10 mx-auto px-6 py-8">
         <div className="mb-6 flex flex-col items-center">
@@ -114,7 +110,7 @@ const Footer = () => {
             </Link>
           ))}
         </div>
-        <div className="pt-4">
+        <div className="border-t border-gray-400 pt-4">
           <div className="flex flex-col items-center justify-between space-y-3 md:flex-row md:space-y-0">
             <p className="text-xs text-gray-600">
               ©2025 Frigus Fiesta | Developed by{" "}

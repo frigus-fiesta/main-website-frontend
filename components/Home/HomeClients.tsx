@@ -121,7 +121,7 @@ const HomeClients = () => {
           {repeatedClients.map((client, idx) => (
             <motion.div
               key={client.image + idx}
-              className="group relative flex aspect-[4/3] w-96 min-w-[24rem] flex-col justify-end overflow-hidden rounded-2xl border border-yellow-100 bg-white shadow-xl transition-all duration-300"
+              className="group relative flex aspect-[4/3] w-72 min-w-[16rem] flex-col justify-end overflow-hidden rounded-2xl border border-yellow-100 bg-white shadow-xl transition-all duration-300"
               transition={{ duration: 0.7, delay: (idx % 5) * 0.1 }}
               viewport={{ once: true }}
             >
