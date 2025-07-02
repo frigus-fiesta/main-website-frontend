@@ -121,13 +121,23 @@ const HomeServices = () => {
           {services.map((service) => (
             <motion.div
               key={service.title}
-              className="group mx-auto flex w-full min-w-[270px] max-w-xs cursor-pointer flex-col items-center rounded-3xl border border-yellow-100 bg-white/90 p-6 shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group mx-auto flex w-full min-w-[270px] max-w-xs cursor-pointer flex-col items-center rounded-3xl border border-yellow-100 bg-white/90 p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
               variants={cardVariants}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <div className="relative mb-4 size-40 rounded-2xl shadow-lg transition-transform duration-300">
+              <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+                <Image
+                  src="/assets/friguslogo.svg"
+                  alt="Frigus Fiesta Logo Watermark"
+                  fill
+                  className="object-contain opacity-10 scale-150"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  priority={false}
+                />
+              </div>
+              <div className="relative z-10 mb-4 size-40 rounded-2xl shadow-lg transition-transform duration-300">
                 <Image
                   src={service.image}
                   alt={service.title}
@@ -136,10 +146,10 @@ const HomeServices = () => {
                   sizes="(max-width: 768px) 100vw, 40vw"
                 />
               </div>
-              <h3 className="mb-2 text-center text-xl font-bold text-gray-800">
+              <h3 className="relative z-10 mb-2 text-center text-xl font-bold text-gray-800">
                 {service.title}
               </h3>
-              <p className="text-center text-sm text-gray-600">
+              <p className="relative z-10 text-center text-sm text-gray-600">
                 {service.desc}
               </p>
             </motion.div>
