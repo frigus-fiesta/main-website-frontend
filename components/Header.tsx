@@ -20,8 +20,13 @@ const navLinks = [
     ]
   },
   {
-    href: '/scheduled-events',
-    label: 'Scheduled Events',
+    href: '/events',
+    label: 'Events',
+    dropdown: [
+      { href: '/corporate', label: 'Corporate Events' },
+      { href: '/live', label: 'Live Events' },
+      { href: '/social', label: 'Social Events' },
+    ]
   },
   { href: '/gallery', label: 'Gallery' },
   { href: '/contactus', label: 'Contact Us' },
