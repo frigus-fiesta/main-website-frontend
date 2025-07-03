@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 
+export const runtime = 'edge';
+
 export default function LiveEventSlugPage({ params }: { params: { slug: string } }) {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => { setIsVisible(true); }, []);
