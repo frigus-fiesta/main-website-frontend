@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
 import Image from 'next/image';
 import { Users, Star, Briefcase, Sparkles, Calendar, Building2 } from 'lucide-react';
+
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
 
 const images = [
   '/assets/1.JPG', '/assets/2.JPG', '/assets/3.JPG', '/assets/4.JPG', '/assets/5.JPG', '/assets/6.JPG', '/assets/7.JPG', '/assets/8.JPG', '/assets/9.JPG', '/assets/10.JPG',
@@ -30,6 +31,7 @@ const infoCards = [
 export default function CorporateEventsPage() {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => { setIsVisible(true); }, []);
+  
   return (
     <>
       <Header />

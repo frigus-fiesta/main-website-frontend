@@ -1,11 +1,13 @@
 "use client";
+import React, { useState, useEffect } from 'react';
+
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
-import React, { useState, useEffect } from 'react';
 
 export default function CorporateEventSlugPage({ params }: { params: { slug: string } }) {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => { setIsVisible(true); }, []);
+  
   return (
     <>
       <Header />

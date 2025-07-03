@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
 import Image from 'next/image';
 import { Users, Star, PartyPopper, Sparkles, Calendar, Heart } from 'lucide-react';
+
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
 
 const images = [
   '/assets/21.JPG', '/assets/22.JPG', '/assets/23.JPG', '/assets/24.JPG', '/assets/25.JPG', '/assets/26.JPG', '/assets/27.JPG', '/assets/28.JPG', '/assets/29.JPG', '/assets/31.JPG',
@@ -30,6 +31,7 @@ const infoCards = [
 export default function SocialEventsPage() {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => { setIsVisible(true); }, []);
+  
   return (
     <>
       <Header />
