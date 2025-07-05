@@ -78,6 +78,7 @@ export default function SocialEventSlugPage({ params }: { params: { slug: string
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
+
     return date.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
@@ -215,12 +216,9 @@ export default function SocialEventSlugPage({ params }: { params: { slug: string
           </div>
         </div>
       </div>
-
-      {/* Event Details Section */}
       <div className="px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-3">
-            {/* Main Content */}
             <div className="lg:col-span-2">
               <div className="mb-8">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">About This Event</h2>
@@ -228,14 +226,12 @@ export default function SocialEventSlugPage({ params }: { params: { slug: string
                   {event.description}
                 </p>
               </div>
-
               {event.importantInfo && (
                 <div className="mb-8 p-6 bg-amber-50 rounded-2xl border border-amber-200">
                   <h3 className="text-xl font-bold text-amber-900 mb-3">Important Information</h3>
                   <p className="text-amber-800">{event.importantInfo}</p>
                 </div>
               )}
-
               {ticketPricing.length > 0 && (
                 <div className="mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">Ticket Pricing</h3>
@@ -257,10 +253,7 @@ export default function SocialEventSlugPage({ params }: { params: { slug: string
                 </div>
               )}
             </div>
-
-            {/* Sidebar */}
             <div className="space-y-6">
-              {/* Event Status */}
               <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Event Status</h3>
                 <div className="flex items-center gap-3">
@@ -275,8 +268,6 @@ export default function SocialEventSlugPage({ params }: { params: { slug: string
                   <span className="text-gray-600">{event.category}</span>
                 </div>
               </div>
-
-              {/* Event Details */}
               <div className="bg-white p-6 rounded-2xl shadow-lg">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Event Details</h3>
                 <div className="space-y-3">
@@ -297,8 +288,6 @@ export default function SocialEventSlugPage({ params }: { params: { slug: string
                   </div>
                 </div>
               </div>
-
-              {/* Organizer Contact */}
               {hostedBy && (
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Organizer</h3>
@@ -339,7 +328,6 @@ export default function SocialEventSlugPage({ params }: { params: { slug: string
           </div>
         </div>
       </div>
-
       <style jsx>{`
         @keyframes float {
           0%, 100% { 
