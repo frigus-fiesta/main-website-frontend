@@ -186,14 +186,17 @@ const ScheduledEventsPage = () => {
     if (categoryLower === 'corporate') {
       const capacity = Math.floor(Math.random() * 500) + 100; // 100-600
       const booked = Math.floor(capacity * (0.6 + Math.random() * 0.3)); // 60-90% booked
+
       return { capacity, booked };
     } else if (categoryLower === 'live') {
       const capacity = Math.floor(Math.random() * 3000) + 500; // 500-3500
+
       const booked = Math.floor(capacity * (0.7 + Math.random() * 0.25)); // 70-95% booked
       return { capacity, booked };
     } else if (categoryLower === 'social') {
       const capacity = Math.floor(Math.random() * 300) + 50; // 50-350
       const booked = Math.floor(capacity * (0.5 + Math.random() * 0.4)); // 50-90% booked
+
       return { capacity, booked };
     }
 
@@ -205,12 +208,15 @@ const ScheduledEventsPage = () => {
     
     if (categoryLower === 'corporate') {
       const images = ['/assets/1.JPG', '/assets/2.JPG', '/assets/3.JPG', '/assets/4.JPG'];
+      
       return images[eventId % images.length];
     } else if (categoryLower === 'live') {
       const images = ['/assets/11.JPG', '/assets/12.JPG', '/assets/13.JPG', '/assets/14.JPG'];
+      
       return images[eventId % images.length];
     } else if (categoryLower === 'social') {
       const images = ['/assets/21.JPG', '/assets/22.JPG', '/assets/23.JPG', '/assets/24.JPG'];
+      
       return images[eventId % images.length];
     }
 
