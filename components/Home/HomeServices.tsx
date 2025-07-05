@@ -131,31 +131,31 @@ const HomeServices = () => {
                 whileInView="animate"
                 viewport={{ once: true }}
               >
-              <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
-                <Image
-                  src="/assets/friguslogo.svg"
-                  alt="Frigus Fiesta Logo Watermark"
-                  fill
-                  className="object-contain opacity-10 scale-150"
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  priority={false}
-                />
-              </div>
-              <div className="relative z-10 mb-4 size-40 rounded-2xl shadow-lg transition-transform duration-300">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="rounded-md object-cover"
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                />
-              </div>
-              <h3 className="relative z-10 mb-2 text-center text-xl font-bold text-gray-800">
-                {service.title}
-              </h3>
-              <p className="relative z-10 text-center text-sm text-gray-600">
-                {service.desc}
-              </p>
+                <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+                  <Image
+                    src="/assets/friguslogo.svg"
+                    alt="Frigus Fiesta Logo Watermark"
+                    fill
+                    className="object-contain opacity-10 scale-150"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    priority={false}
+                  />
+                </div>
+                <div className="relative z-10 mb-4 size-40 rounded-2xl shadow-lg transition-transform duration-300">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="rounded-md object-cover"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                  />
+                </div>
+                <h3 className="relative z-10 mb-2 text-center text-xl font-bold text-gray-800">
+                  {service.title}
+                </h3>
+                <p className="relative z-10 text-center text-sm text-gray-600">
+                  {service.desc}
+                </p>
               </motion.div>
             </Link>
           ))}

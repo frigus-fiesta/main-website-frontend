@@ -12,13 +12,14 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import WorldMap from "./ui/world-map";
 
 const Footer = () => {
   return (
     <footer className="relative mt-10 overflow-hidden bg-gray-200">
-      <div
-        className="absolute inset-0 size-full opacity-20"
-      ></div>
+      <div className="absolute inset-0 size-full opacity-40">
+        <WorldMap fullSize={true} />
+      </div>
       <div className="container relative z-10 mx-auto px-6 py-8">
         <div className="mb-6 flex flex-col items-center">
           <Link href={`/`} className="mb-4">

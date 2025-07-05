@@ -11,6 +11,7 @@ interface MapProps {
     end: { lat: number; lng: number; label?: string };
   }>;
   lineColor?: string;
+  fullSize?: boolean;
 }
 
 export default function WorldMap({
@@ -37,6 +38,7 @@ export default function WorldMap({
     { start: { lat: 19.0760, lng: 72.8777, label: "Mumbai" }, end: { lat: 39.9042, lng: 116.4074, label: "Beijing" } },
   ],
   lineColor = "#0ea5e9",
+  fullSize = false,
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const map = new DottedMap({ height: 100, grid: "diagonal" });
@@ -83,8 +85,12 @@ return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
   // Responsive aspect ratio container
   return (
     <div
-      className="relative mx-auto w-full max-w-2xl overflow-hidden rounded-lg bg-white dark:bg-black"
-      style={{ aspectRatio: `${svgWidth} / ${svgHeight}` }}
+      className={`relative w-full overflow-hidden ${
+        fullSize 
+          ? "h-full" 
+          : "mx-auto max-w-2xl rounded-lg bg-white dark:bg-black"
+      }`}
+      style={fullSize ? {} : { aspectRatio: `${svgWidth} / ${svgHeight}` }}
     >
       <div
         className="pointer-events-none absolute inset-0 size-full select-none"
@@ -108,7 +114,7 @@ return (
                 d={createCurvedPath(startPoint, endPoint)}
                 fill="none"
                 stroke="#FFD700"
-                strokeWidth="1.5"
+                strokeWidth="0.8"
                 strokeLinecap="round"
                 strokeDasharray="100 100"
                 initial={{ strokeDashoffset: 100 }}
@@ -134,22 +140,22 @@ return (
       <circle
                   cx={startPoint.x}
                   cy={startPoint.y}
-                  r="4"
+                  r="2"
                   fill={lineColor}
                   stroke="#fff"
-                  strokeWidth="1"
+                  strokeWidth="0.5"
                 />
       <circle
                   cx={startPoint.x}
                   cy={startPoint.y}
-                  r="4"
+                  r="2"
                   fill={lineColor}
                   opacity="0.4"
                 >
         <animate
                     attributeName="r"
-                    from="4"
-                    to="10"
+                    from="2"
+                    to="6"
                     dur="1.5s"
                     begin="0s"
                     repeatCount="indefinite"
@@ -168,22 +174,22 @@ return (
       <circle
                   cx={endPoint.x}
                   cy={endPoint.y}
-                  r="4"
+                  r="2"
                   fill={lineColor}
                   stroke="#fff"
-                  strokeWidth="1"
+                  strokeWidth="0.5"
                 />
       <circle
                   cx={endPoint.x}
                   cy={endPoint.y}
-                  r="4"
+                  r="2"
                   fill={lineColor}
                   opacity="0.4"
                 >
         <animate
                     attributeName="r"
-                    from="4"
-                    to="10"
+                    from="2"
+                    to="6"
                     dur="1.5s"
                     begin="0s"
                     repeatCount="indefinite"
