@@ -6,6 +6,17 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { FaChevronDown } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { User, LogOut } from 'lucide-react';
+import { supabase } from '@/utils/supabase';
+import SignIn from './auth/Sign-in';
+
+// Interface for user profile
+interface UserProfile {
+  id: string;
+  email: string;
+  full_name?: string;
+  avatar_url?: string;
+}
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -41,8 +52,72 @@ const Header = () => {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === '/';
+
+  // Initialize auth state and check user session
+  useEffect(() => {
+    checkUserSession();
+
+    // Set up auth state change listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        if (session) {
+          fetchUserProfile(session.user.id);
+        } else {
+          setUser(null);
+        }
+      }
+    );
+    
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  // Check if user is already logged in
+  const checkUserSession = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      fetchUserProfile(session.user.id);
+    }
+  };
+
+  // Fetch user profile data
+  const fetchUserProfile = async (userId: string) => {
+    console.log('Fetching user profile for ID:', userId);
+    const { data: profile, error } = await supabase
+      .from('profiles_dev')
+      .select('*')
+      .eq('uuid', userId)
+      .single();
+
+    if (error) {
+      console.error('Error fetching user profile:', error);
+      // If profile doesn't exist yet, create a basic one from auth data
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUser({
+          id: user.id,
+          email: user.email || '',
+          full_name: user.user_metadata?.full_name,
+          avatar_url: user.user_metadata?.avatar_url || user.identities?.[0]?.identity_data?.avatar_url
+        });
+      }
+    } else if (profile) {
+      setUser(profile);
+    }
+  };
+
+  // Handle sign out
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+    setIsUserMenuOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,6 +148,14 @@ const Header = () => {
   const toggleMobileDropdown = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label);
   }
+
+  const toggleSignIn = () => {
+    setIsSignInOpen(!isSignInOpen);
+  };
+
+  const toggleUserMenu = () => {
+    setIsUserMenuOpen(!isUserMenuOpen);
+  };
 
   return (
     <div>
@@ -121,11 +204,165 @@ const Header = () => {
                   </div>
                 ))}
               </nav>
-              <Link href="/pay" className={`rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-3 py-1 font-bold text-white shadow-lg transition-all duration-300 hover:shadow-xl`}>
-                Pay Now
-              </Link>
+              <div className="flex items-center space-x-4">
+                {/* User Profile/Sign In Button */}
+                {user ? (
+                  <div className="relative">
+                    <motion.button 
+                      type='button'
+                      onClick={toggleUserMenu}
+                      className="relative flex items-center"
+                      aria-label="User menu"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {user.avatar_url ? (
+                        <div className="relative size-8 overflow-hidden rounded-full border-2 border-yellow-200 transition-all hover:border-yellow-400">
+                          <Image 
+                            src={user.avatar_url} 
+                            alt="User profile" 
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="flex size-8 items-center justify-center rounded-full bg-yellow-100 text-yellow-600 transition-colors hover:bg-yellow-200">
+                          <User className="size-5" />
+                        </div>
+                      )}
+                    </motion.button>
+                    {/* User dropdown menu */}
+                    <AnimatePresence>
+                      {isUserMenuOpen && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          className="absolute right-0 top-full z-50 mt-2 w-48 rounded-xl border border-white/20 bg-white/95 py-2 shadow-xl ring-1 ring-white/20 backdrop-blur-md"
+                        >
+                          <div className="border-b border-gray-100 px-4 py-2">
+                            <p className="font-medium text-gray-900">{user.full_name || 'User'}</p>
+                            <p className="text-xs text-gray-500">{user.email}</p>
+                          </div>
+                          <Link 
+                            href="/account" 
+                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
+                            onClick={() => setIsUserMenuOpen(false)}
+                          >
+                            My Account
+                          </Link>
+                          <Link 
+                            href="/orders" 
+                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
+                            onClick={() => setIsUserMenuOpen(false)}
+                          >
+                            My Orders
+                          </Link>
+                          <motion.button 
+                            type='button'
+                            onClick={handleSignOut}
+                            className="flex w-full items-center px-4 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
+                            whileHover={{ x: 2 }}
+                          >
+                            <LogOut className="mr-2 size-4" />
+                            Sign out
+                          </motion.button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <motion.button 
+                    type='button'
+                    onClick={toggleSignIn}
+                    className="rounded-full bg-white/20 px-4 py-2 text-sm font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30 hover:shadow-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Sign in
+                  </motion.button>
+                )}
+                <Link href="/pay" className={`rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-3 py-1 font-bold text-white shadow-lg transition-all duration-300 hover:shadow-xl`}>
+                  Pay Now
+                </Link>
+              </div>
             </div>
             <div className="flex items-center xl:hidden">
+              {/* Mobile User Profile/Sign In Button */}
+              {user ? (
+                <div className="relative mr-4">
+                  <motion.button 
+                    type='button'
+                    onClick={toggleUserMenu}
+                    className="relative text-white"
+                    aria-label="User menu"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {user.avatar_url ? (
+                      <div className="relative size-7 overflow-hidden rounded-full border-2 border-yellow-200">
+                        <Image 
+                          src={user.avatar_url} 
+                          alt="User profile" 
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <User className="size-5 text-white hover:text-yellow-400" />
+                    )}
+                  </motion.button>
+                  {/* Mobile User dropdown menu */}
+                  <AnimatePresence>
+                    {isUserMenuOpen && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute right-0 top-full z-50 mt-2 w-48 rounded-xl border border-white/20 bg-white/95 py-2 shadow-xl ring-1 ring-white/20 backdrop-blur-md"
+                      >
+                        <div className="border-b border-gray-100 px-4 py-2">
+                          <p className="font-medium text-gray-900">{user.full_name || 'User'}</p>
+                          <p className="text-xs text-gray-500">{user.email}</p>
+                        </div>
+                        <Link 
+                          href="/account" 
+                          className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
+                          onClick={() => setIsUserMenuOpen(false)}
+                        >
+                          My Account
+                        </Link>
+                        <Link 
+                          href="/orders" 
+                          className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
+                          onClick={() => setIsUserMenuOpen(false)}
+                        >
+                          My Orders
+                        </Link>
+                        <motion.button 
+                          type='button'
+                          onClick={handleSignOut}
+                          className="flex w-full items-center px-4 py-2 text-sm text-red-600 transition-colors hover:bg-red-50"
+                          whileHover={{ x: 2 }}
+                        >
+                          <LogOut className="mr-2 size-4" />
+                          Sign out
+                        </motion.button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <motion.button 
+                  type='button'
+                  onClick={toggleSignIn}
+                  className="mr-4 rounded-full bg-white/20 px-3 py-1.5 text-sm font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Sign in
+                </motion.button>
+              )}
               <button onClick={() => setIsOpen(!isOpen)} className={`focus:outline-none ${navTextColor} drop-shadow-sm`}>
                 <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
@@ -160,6 +397,65 @@ const Header = () => {
                     </svg>
                   </button>
                 </div>
+                {/* User Profile Section for Mobile Menu */}
+                {user ? (
+                  <div className="mb-4 rounded-lg bg-yellow-50 p-4">
+                    <div className="flex items-center">
+                      {user.avatar_url ? (
+                        <div className="relative mr-3 size-12 overflow-hidden rounded-full border-2 border-yellow-200">
+                          <Image 
+                            src={user.avatar_url} 
+                            alt="User profile" 
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="mr-3 flex size-12 items-center justify-center rounded-full bg-yellow-100">
+                          <User className="size-6 text-yellow-600" />
+                        </div>
+                      )}
+                      <div>
+                        <p className="font-medium text-gray-900">{user.full_name || 'User'}</p>
+                        <p className="text-xs text-gray-500">{user.email}</p>
+                      </div>
+                    </div>
+                    <div className="mt-3 grid grid-cols-2 gap-2">
+                      <Link 
+                        href="/account" 
+                        className="rounded bg-white px-3 py-1.5 text-center text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-yellow-50"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        My Account
+                      </Link>
+                      <motion.button 
+                        type='button'
+                        onClick={handleSignOut}
+                        className="rounded bg-red-50 px-3 py-1.5 text-center text-sm font-medium text-red-600 shadow-sm transition-colors hover:bg-red-100"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Sign out
+                      </motion.button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-4 rounded-lg bg-yellow-50 p-4 text-center">
+                    <p className="mb-3 text-sm text-gray-600">Sign in to access your account</p>
+                    <motion.button  
+                      type='button'
+                      onClick={() => {
+                        toggleSignIn();
+                        setIsOpen(false);
+                      }}
+                      className="w-full rounded-md bg-gradient-to-r from-yellow-400 to-yellow-500 px-4 py-2 text-sm font-bold text-white shadow-sm transition-all duration-300 hover:shadow-lg"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Sign in
+                    </motion.button>
+                  </div>
+                )}
                 <nav className="mt-8 grow">
                   {navLinks.map((link) => (
                     <div key={link.label} className="border-b border-gray-100 py-2">
@@ -195,7 +491,7 @@ const Header = () => {
                   ))}
                 </nav>
                 <div className="mt-auto p-4">
-                  <Link href="/pay" className={`block w-full rounded-full bg-gradient-to-r from-yellow-500 to-yellow-500 px-5 py-2.5 text-center font-bold text-white`}>
+                  <Link href="/pay" className={`block w-full rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-5 py-2.5 text-center font-bold text-white transition-all duration-300 hover:shadow-lg`}>
                     Pay Now
                   </Link>
                 </div>
@@ -204,6 +500,8 @@ const Header = () => {
           </>
         )}
       </AnimatePresence>
+      {/* Sign In Modal */}
+      {isSignInOpen && <SignIn isOpen={isSignInOpen} onClose={toggleSignIn} />}
     </div>
   );
 };
