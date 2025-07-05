@@ -192,6 +192,7 @@ const ScheduledEventsPage = () => {
       const capacity = Math.floor(Math.random() * 3000) + 500; // 500-3500
 
       const booked = Math.floor(capacity * (0.7 + Math.random() * 0.25)); // 70-95% booked
+      
       return { capacity, booked };
     } else if (categoryLower === 'social') {
       const capacity = Math.floor(Math.random() * 300) + 50; // 50-350
