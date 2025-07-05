@@ -18,7 +18,7 @@ import WorldMap from "./ui/world-map";
 const Footer = () => {
   return (
     <footer className="relative mt-10 overflow-hidden bg-gray-200">
-      <div className="absolute inset-0 size-full opacity-40">
+      <div className="absolute inset-0 size-full opacity-40 hidden md:block">
         <WorldMap fullSize={true} />
       </div>
       <div className="container relative z-10 mx-auto px-6 py-8">
