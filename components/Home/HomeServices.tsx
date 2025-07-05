@@ -3,22 +3,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const services = [
   {
     title: 'Corporate Events',
     image: '/assets/ser1.jpg',
     desc: 'Professional, seamless, and memorable corporate gatherings tailored to your brand.',
+    href: '/corporate',
   },
   {
     title: 'Live Concert',
     image: '/assets/ser2.jpg',
     desc: 'Electrifying live music experiences with top artists and immersive production.',
+    href: '/live',
   },
   {
     title: 'Social Events',
     image: '/assets/ser3.jpg',
     desc: 'Vibrant parties, weddings, and celebrations that leave lasting memories.',
+    href: '/social',
   },
 ];
 
@@ -89,7 +93,7 @@ const HomeServices = () => {
             left: circle.left,
             background: 'radial-gradient(circle at 60% 40%, #fde047 60%, #fbbf24 100%)',
             borderRadius: '50%',
-          }}
+          } as React.CSSProperties}
           initial={{ y: 0, x: 0, opacity: 0.4 }}
           animate={{ y: -20, x: 10, opacity: 0.6 }}
           transition={{
@@ -119,14 +123,14 @@ const HomeServices = () => {
       <div className="relative z-10 flex w-full justify-center">
         <div className="grid w-full max-w-6xl grid-cols-1 gap-8 px-4 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <motion.div
-              key={service.title}
-              className="group mx-auto flex w-full min-w-[270px] max-w-xs cursor-pointer flex-col items-center rounded-3xl border border-yellow-100 bg-white/90 p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
-              variants={cardVariants}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
+            <Link href={service.href} key={service.title}>
+              <motion.div
+                className="group mx-auto flex w-full min-w-[270px] max-w-xs cursor-pointer flex-col items-center rounded-3xl border border-yellow-100 bg-white/90 p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+                variants={cardVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+              >
               <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
                 <Image
                   src="/assets/friguslogo.svg"
@@ -152,7 +156,8 @@ const HomeServices = () => {
               <p className="relative z-10 text-center text-sm text-gray-600">
                 {service.desc}
               </p>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>
