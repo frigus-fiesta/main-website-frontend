@@ -118,6 +118,7 @@ const Footer = () => {
               ©2025 Frigus Fiesta | Developed by{" "}
               <Link
                 href="https://www.electroplix.com/"
+                target="_blank"
                 className="font-semibold text-gray-800 hover:text-black hover:underline"
               >
                 Electroplix

@@ -198,7 +198,7 @@ export default function ContactUsPage() {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className="animate-fade-in-up group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-xl  transition-all duration-500"
+                className="animate-fade-in-up group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-500"
                 style={{ animationDelay: `${index * 200}ms` }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${info.color} opacity-10 transition-opacity duration-300 group-hover:opacity-20`}></div>
@@ -215,6 +215,24 @@ export default function ContactUsPage() {
                   <p className="text-sm text-gray-600">
                     {info.subtext}
                   </p>
+                  {info.type === 'phone' && (
+                    <button 
+                      className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-purple-400 to-pink-600 text-white font-semibold py-3 px-4 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center gap-2 hover:shadow-lg rounded-b-2xl"
+                      onClick={() => window.open('tel:91-91826-84160', '_blank')}
+                    >
+                      <Phone className="size-4" />
+                      Call Now
+                    </button>
+                  )}
+                  {info.type === 'email' && (
+                    <button 
+                      className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-amber-400 to-yellow-600 text-white font-semibold py-3 px-4 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center gap-2 hover:shadow-lg rounded-b-2xl"
+                      onClick={() => window.open('mailto:info@frigusfiesta.com', '_blank')}
+                    >
+                      <Mail className="size-4" />
+                      Send Email
+                    </button>
+                  )}
                   {info.type === 'location' && (
                     <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/90 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <iframe
@@ -256,13 +274,13 @@ export default function ContactUsPage() {
                         type="text"
                         name="name"
                         value={formData.name}
-                        onChange={handleChange}
+                        onChange={handleChange} 
                         className="w-full rounded-xl border border-gray-200 px-4 py-3 transition-all duration-300 hover:border-amber-300 hover:shadow-lg focus:outline-none"
                         placeholder="Your Name"
                         required
                       />
                     </div>
-                    <div className="group relative">
+                    <div className="group relative overflow-hidden">
                       <input
                         type="email"
                         name="email"
@@ -272,6 +290,13 @@ export default function ContactUsPage() {
                         placeholder="Your Email"
                         required
                       />
+                      <button 
+                        className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-amber-400 to-yellow-500 text-white font-semibold py-2 px-4 rounded-b-xl transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center gap-2 hover:shadow-lg"
+                        onClick={() => window.open('mailto:info@frigusfiesta.com', '_blank')}
+                      >
+                        <Send className="size-4" />
+                        Send Email
+                      </button>
                     </div>
                   </div>
                   <div className="group relative">
