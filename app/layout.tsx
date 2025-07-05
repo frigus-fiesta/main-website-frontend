@@ -2,9 +2,9 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
 
-const poppins = Poppins({ 
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"]
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata = {
@@ -16,7 +16,7 @@ export const metadata = {
   og: {
     title: "Frigus Fiesta | India's Premier Event Management Company",
     description:
-      "Discover Frigus Fiesta’s magic with stunning weddings, dynamic corporate events, and unforgettable live entertainment across India.",
+      "Discover Frigus Fiesta's magic with stunning weddings, dynamic corporate events, and unforgettable live entertainment across India.",
     url: "https://www.frigusfiesta.com",
     type: "website",
     image: "/assets/frigusfiesta_og_image.png",
@@ -24,7 +24,7 @@ export const metadata = {
   openGraph: {
     title: "Frigus Fiesta | India's Premier Event Management Company",
     description:
-      "Discover Frigus Fiesta’s magic with stunning weddings, dynamic corporate events, and unforgettable live entertainment across India.",
+      "Discover Frigus Fiesta's magic with stunning weddings, dynamic corporate events, and unforgettable live entertainment across India.",
     url: "https://www.frigusfiesta.com",
     type: "website",
     siteName: "Frigus Fiesta",
@@ -89,10 +89,11 @@ export default function RootLayout({
         <meta name="twitter:site" content={metadata.twitter.site} />
         <meta name="twitter:title" content={metadata.twitter.title} />
         <meta
-        name="twitter:description"
-        content={metadata.twitter.description}
-      />
+          name="twitter:description"
+          content={metadata.twitter.description}
+        />
         <meta name="twitter:image" content={metadata.twitter.image} />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <body className={poppins.className}>
         <div>
@@ -127,7 +128,7 @@ export default function RootLayout({
                       window.addEventListener("load",onLoad)
                     }
                   })();
-                `
+                `,
               }}
             />
           </main>
