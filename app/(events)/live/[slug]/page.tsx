@@ -1,15 +1,154 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { Calendar, MapPin, Users, Phone, Mail, Globe, ArrowLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import Header from '../../../../components/Header';
 import Footer from '../../../../components/Footer';
 
+interface EventData {
+  id: number;
+  title: string;
+  description: string;
+  slug: string;
+  eventDate: string;
+  tagline: string;
+  eventStatus: string;
+  category: string;
+  hostedBy: string;
+  venue: string;
+  imageGallery: string;
+  eventPrice: number;
+  ticketPricingList: string;
+  importantInfo: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface HostedBy {
+  name: string;
+  email: string;
+  phone: string;
+  website: string;
+}
+
 export const runtime = 'edge';
 
 export default function LiveEventSlugPage({ params }: { params: { slug: string } }) {
+  const [event, setEvent] = useState<EventData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  useEffect(() => { setIsVisible(true); }, []);
-  
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsVisible(true);
+    fetchEventData();
+  }, [params.slug]);
+
+  const fetchEventData = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('https://backend-server.developer-frigus-fiesta.workers.dev/general/get-all-events');
+      if (!response.ok) {
+        throw new Error('Failed to fetch events');
+      }
+      const result = await response.json();
+      if (result.success) {
+        const foundEvent = result.data.find((e: EventData) => e.slug === params.slug);
+        if (foundEvent) {
+          if (foundEvent.category.toLowerCase() === 'live') {
+            setEvent(foundEvent);
+          } else {
+            setError('Event not found in this category');
+          }
+        } else {
+          setError('Event not found');
+        }
+      } else {
+        throw new Error(result.message || 'Failed to fetch events');
+      }
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  const parseHostedBy = (hostedByString: string): HostedBy | null => {
+    try {
+      return JSON.parse(hostedByString);
+    } catch {
+      return null;
+    }
+  };
+
+  const parseTicketPricing = (ticketPricingString: string) => {
+    try {
+      return JSON.parse(ticketPricingString);
+    } catch {
+      return [];
+    }
+  };
+
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-yellow-500 mx-auto"></div>
+            <p className="mt-4 text-xl text-gray-600">Loading event details...</p>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  if (error || !event) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-red-500 text-6xl mb-4">⚠️</div>
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">Event Not Found</h2>
+            <p className="text-gray-600 mb-4">
+              {error === 'Event not found in this category' 
+                ? 'This event exists but is not a live event. Please check the correct category.' 
+                : error || 'The event you are looking for does not exist.'}
+            </p>
+            <button 
+              onClick={() => router.back()}
+              className="bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition-colors flex items-center gap-2 mx-auto"
+            >
+              <ArrowLeft className="size-4" />
+              Go Back
+            </button>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  const hostedBy = parseHostedBy(event.hostedBy);
+  const ticketPricing = parseTicketPricing(event.ticketPricingList);
+
   return (
     <>
       <Header />
@@ -35,9 +174,14 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
           }`}
         >
           <div className="max-w-4xl">
+            <div className="mb-4">
+              <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-semibold">
+                Live Event
+              </span>
+            </div>
             <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl">
               <span className="inline-block text-white">
-                Live Event: {params.slug}
+                {event.title}
               </span>
             </h1>
             <p
@@ -47,8 +191,22 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
                   : "translate-y-4 opacity-0"
               }`}
             >
-              Experience electrifying concerts, shows, and performances. Frigus Fiesta brings the stage to life with unforgettable live entertainment.
+              {event.tagline}
             </p>
+            <div className={`flex flex-col justify-center gap-4 transition-all delay-500 duration-1000 ease-out sm:flex-row ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            }`}>
+              <div className="text-white text-lg">
+                <Calendar className="inline size-5 mr-2" />
+                {formatDate(event.eventDate)}
+              </div>
+              {event.venue && (
+                <div className="text-white text-lg">
+                  <MapPin className="inline size-5 mr-2" />
+                  {event.venue}
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
@@ -57,8 +215,147 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
           </div>
         </div>
       </div>
-      <Footer />
+      <div className="px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-3">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">About This Event</h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  {event.description}
+                </p>
+              </div>
+              {event.importantInfo && (
+                <div className="mb-8 p-6 bg-amber-50 rounded-2xl border border-amber-200">
+                  <h3 className="text-xl font-bold text-amber-900 mb-3">Important Information</h3>
+                  <p className="text-amber-800">{event.importantInfo}</p>
+                </div>
+              )}
+              {ticketPricing.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Ticket Pricing</h3>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {ticketPricing.map((ticket: any, index: number) => (
+                      <div key={index} className="p-4 border border-gray-200 rounded-xl hover:border-yellow-300 transition-colors">
+                        <div className="flex justify-between items-center mb-2">
+                          <h4 className="font-semibold text-gray-900">{ticket.type}</h4>
+                          <span className="text-2xl font-bold text-yellow-600">
+                            ${ticket.price}
+                          </span>
+                        </div>
+                        <button className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-2 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                          Book Now
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-2xl shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Event Status</h3>
+                <div className="flex items-center gap-3">
+                  <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                    event.eventStatus === 'upcoming' 
+                      ? 'bg-green-100 text-green-800' 
+                      : 'bg-gray-100 text-gray-800'
+                  }`}>
+                    {event.eventStatus.charAt(0).toUpperCase() + event.eventStatus.slice(1)}
+                  </span>
+                  <span className="text-gray-600">•</span>
+                  <span className="text-gray-600">{event.category}</span>
+                </div>
+              </div>
+              <div className="bg-white p-6 rounded-2xl shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Event Details</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Calendar className="size-5 text-yellow-500" />
+                    <span className="text-gray-700">{formatDate(event.eventDate)}</span>
+                  </div>
+                  {event.venue && (
+                    <div className="flex items-center gap-3">
+                      <MapPin className="size-5 text-yellow-500" />
+                      <span className="text-gray-700">{event.venue}</span>
+                    </div>
+                  )}
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl font-bold text-yellow-600">
+                      {event.eventPrice === 0 ? 'Free' : `$${event.eventPrice}`}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              {hostedBy && (
+                <div className="bg-white p-6 rounded-2xl shadow-lg">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Organizer</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <Users className="size-5 text-yellow-500" />
+                      <span className="text-gray-700 font-semibold">{hostedBy.name}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={() => window.open(`tel:${hostedBy.phone}`, '_blank')}
+                        className="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+                      >
+                        <Phone className="size-4" />
+                        Call
+                      </button>
+                      <button 
+                        onClick={() => window.open(`mailto:${hostedBy.email}`, '_blank')}
+                        className="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+                      >
+                        <Mail className="size-4" />
+                        Email
+                      </button>
+                    </div>
+                    {hostedBy.website && (
+                      <button 
+                        onClick={() => window.open(hostedBy.website, '_blank')}
+                        className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-2 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                      >
+                        <Globe className="size-4" />
+                        Visit Website
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
       <style jsx>{`
+        @keyframes float {
+          0%, 100% { 
+            transform: translateY(0) rotate(0deg); 
+            opacity: 0.2;
+          }
+          50% { 
+            transform: translateY(-20px) rotate(180deg); 
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes text-shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         .animate-text-shimmer {
           background: linear-gradient(90deg, #fbbf24, #ffffff, #fbbf24);
           background-size: 200% 100%;
@@ -66,11 +363,12 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
           background-clip: text;
           animation: text-shimmer 3s ease-in-out infinite;
         }
-        @keyframes text-shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out;
         }
       `}</style>
+      <Footer />
     </>
   );
 }
