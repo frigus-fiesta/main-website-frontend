@@ -273,7 +273,7 @@ const Header = () => {
                           </div>
                           <button 
                             type="button"
-                            className="block w-full px-4 py-2 text-left text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
+                            className="block w-full px-4 py-2 text-left text-sm text-gray-700 transition-colors hover:bg-yellow-50"
                             onClick={handleOpenMyAccount}
                           >
                             My Account
@@ -295,9 +295,7 @@ const Header = () => {
                   <motion.button 
                     type='button'
                     onClick={toggleSignIn}
-                    className="rounded-full bg-white/20 px-4 py-2 text-sm font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30 hover:shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="rounded-full bg-white/20 px-4 py-2 text-sm font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30"
                   >
                     Sign in
                   </motion.button>
@@ -316,8 +314,6 @@ const Header = () => {
                     onClick={toggleUserMenu}
                     className="relative text-white"
                     aria-label="User menu"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                   >
                     {user.avatar_url ? (
                       <div className="relative size-7 overflow-hidden rounded-full border-2 border-yellow-200">
@@ -370,8 +366,6 @@ const Header = () => {
                   type='button'
                   onClick={toggleSignIn}
                   className="mr-4 rounded-full bg-white/20 px-3 py-1.5 text-sm font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   Sign in
                 </motion.button>
@@ -418,65 +412,6 @@ const Header = () => {
                     </svg>
                   </button>
                 </div>
-                {/* User Profile Section for Mobile Menu */}
-                {user ? (
-                  <div className="mb-4 rounded-lg bg-yellow-50 p-4">
-                    <div className="flex items-center">
-                      {user.avatar_url ? (
-                        <div className="relative mr-3 size-12 overflow-hidden rounded-full border-2 border-yellow-200">
-                          <Image 
-                            src={user.avatar_url} 
-                            alt="User profile" 
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      ) : (
-                        <div className="mr-3 flex size-12 items-center justify-center rounded-full bg-yellow-100">
-                          <User className="size-6 text-yellow-600" />
-                        </div>
-                      )}
-                      <div>
-                        <p className="font-medium text-gray-900">{user.full_name || 'User'}</p>
-                        <p className="text-xs text-gray-500">{user.email}</p>
-                      </div>
-                    </div>
-                    <div className="mt-3 grid grid-cols-2 gap-2">
-                      <Link 
-                        href="/account" 
-                        className="rounded bg-white px-3 py-1.5 text-center text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-yellow-50"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        My Account
-                      </Link>
-                      <motion.button 
-                        type='button'
-                        onClick={handleSignOut}
-                        className="rounded bg-red-50 px-3 py-1.5 text-center text-sm font-medium text-red-600 shadow-sm transition-colors hover:bg-red-100"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        Sign out
-                      </motion.button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="mb-4 rounded-lg bg-yellow-50 p-4 text-center">
-                    <p className="mb-3 text-sm text-gray-600">Sign in to access your account</p>
-                    <motion.button  
-                      type='button'
-                      onClick={() => {
-                        toggleSignIn();
-                        setIsOpen(false);
-                      }}
-                      className="w-full rounded-md bg-gradient-to-r from-yellow-400 to-yellow-500 px-4 py-2 text-sm font-bold text-white shadow-sm transition-all duration-300 hover:shadow-lg"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Sign in
-                    </motion.button>
-                  </div>
-                )}
                 <nav className="mt-8 grow">
                   {navLinks.map((link) => (
                     <div key={link.label} className="border-b border-gray-100 py-2">

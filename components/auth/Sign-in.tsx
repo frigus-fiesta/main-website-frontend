@@ -485,8 +485,8 @@ const SignIn: React.FC<SignInProps> = ({ isOpen, onClose, redirectUrl }) => {
             <motion.button
               type="submit"
               disabled={loading}
-              className="group relative flex w-full justify-center rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-500 px-4 py-3 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 sm:rounded-xl sm:px-6 sm:py-4"
-              whileHover={{ scale: loading ? 1 : 1.02 }}
+              className="group relative flex w-full justify-center rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-500 px-4 py-3 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-[1.01] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 sm:rounded-xl sm:px-6 sm:py-4"
+              whileHover={{ scale: loading ? 1 : 1.01 }}
               whileTap={{ scale: loading ? 1 : 0.98 }}
             >
               {loading ? (
@@ -512,7 +512,7 @@ const SignIn: React.FC<SignInProps> = ({ isOpen, onClose, redirectUrl }) => {
             </div>
             <motion.div
               className="mt-3 sm:mt-4 md:mt-6"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
             >
               <button

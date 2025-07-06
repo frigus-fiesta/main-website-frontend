@@ -154,12 +154,18 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
     <>
       <Header />
       <div className="relative h-[90vh] overflow-hidden pt-10 md:h-[70vh]">
-        <div className="absolute inset-0 bg-gradient-to-t from-yellow-500 to-yellow-600"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/assets/24.jpg)',
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute size-2 rounded-full bg-yellow-300 opacity-20"
+              className="absolute size-2 rounded-full bg-white opacity-30"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
