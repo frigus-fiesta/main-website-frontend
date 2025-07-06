@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; // just pushing this to main branch to test CI pipelines 
 import Image from 'next/image';
 import { Star, ThumbsUp, User, Loader2, AlertCircle } from 'lucide-react';
 
