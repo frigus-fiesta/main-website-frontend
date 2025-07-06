@@ -158,7 +158,7 @@ export default function SocialEventSlugPage({ params }: { params: { slug: string
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/assets/25.jpg)',
+            backgroundImage: 'url(/assets/25.JPG)',
           }}
         ></div>
         <div className="absolute inset-0 bg-black/50"></div>
