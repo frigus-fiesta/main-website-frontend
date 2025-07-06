@@ -158,7 +158,7 @@ export default function CorporateEventSlugPage({ params }: { params: { slug: str
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/assets/22.jpg)',
+            backgroundImage: 'url(/assets/22.JPG)',
           }}
         ></div>
         <div className="absolute inset-0 bg-black/50"></div>

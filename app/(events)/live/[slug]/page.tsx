@@ -157,7 +157,7 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(/assets/24.jpg)',
+            backgroundImage: 'url(/assets/24.JPG)',
           }}
         ></div>
         <div className="absolute inset-0 bg-black/50"></div>
