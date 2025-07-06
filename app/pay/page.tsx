@@ -73,37 +73,17 @@ const GoldAnimatedBackground = () => (
   </div>
 );
 
-const eventOptions = [
-  { 
-    label: 'Social Events', 
-    priceUSD: 120, 
-    priceINR: 10000, 
-    description: 'Perfect for personal celebrations' 
-  },
-  { 
-    label: 'Corporate Events', 
-    priceUSD: 150, 
-    priceINR: 12500, 
-    description: 'Professional business gatherings' 
-  },
-  { 
-    label: 'Live Events', 
-    priceUSD: 200, 
-    priceINR: 16500, 
-    description: 'Entertainment and performances' 
-  },
-];
-
 type Currency = 'USD' | 'INR';
 
 export default function PaymentPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
-  const [selectedEvent, setSelectedEvent] = useState<number | null>(null);
+  const [eventFee, setEventFee] = useState('');
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>('USD');
   const [isVisible, setIsVisible] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [isFormValid, setIsFormValid] = useState(false);
   const [paypalReady, setPaypalReady] = useState(false);
+  const [phonePeLoading, setPhonePeLoading] = useState(false);
 
   useEffect(() => { 
     setIsVisible(true); 
@@ -118,14 +98,19 @@ export default function PaymentPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleEventSelect = (idx: number) => {
-    setSelectedEvent(idx);
-    setCurrentStep(3);
+  const handleFeeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Allow only numbers and decimal point
+    if (value === '' || /^\d*\.?\d*$/.test(value)) {
+      setEventFee(value);
+    }
   };
 
   const handleNextStep = () => {
     if (currentStep === 1 && isFormValid) {
       setCurrentStep(2);
+    } else if (currentStep === 2 && parseFloat(eventFee) > 0) {
+      setCurrentStep(3);
     }
   };
 
@@ -139,10 +124,45 @@ export default function PaymentPage() {
     setSelectedCurrency(currency);
   };
 
-  const formatPrice = (priceUSD: number, priceINR: number) => {
+  const formatPrice = (amount: string) => {
+    const numAmount = parseFloat(amount);
+    if (isNaN(numAmount)) return selectedCurrency === 'USD' ? '$0' : '₹0';
+    
     return selectedCurrency === 'USD' 
-      ? `$${priceUSD}` 
-      : `₹${priceINR.toLocaleString('en-IN')}`;
+      ? `$${numAmount.toFixed(2)}` 
+      : `₹${numAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+  };
+
+  // PhonePe payment handler
+  const handlePhonePePayment = async () => {
+    setPhonePeLoading(true);
+    try {
+      const orderId = `ORDER_${Date.now()}`;
+      const callbackUrl = `${window.location.origin}/payment-callback`;
+      const response = await fetch('/api/phonepe/initiate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: parseFloat(eventFee) * 100, // in paisa
+          customerName: formData.name,
+          customerEmail: formData.email,
+          customerPhone: formData.phone,
+          orderId,
+          callbackUrl,
+        }),
+      });
+      const data = await response.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert('Failed to initiate PhonePe payment.');
+        setPhonePeLoading(false);
+      }
+    } catch (error) {
+      console.error('PhonePe payment error:', error);
+      alert('PhonePe payment failed. Please try again.');
+      setPhonePeLoading(false);
+    }
   };
 
   const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
@@ -174,7 +194,7 @@ export default function PaymentPage() {
                     : 'text-amber-700 hover:bg-amber-50'
                 }`}
               >
-                🇺🇸 USD (International)
+                🇺🇸 USD (PayPal)
               </button>
               <button
                 onClick={() => handleCurrencyToggle('INR')}
@@ -184,7 +204,7 @@ export default function PaymentPage() {
                     : 'text-amber-700 hover:bg-amber-50'
                 }`}
               >
-                🇮🇳 INR (India)
+                🇮🇳 INR (PhonePe)
               </button>
             </div>
           </div>
@@ -212,7 +232,7 @@ export default function PaymentPage() {
           </div>
           <div className="mt-4 flex justify-center space-x-16 text-sm text-amber-700">
             <span className={currentStep >= 1 ? 'font-medium' : ''}>Details</span>
-            <span className={currentStep >= 2 ? 'font-medium' : ''}>Event Type</span>
+            <span className={currentStep >= 2 ? 'font-medium' : ''}>Event Fee</span>
             <span className={currentStep >= 3 ? 'font-medium' : ''}>Payment</span>
           </div>
         </div>
@@ -230,7 +250,7 @@ export default function PaymentPage() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full rounded-2xl border-0 px-6 py-4 text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none"
+                    className="w-full rounded-2xl border-0 px-6 py-4 text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400"
                     placeholder="Enter your full name"
                     required
                   />
@@ -242,7 +262,7 @@ export default function PaymentPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-2xl border-0 px-6 py-4 text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none"
+                    className="w-full rounded-2xl border-0 px-6 py-4 text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400"
                     placeholder="Enter your email address"
                     required
                   />
@@ -254,7 +274,7 @@ export default function PaymentPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full rounded-2xl border-0 px-6 py-4 text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none"
+                    className="w-full rounded-2xl border-0 px-6 py-4 text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400"
                     placeholder="Enter your phone number"
                     required
                   />
@@ -270,50 +290,72 @@ export default function PaymentPage() {
                       : 'bg-yellow-200 text-amber-500 cursor-not-allowed'
                   }`}
                 >
-                  Continue to Event Selection
+                  Continue to Event Fee
                 </button>
               </div>
             </div>
           )}
           {currentStep === 2 && (
             <div className="animate-fade-in rounded-3xl bg-white/80 backdrop-blur-sm p-12 shadow-xl">
-              <h2 className="mb-8 text-center text-2xl font-light text-amber-900">Choose Your Event</h2>
-              <div className="space-y-4">
-                {eventOptions.map((option, idx) => (
-                  <button
-                    key={option.label}
-                    onClick={() => handleEventSelect(idx)}
-                    className="w-full rounded-2xl border-0 bg-amber-50 p-6 text-left ring-1 ring-amber-200 transition-all duration-300  hover:shadow-lg focus:outline-none"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="font-semibold text-amber-900">{option.label}</h3>
-                        <p className="mt-1 text-sm text-amber-600">{option.description}</p>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-amber-700">
-                          {formatPrice(option.priceUSD, option.priceINR)}
-                        </div>
-                        <div className="text-xs text-amber-500">per event</div>
-                      </div>
+              <h2 className="mb-8 text-center text-2xl font-light text-amber-900">Enter Event Fee</h2>
+              <div className="space-y-6">
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-amber-800">
+                    Event Fee ({selectedCurrency === 'USD' ? 'USD' : 'INR'})
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-6 top-1/2 transform -translate-y-1/2 text-amber-700 text-xl font-medium">
+                      {selectedCurrency === 'USD' ? '$' : '₹'}
+                    </span>
+                    <input
+                      type="text"
+                      value={eventFee}
+                      onChange={handleFeeChange}
+                      className="w-full rounded-2xl border-0 pl-12 pr-6 py-4 text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 text-xl"
+                      placeholder="0.00"
+                      required
+                    />
+                  </div>
+                  <p className="mt-2 text-sm text-amber-600">
+                    Enter the amount you want to pay for your event
+                  </p>
+                </div>
+                {eventFee && parseFloat(eventFee) > 0 && (
+                  <div className="rounded-2xl bg-amber-50 p-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-amber-700">Total Amount:</span>
+                      <span className="text-2xl font-bold text-amber-900">
+                        {formatPrice(eventFee)}
+                      </span>
                     </div>
-                  </button>
-                ))}
+                  </div>
+                )}
               </div>
-              <div className="mt-10 text-center">
+              <div className="mt-10 flex justify-center space-x-4">
                 <button
                   onClick={handleBackStep}
                   className="rounded-2xl bg-amber-100 px-6 py-3 text-amber-700 transition-all duration-300 hover:bg-amber-200"
                 >
                   Back to Details
                 </button>
+                <button
+                  onClick={handleNextStep}
+                  disabled={!eventFee || parseFloat(eventFee) <= 0}
+                  className={`rounded-2xl px-8 py-4 font-medium transition-all duration-300 ${
+                    eventFee && parseFloat(eventFee) > 0
+                      ? 'bg-yellow-500 text-white hover:bg-yellow-400 hover:shadow-lg'
+                      : 'bg-yellow-200 text-amber-500 cursor-not-allowed'
+                  }`}
+                >
+                  Continue to Payment
+                </button>
               </div>
             </div>
           )}
-          {currentStep === 3 && selectedEvent !== null && (
+          {currentStep === 3 && eventFee && (
             <div className="animate-fade-in rounded-3xl bg-white/80 backdrop-blur-sm p-12 shadow-xl">
               <h2 className="mb-8 text-center text-2xl font-light text-amber-900">Complete Payment</h2>
-              <div className="mb-8 rounded-2xl bg-amber-50 p-2 md:p-6">
+              <div className="mb-8 rounded-2xl bg-amber-50 p-6">
                 <h3 className="mb-4 font-semibold text-amber-900">Order Summary</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
@@ -325,91 +367,117 @@ export default function PaymentPage() {
                     <span className="text-amber-900">{formData.email}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-amber-700">Event Type:</span>
-                    <span className="text-amber-900">{eventOptions[selectedEvent].label}</span>
+                    <span className="text-amber-700">Phone:</span>
+                    <span className="text-amber-900">{formData.phone}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-amber-700">Currency:</span>
-                    <span className="text-amber-900">{selectedCurrency === 'USD' ? 'USD (International)' : 'INR (India)'}</span>
+                    <span className="text-amber-700">Payment Method:</span>
+                    <span className="text-amber-900">{selectedCurrency === 'USD' ? 'PayPal' : 'PhonePe'}</span>
                   </div>
                   <div className="border-t border-amber-200 pt-2 mt-4">
                     <div className="flex justify-between font-semibold">
                       <span className="text-amber-700">Total:</span>
                       <span className="text-amber-900 text-xl">
-                        {formatPrice(eventOptions[selectedEvent].priceUSD, eventOptions[selectedEvent].priceINR)}
+                        {formatPrice(eventFee)}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="mb-6">
-                {!paypalReady && (
-                  <div className="flex flex-col items-center justify-center py-8">
-                    <div className="w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mb-4"></div>
-                    <span className="text-amber-700">Loading payment options...</span>
-                  </div>
-                )}
-                <PayPalScriptProvider options={{ 
-                  clientId: PAYPAL_CLIENT_ID || '', 
-                  currency: selectedCurrency,
-                  intent: "capture"
-                }}>
-                  <PayPalButtons
-                    style={{ 
-                      layout: "vertical", 
-                      color: "gold", 
-                      shape: "rect", 
-                      label: "pay",
-                      height: 50
-                    }}
-                    forceReRender={[selectedCurrency, selectedEvent]}
-                    createOrder={(data, actions) => {
-                      const price = selectedCurrency === 'USD' 
-                        ? eventOptions[selectedEvent].priceUSD 
-                        : eventOptions[selectedEvent].priceINR;
-
-                      return actions.order?.create({
-                        intent: "CAPTURE",
-                        purchase_units: [
-                          {
-                            amount: {
-                              value: price.toString(),
-                              currency_code: selectedCurrency
-                            },
-                            description: `${eventOptions[selectedEvent].label} - ${formData.name}`
-                          }
-                        ]
-                      }) || Promise.resolve("");
-                    }}
-                    onInit={() => setPaypalReady(true)}
-                    onApprove={async (data, actions) => {
-                      try {
-                        const details = await actions.order?.capture();
-                        const payerName = details?.payer?.name?.given_name || formData.name;
-                        alert(`Payment successful! Thank you ${payerName}. You will receive a confirmation email shortly.`);
-                        // Reset form
-                        setFormData({ name: '', email: '', phone: '' });
-                        setSelectedEvent(null);
-                        setCurrentStep(1);
-                        setPaypalReady(false);
-                      } catch (error) {
-                        console.error('Payment failed:', error);
-                        alert('Payment failed. Please try again.');
-                      }
-                    }}
-                    onError={(err) => {
-                      console.error('PayPal error:', err);
-                      alert('Payment error occurred. Please try again.');
-                    }}
-                  />
-                </PayPalScriptProvider>
-              </div>
+              {selectedCurrency === 'USD' ? (
+                <div className="mb-6">
+                  {!paypalReady && (
+                    <div className="flex flex-col items-center justify-center py-8">
+                      <div className="w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mb-4"></div>
+                      <span className="text-amber-700">Loading PayPal...</span>
+                    </div>
+                  )}
+                  <PayPalScriptProvider options={{ 
+                    clientId: PAYPAL_CLIENT_ID || '', 
+                    currency: selectedCurrency,
+                    intent: "capture"
+                  }}>
+                    <PayPalButtons
+                      style={{ 
+                        layout: "vertical", 
+                        color: "gold", 
+                        shape: "rect", 
+                        label: "pay",
+                        height: 50
+                      }}
+                      forceReRender={[selectedCurrency, eventFee]}
+                      createOrder={(data, actions) => {
+                        const price = parseFloat(eventFee);
+                        return actions.order?.create({
+                          intent: "CAPTURE",
+                          purchase_units: [
+                            {
+                              amount: {
+                                value: price.toFixed(2),
+                                currency_code: selectedCurrency
+                              },
+                              description: `Event Payment - ${formData.name}`
+                            }
+                          ]
+                        }) || Promise.resolve("");
+                      }}
+                      onInit={() => setPaypalReady(true)}
+                      onApprove={async (data, actions) => {
+                        try {
+                          const details = await actions.order?.capture();
+                          const payerName = details?.payer?.name?.given_name || formData.name;
+                          alert(`Payment successful! Thank you ${payerName}. You will receive a confirmation email shortly.`);
+                          // Reset form
+                          setFormData({ name: '', email: '', phone: '' });
+                          setEventFee('');
+                          setCurrentStep(1);
+                          setPaypalReady(false);
+                        } catch (error) {
+                          console.error('Payment failed:', error);
+                          alert('Payment failed. Please try again.');
+                        }
+                      }}
+                      onError={(err) => {
+                        console.error('PayPal error:', err);
+                        alert('Payment error occurred. Please try again.');
+                      }}
+                    />
+                  </PayPalScriptProvider>
+                </div>
+              ) : (
+                <div className="mb-6">
+                  <button
+                    onClick={handlePhonePePayment}
+                    disabled={phonePeLoading}
+                    className={`w-full rounded-2xl py-4 px-6 font-medium transition-all duration-300 ${
+                      phonePeLoading
+                        ? 'bg-purple-300 text-purple-600 cursor-not-allowed'
+                        : 'bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg'
+                    }`}
+                  >
+                    {phonePeLoading ? (
+                      <div className="flex items-center justify-center">
+                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                        Processing PhonePe Payment...
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center">
+                        <span className="text-2xl mr-2">📱</span>
+                        Pay with PhonePe - {formatPrice(eventFee)}
+                      </div>
+                    )}
+                  </button>
+                  <p className="mt-2 text-xs text-amber-600 text-center">
+                    You will be redirected to PhonePe to complete the payment
+                  </p>
+                </div>
+              )}
               <div className="text-center">
                 <button
                   onClick={handleBackStep}
                   className="rounded-2xl bg-amber-100 px-6 py-3 text-amber-700 transition-all duration-300 hover:bg-amber-200"
                 >
-                  Back to Event Selection
+                  Back to Event Fee
                 </button>
               </div>
             </div>
