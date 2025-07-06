@@ -1,126 +1,117 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-unused-vars */
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
-import { supabase } from '@/utils/supabase'
+import { supabase } from '@/utils/supabase';
+
+const BACKEND_PROFILE_URL = 'https://backend-server.developer-frigus-fiesta.workers.dev/general/create-profile';
 
 export default function AuthCallback() {
-  const router = useRouter()
-  const [isProcessing, setIsProcessing] = useState(true)
-  const [message, setMessage] = useState('Processing login...')
+  const router = useRouter();
+  const [status, setStatus] = useState<'loading' | 'error' | 'success'>('loading');
+  const [message, setMessage] = useState('Processing login...');
+  const [errorDetail, setErrorDetail] = useState<string | null>(null);
 
   useEffect(() => {
     const handleAuth = async () => {
       try {
-        const {
-          data: { session },
-          error,
-        } = await supabase.auth.getSession()
+        setStatus('loading');
+        setMessage('Checking authentication...');
+        setErrorDetail(null);
 
-        if (session?.user) {
-          // Check if user already has a profile
-          const { data: existingProfile, error: profileError } = await supabase
-            .from('profiles_dev')
-            .select('*')
-            .eq('uuid', session.user.id)
-            .single()
+        const { data: { session } } = await supabase.auth.getSession();
 
-          if (profileError && profileError.code !== 'PGRST116') {
-            console.error('Error checking profile:', profileError)
-          }
-
-          // If profile doesn't exist, create one
-          if (!existingProfile) {
-            setMessage('Setting up your account...')
-            const { error: insertError } = await supabase
-              .from('profiles_dev')
-              .insert({
-                uuid: session.user.id,
-                full_name: session.user.user_metadata?.full_name || session.user.user_metadata?.name || '',
-                email: session.user.email || '',
-                phone: session.user.user_metadata?.phone || '',
-                avatar_url: session.user.user_metadata?.avatar_url || '',
-                created_at: new Date().toISOString(),
-                updated_at: new Date().toISOString(),
-                user_login_info: {
-                  last_sign_in: new Date().toISOString(),
-                  sign_in_count: 1,
-                  sign_in_method: 'google',
-                  provider: 'google',
-                }
-              })
-
-            if (insertError) {
-              console.error('Error creating profile:', insertError)
-            }
-          } else {
-            // Update existing profile with login information
-            setMessage('Updating your account...')
-            const currentLoginInfo = existingProfile.user_login_info || {};
-            const signInCount = (currentLoginInfo.sign_in_count || 0) + 1;
-            
-            const { error: updateError } = await supabase
-              .from('profiles_dev')
-              .update({
-                updated_at: new Date().toISOString(),
-                // Update avatar_url if it has changed
-                avatar_url: session.user.user_metadata?.avatar_url || existingProfile.avatar_url,
-                // Update full_name if it has changed
-                full_name: session.user.user_metadata?.full_name || session.user.user_metadata?.name || existingProfile.full_name,
-                user_login_info: {
-                  ...currentLoginInfo,
-                  last_sign_in: new Date().toISOString(),
-                  sign_in_count: signInCount,
-                  sign_in_method: 'google',
-                  provider: 'google',
-                }
-              })
-              .eq('uuid', session.user.id);
-            
-            if (updateError) {
-              console.error('Error updating profile:', updateError);
-            }
-          }
-
-          // Check if there's a stored redirect URL
-          let redirectTo = '/';
+        if (!session?.user) {
+          setStatus('error');
+          setMessage('Authentication failed.');
+          setErrorDetail('No user session found. Please try signing in again.');
           
-          // Only run this in the browser environment
-          if (typeof window !== 'undefined') {
-            const storedRedirectUrl = localStorage.getItem('authRedirectUrl');
-            if (storedRedirectUrl) {
-              redirectTo = storedRedirectUrl;
-              // Clear the stored URL after using it
-              localStorage.removeItem('authRedirectUrl');
-            }
-          }
-          
-          setMessage(`Redirecting to ${redirectTo}...`);
-          router.push(redirectTo);
-        } else {
-          console.error('Authentication error:', error?.message)
-          router.push('/login')
+return;
         }
-      } catch (err) {
-        console.error('Error in auth callback:', err)
-        router.push('/login')
-      } finally {
-        setIsProcessing(false)
-      }
-    }
 
-    handleAuth()
-  }, [router])
+        const user = session.user;
+        const uuid = user.id;
+        const email = user.email || '';
+        const full_name = user.user_metadata?.full_name || user.user_metadata?.name || '';
+        const avatar_url = user.user_metadata?.avatar_url || '';
+
+        setMessage('Setting up your account...');
+        const response = await fetch(BACKEND_PROFILE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ uuid, email, full_name, avatar_url }),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          setStatus('error');
+          setMessage('Profile creation failed.');
+          setErrorDetail(result.message || 'Failed to create profile. Please contact support.');
+          
+return;
+        }
+
+        // Success: redirect to stored URL or home
+        let redirectTo = '/';
+        if (typeof window !== 'undefined') {
+          const storedRedirectUrl = localStorage.getItem('authRedirectUrl');
+          if (storedRedirectUrl) {
+            redirectTo = storedRedirectUrl;
+            localStorage.removeItem('authRedirectUrl');
+          }
+        }
+        setStatus('success');
+        setMessage('Login successful! Redirecting...');
+        setTimeout(() => router.push(redirectTo), 1200);
+      } catch (err: any) {
+        setStatus('error');
+        setMessage('Unexpected error. Please try again.');
+        setErrorDetail(err?.message || 'Unknown error');
+        console.error('Error in auth callback:', err);
+      }
+    };
+
+    handleAuth();
+  }, [router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="text-center">
-        <div className="mx-auto mb-4 size-8 animate-spin rounded-full border-4 border-yellow-600 border-t-transparent"></div>
-        <p className="text-lg font-medium">{message}</p>
+    <div className="flex min-h-screen items-center justify-center bg-white">
+      <div className="w-full max-w-xs rounded-xl bg-white/90 p-6 text-center shadow-xl">
+        <div className="mb-4 flex justify-center">
+          <Image
+            src="/assets/friguslogo.svg"
+            alt="Frigus Fiesta Logo"
+            width={60}
+            height={60}
+            className="object-contain"
+            priority
+          />
+        </div>
+        {status === 'loading' && (
+          <div className="mx-auto mb-4 size-8 animate-spin rounded-full border-4 border-yellow-600 border-t-transparent"></div>
+        )}
+        <p className="mb-2 text-lg font-bold text-gray-900">{message}</p>
+        {status === 'error' && (
+          <>
+            <p className="mb-2 text-sm text-red-600">{errorDetail}</p>
+            <button
+              className="mt-2 rounded bg-yellow-500 px-4 py-2 font-semibold text-white shadow hover:bg-yellow-600"
+              onClick={() => window.location.reload()}
+            >
+              Retry
+            </button>
+            <button
+              className="ml-2 mt-2 rounded bg-gray-200 px-4 py-2 font-semibold text-gray-700 shadow hover:bg-gray-300"
+              onClick={() => router.push('/')}
+            >
+              Go Home
+            </button>
+          </>
+        )}
       </div>
     </div>
-  )
+  );
 }
