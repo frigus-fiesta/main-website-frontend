@@ -12,6 +12,7 @@ import { User, LogOut } from 'lucide-react';
 import { supabase } from '@/utils/supabase';
 
 import SignIn from './auth/Sign-in';
+import MyAccountModal from './auth/My-account-modal';
 
 // Interface for user profile
 interface UserProfile {
@@ -60,6 +61,7 @@ const Header = () => {
   const [profileError, setProfileError] = useState<string | null>(null);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isMyAccountOpen, setIsMyAccountOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === '/';
   const BACKEND_PROFILE_URL = 'https://backend-server.developer-frigus-fiesta.workers.dev/general/get-user-profile-from-uuid/';
@@ -173,6 +175,15 @@ const Header = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
   };
 
+  const handleOpenMyAccount = () => {
+    setIsUserMenuOpen(false);
+    setIsMyAccountOpen(true);
+  };
+
+  const handleCloseMyAccount = () => {
+    setIsMyAccountOpen(false);
+  };
+
   return (
     <div>
       <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${getGlassBackground()} rounded-b-3xl shadow-lg`}>
@@ -254,26 +265,19 @@ const Header = () => {
                           initial={{ opacity: 0, y: 10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          className="absolute right-0 top-full z-50 mt-2 w-48 rounded-xl border border-white/20 bg-white/95 py-2 shadow-xl ring-1 ring-white/20 backdrop-blur-md"
+                          className="absolute right-0 top-full z-50 mt-2 w-56 rounded-xl border border-white/20 bg-white/95 py-2 shadow-xl ring-1 ring-white/20 backdrop-blur-md"
                         >
                           <div className="border-b border-gray-100 px-4 py-2">
-                            <p className="font-medium text-gray-900">{user.full_name || 'User'}</p>
-                            <p className="text-xs text-gray-500">{user.email}</p>
+                            <p className="truncate font-medium text-gray-900">{user.full_name || 'User'}</p>
+                            <p className="truncate text-xs text-gray-500">{user.email}</p>
                           </div>
-                          <Link 
-                            href="/account" 
-                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
-                            onClick={() => setIsUserMenuOpen(false)}
+                          <button 
+                            type="button"
+                            className="block w-full px-4 py-2 text-left text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
+                            onClick={handleOpenMyAccount}
                           >
                             My Account
-                          </Link>
-                          <Link 
-                            href="/orders" 
-                            className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
-                            onClick={() => setIsUserMenuOpen(false)}
-                          >
-                            My Orders
-                          </Link>
+                          </button>
                           <motion.button 
                             type='button'
                             onClick={handleSignOut}
@@ -335,26 +339,19 @@ const Header = () => {
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        className="absolute right-0 top-full z-50 mt-2 w-48 rounded-xl border border-white/20 bg-white/95 py-2 shadow-xl ring-1 ring-white/20 backdrop-blur-md"
+                        className="absolute right-0 top-full z-50 mt-2 w-56 rounded-xl border border-white/20 bg-white/95 py-2 shadow-xl ring-1 ring-white/20 backdrop-blur-md"
                       >
                         <div className="border-b border-gray-100 px-4 py-2">
-                          <p className="font-medium text-gray-900">{user.full_name || 'User'}</p>
-                          <p className="text-xs text-gray-500">{user.email}</p>
+                          <p className="truncate font-medium text-gray-900">{user.full_name || 'User'}</p>
+                          <p className="truncate text-xs text-gray-500">{user.email}</p>
                         </div>
-                        <Link 
-                          href="/account" 
-                          className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
-                          onClick={() => setIsUserMenuOpen(false)}
+                        <button 
+                          type="button"
+                          className="block w-full px-4 py-2 text-left text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
+                          onClick={handleOpenMyAccount}
                         >
                           My Account
-                        </Link>
-                        <Link 
-                          href="/orders" 
-                          className="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-yellow-50 hover:text-yellow-600"
-                          onClick={() => setIsUserMenuOpen(false)}
-                        >
-                          My Orders
-                        </Link>
+                        </button>
                         <motion.button 
                           type='button'
                           onClick={handleSignOut}
@@ -388,6 +385,14 @@ const Header = () => {
           </div>
         </div>
       </header>
+      {/* MyAccountModal integration - render at root for proper overlay */}
+      {isMyAccountOpen && user && (
+        <MyAccountModal 
+          isOpen={isMyAccountOpen} 
+          onClose={handleCloseMyAccount} 
+          userUuid={user.id} 
+        />
+      )}
       <AnimatePresence>
         {isOpen && (
           <>
