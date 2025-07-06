@@ -408,6 +408,7 @@ export default function PaymentPage() {
                       forceReRender={[selectedCurrency, eventFee]}
                       createOrder={(data, actions) => {
                         const price = parseFloat(eventFee);
+                        
                         return actions.order?.create({
                           intent: "CAPTURE",
                           purchase_units: [
