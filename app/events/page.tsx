@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Link from 'next/link';
 
 const GoldAnimatedBackground = () => (
   <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
@@ -339,7 +340,6 @@ const ScheduledEventsPage = () => {
                 key={service.id} 
                 className="animate-fade-in-up group relative cursor-pointer overflow-hidden rounded-2xl shadow-xl transition-all duration-500 hover:shadow-2xl"
                 style={{ animationDelay: `${index * 200}ms` }}
-                onClick={() => window.location.href = `/${service.path}`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10 transition-opacity duration-300 group-hover:opacity-20`}></div>
                 <div className="relative p-8 text-center">
@@ -353,7 +353,7 @@ const ScheduledEventsPage = () => {
                     Professional {service.name.toLowerCase()} services tailored to create memorable experiences
                   </p>
                   <div className="flex items-center justify-center gap-2 text-amber-600 transition-colors duration-300 group-hover:text-amber-700">
-                    <span className="text-sm font-semibold">Explore More</span>
+                    <Link href={service.path} className="text-sm font-semibold">Explore More</Link>
                     <ExternalLink className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
