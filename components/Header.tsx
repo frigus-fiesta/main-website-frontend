@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable tailwindcss/migration-from-tailwind-2 */
 "use client";
 import React, { useState, useEffect } from 'react';
@@ -7,7 +8,9 @@ import { usePathname } from 'next/navigation';
 import { FaChevronDown } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, LogOut } from 'lucide-react';
+
 import { supabase } from '@/utils/supabase';
+
 import SignIn from './auth/Sign-in';
 
 // Interface for user profile
@@ -53,11 +56,21 @@ const Header = () => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [user, setUser] = useState<UserProfile | null>(null);
+  const [profileLoading, setProfileLoading] = useState(false);
+  const [profileError, setProfileError] = useState<string | null>(null);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === '/';
+  const BACKEND_PROFILE_URL = 'https://backend-server.developer-frigus-fiesta.workers.dev/general/get-user-profile-from-uuid/';
 
+  // Check if user is already logged in
+  const checkUserSession = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      fetchUserProfileFromBackend(session.user.id, session.user);
+    }
+  };
   // Initialize auth state and check user session
   useEffect(() => {
     checkUserSession();
@@ -66,7 +79,7 @@ const Header = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         if (session) {
-          fetchUserProfile(session.user.id);
+          fetchUserProfileFromBackend(session.user.id, session.user);
         } else {
           setUser(null);
         }
@@ -78,37 +91,40 @@ const Header = () => {
     };
   }, []);
 
-  // Check if user is already logged in
-  const checkUserSession = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session) {
-      fetchUserProfile(session.user.id);
-    }
-  };
-
-  // Fetch user profile data
-  const fetchUserProfile = async (userId: string) => {
-    console.log('Fetching user profile for ID:', userId);
-    const { data: profile, error } = await supabase
-      .from('profiles_dev')
-      .select('*')
-      .eq('uuid', userId)
-      .single();
-
-    if (error) {
-      console.error('Error fetching user profile:', error);
-      // If profile doesn't exist yet, create a basic one from auth data
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
+  // Fetch user profile from backend API
+  const fetchUserProfileFromBackend = async (uuid: string, fallbackUser?: any) => {
+    setProfileLoading(true);
+    setProfileError(null);
+    try {
+      const res = await fetch(`${BACKEND_PROFILE_URL}${uuid}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const result = await res.json();
+      if (result.success && result.data) {
         setUser({
-          id: user.id,
-          email: user.email || '',
-          full_name: user.user_metadata?.full_name,
-          avatar_url: user.user_metadata?.avatar_url || user.identities?.[0]?.identity_data?.avatar_url
+          id: result.data.uuid,
+          email: result.data.email,
+          full_name: result.data.full_name,
+          avatar_url: result.data.avatar_url,
         });
+      } else {
+        // Fallback to session user if backend returns no profile
+        if (fallbackUser) {
+          setUser({
+            id: fallbackUser.id,
+            email: fallbackUser.email || '',
+            full_name: fallbackUser.user_metadata?.full_name || fallbackUser.user_metadata?.name || '',
+            avatar_url: fallbackUser.user_metadata?.avatar_url || '',
+          });
+        } else {
+          setUser(null);
+        }
+        setProfileError(result.message || 'Profile not found.');
       }
-    } else if (profile) {
-      setUser(profile);
+    } catch (err: any) {
+      setProfileError('Failed to fetch profile. Please check your connection.');
+      setUser(null);
+    } finally {
+      setProfileLoading(false);
     }
   };
 

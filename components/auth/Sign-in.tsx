@@ -117,7 +117,7 @@ const SignIn: React.FC<SignInProps> = ({ isOpen, onClose, redirectUrl }) => {
       if (error) {
         throw error;
       }
-
+ 
       if (data?.user) {
         // Check if user exists in profiles_dev table using uuid column
         const { data: profileData, error: profileError } = await supabase
