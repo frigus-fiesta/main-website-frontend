@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, MapPin, Users, Phone, Mail, Globe, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-import Header from '../../../../components/Header';
-import Footer from '../../../../components/Footer';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Reviews from '@/components/Reviews';
 
 interface EventData {
   id: number;
@@ -108,9 +109,9 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
     return (
       <>
         <Header />
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="flex min-h-screen items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-yellow-500 mx-auto"></div>
+            <div className="mx-auto size-32 animate-spin rounded-full border-b-2 border-yellow-500"></div>
             <p className="mt-4 text-xl text-gray-600">Loading event details...</p>
           </div>
         </div>
@@ -123,18 +124,18 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
     return (
       <>
         <Header />
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="flex min-h-screen items-center justify-center">
           <div className="text-center">
-            <div className="text-red-500 text-6xl mb-4">⚠️</div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Event Not Found</h2>
-            <p className="text-gray-600 mb-4">
+            <div className="mb-4 text-6xl text-red-500">⚠️</div>
+            <h2 className="mb-2 text-2xl font-bold text-gray-800">Event Not Found</h2>
+            <p className="mb-4 text-gray-600">
               {error === 'Event not found in this category' 
                 ? 'This event exists but is not a live event. Please check the correct category.' 
                 : error || 'The event you are looking for does not exist.'}
             </p>
             <button 
               onClick={() => router.back()}
-              className="bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition-colors flex items-center gap-2 mx-auto"
+              className="mx-auto flex items-center gap-2 rounded-lg bg-yellow-500 px-6 py-3 text-white transition-colors hover:bg-yellow-600"
             >
               <ArrowLeft className="size-4" />
               Go Back
@@ -175,7 +176,7 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
         >
           <div className="max-w-4xl">
             <div className="mb-4">
-              <span className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-semibold">
+              <span className="inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm">
                 Live Event
               </span>
             </div>
@@ -196,13 +197,13 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
             <div className={`flex flex-col justify-center gap-4 transition-all delay-500 duration-1000 ease-out sm:flex-row ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
             }`}>
-              <div className="text-white text-lg">
-                <Calendar className="inline size-5 mr-2" />
+              <div className="text-lg text-white">
+                <Calendar className="mr-2 inline size-5" />
                 {formatDate(event.eventDate)}
               </div>
               {event.venue && (
-                <div className="text-white text-lg">
-                  <MapPin className="inline size-5 mr-2" />
+                <div className="text-lg text-white">
+                  <MapPin className="mr-2 inline size-5" />
                   {event.venue}
                 </div>
               )}
@@ -221,30 +222,30 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
             {/* Main Content */}
             <div className="lg:col-span-2">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">About This Event</h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <h2 className="mb-4 text-3xl font-bold text-gray-900">About This Event</h2>
+                <p className="text-lg leading-relaxed text-gray-600">
                   {event.description}
                 </p>
               </div>
               {event.importantInfo && (
-                <div className="mb-8 p-6 bg-amber-50 rounded-2xl border border-amber-200">
-                  <h3 className="text-xl font-bold text-amber-900 mb-3">Important Information</h3>
+                <div className="mb-8 rounded-2xl border border-amber-200 bg-amber-50 p-6">
+                  <h3 className="mb-3 text-xl font-bold text-amber-900">Important Information</h3>
                   <p className="text-amber-800">{event.importantInfo}</p>
                 </div>
               )}
               {ticketPricing.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Ticket Pricing</h3>
+                  <h3 className="mb-4 text-2xl font-bold text-gray-900">Ticket Pricing</h3>
                   <div className="grid gap-4 md:grid-cols-2">
                     {ticketPricing.map((ticket: any, index: number) => (
-                      <div key={index} className="p-4 border border-gray-200 rounded-xl hover:border-yellow-300 transition-colors">
-                        <div className="flex justify-between items-center mb-2">
+                      <div key={index} className="rounded-xl border border-gray-200 p-4 transition-colors hover:border-yellow-300">
+                        <div className="mb-2 flex items-center justify-between">
                           <h4 className="font-semibold text-gray-900">{ticket.type}</h4>
                           <span className="text-2xl font-bold text-yellow-600">
                             ${ticket.price}
                           </span>
                         </div>
-                        <button className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-2 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300">
+                        <button className="w-full rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-2 font-semibold text-white transition-all duration-300 hover:shadow-lg">
                           Book Now
                         </button>
                       </div>
@@ -254,10 +255,10 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
               )}
             </div>
             <div className="space-y-6">
-              <div className="bg-white p-6 rounded-2xl shadow-lg">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Event Status</h3>
+              <div className="rounded-2xl bg-white p-6 shadow-lg">
+                <h3 className="mb-4 text-xl font-bold text-gray-900">Event Status</h3>
                 <div className="flex items-center gap-3">
-                  <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                  <span className={`rounded-full px-3 py-1 text-sm font-semibold ${
                     event.eventStatus === 'upcoming' 
                       ? 'bg-green-100 text-green-800' 
                       : 'bg-gray-100 text-gray-800'
@@ -268,8 +269,8 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
                   <span className="text-gray-600">{event.category}</span>
                 </div>
               </div>
-              <div className="bg-white p-6 rounded-2xl shadow-lg">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Event Details</h3>
+              <div className="rounded-2xl bg-white p-6 shadow-lg">
+                <h3 className="mb-4 text-xl font-bold text-gray-900">Event Details</h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <Calendar className="size-5 text-yellow-500" />
@@ -289,24 +290,24 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
                 </div>
               </div>
               {hostedBy && (
-                <div className="bg-white p-6 rounded-2xl shadow-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Organizer</h3>
+                <div className="rounded-2xl bg-white p-6 shadow-lg">
+                  <h3 className="mb-4 text-xl font-bold text-gray-900">Organizer</h3>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <Users className="size-5 text-yellow-500" />
-                      <span className="text-gray-700 font-semibold">{hostedBy.name}</span>
+                      <span className="font-semibold text-gray-700">{hostedBy.name}</span>
                     </div>
                     <div className="flex gap-2">
                       <button 
                         onClick={() => window.open(`tel:${hostedBy.phone}`, '_blank')}
-                        className="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+                        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-200"
                       >
                         <Phone className="size-4" />
                         Call
                       </button>
                       <button 
                         onClick={() => window.open(`mailto:${hostedBy.email}`, '_blank')}
-                        className="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+                        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-200"
                       >
                         <Mail className="size-4" />
                         Email
@@ -315,7 +316,7 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
                     {hostedBy.website && (
                       <button 
                         onClick={() => window.open(hostedBy.website, '_blank')}
-                        className="w-full bg-gradient-to-r from-yellow-500 to-amber-500 text-white py-2 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-2 font-semibold text-white transition-all duration-300 hover:shadow-lg"
                       >
                         <Globe className="size-4" />
                         Visit Website
@@ -368,6 +369,7 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
           animation: fade-in-up 0.8s ease-out;
         }
       `}</style>
+      <Reviews slug={event.slug} />
       <Footer />
     </>
   );

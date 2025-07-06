@@ -217,7 +217,7 @@ export default function ContactUsPage() {
                   </p>
                   {info.type === 'phone' && (
                     <button 
-                      className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-purple-400 to-pink-600 text-white font-semibold py-3 px-4 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center gap-2 hover:shadow-lg rounded-b-2xl"
+                      className="absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-center gap-2 rounded-b-2xl bg-gradient-to-r from-purple-400 to-pink-600 px-4 py-3 font-semibold text-white transition-transform duration-300 hover:shadow-lg group-hover:translate-y-0"
                       onClick={() => window.open('tel:91-91826-84160', '_blank')}
                     >
                       <Phone className="size-4" />
@@ -226,7 +226,7 @@ export default function ContactUsPage() {
                   )}
                   {info.type === 'email' && (
                     <button 
-                      className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-amber-400 to-yellow-600 text-white font-semibold py-3 px-4 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center gap-2 hover:shadow-lg rounded-b-2xl"
+                      className="absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-center gap-2 rounded-b-2xl bg-gradient-to-r from-amber-400 to-yellow-600 px-4 py-3 font-semibold text-white transition-transform duration-300 hover:shadow-lg group-hover:translate-y-0"
                       onClick={() => window.open('mailto:info@frigusfiesta.com', '_blank')}
                     >
                       <Mail className="size-4" />
@@ -291,7 +291,7 @@ export default function ContactUsPage() {
                         required
                       />
                       <button 
-                        className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-amber-400 to-yellow-500 text-white font-semibold py-2 px-4 rounded-b-xl transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 flex items-center justify-center gap-2 hover:shadow-lg"
+                        className="absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-center gap-2 rounded-b-xl bg-gradient-to-r from-amber-400 to-yellow-500 px-4 py-2 font-semibold text-white transition-transform duration-300 hover:shadow-lg group-hover:translate-y-0"
                         onClick={() => window.open('mailto:info@frigusfiesta.com', '_blank')}
                       >
                         <Send className="size-4" />
@@ -344,10 +344,10 @@ export default function ContactUsPage() {
                     )}
                   </button>
                   {submitSuccess && (
-                    <div className="mt-4 text-green-600 font-semibold text-center">{submitSuccess}</div>
+                    <div className="mt-4 text-center font-semibold text-green-600">{submitSuccess}</div>
                   )}
                   {submitError && (
-                    <div className="mt-4 text-red-600 font-semibold text-center">{submitError}</div>
+                    <div className="mt-4 text-center font-semibold text-red-600">{submitError}</div>
                   )}
                 </div>
               </div>
