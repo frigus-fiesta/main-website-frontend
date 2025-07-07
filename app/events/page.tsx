@@ -103,7 +103,8 @@ const ScheduledEventsPage = () => {
   const fetchEventsData = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://backend-server.developer-frigus-fiesta.workers.dev/general/get-all-events');
+      // const response = await fetch('https://backend-server.developer-frigus-fiesta.workers.dev/general/get-all-events');
+      const response = await fetch('https://backend-server.developer-frigus-fiesta.workers.dev/general/get-all-events-from-cache');
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }
@@ -371,19 +372,19 @@ const ScheduledEventsPage = () => {
           {loading && (
             <div className="flex items-center justify-center py-20">
               <div className="text-center">
-                <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-yellow-500 mx-auto"></div>
+                <div className="mx-auto size-16 animate-spin rounded-full border-b-2 border-yellow-500"></div>
                 <p className="mt-4 text-xl text-gray-600">Loading events...</p>
               </div>
             </div>
           )}
           {error && (
-            <div className="text-center py-20">
-              <div className="text-red-500 text-6xl mb-4">⚠️</div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">Error Loading Events</h2>
-              <p className="text-gray-600 mb-4">{error}</p>
+            <div className="py-20 text-center">
+              <div className="mb-4 text-6xl text-red-500">⚠️</div>
+              <h2 className="mb-2 text-2xl font-bold text-gray-800">Error Loading Events</h2>
+              <p className="mb-4 text-gray-600">{error}</p>
               <button 
                 onClick={fetchEventsData}
-                className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition-colors"
+                className="rounded-lg bg-yellow-500 px-6 py-2 text-white transition-colors hover:bg-yellow-600"
               >
                 Try Again
               </button>
@@ -462,8 +463,8 @@ const ScheduledEventsPage = () => {
                       <h3 className="mb-3 line-clamp-2 text-xl font-bold text-amber-900 transition-colors duration-300 group-hover:text-amber-700">
                         {event.title}
                       </h3>
-                      <p className="mb-2 text-sm text-amber-600 font-medium">{event.tagline}</p>
-                      <p className="mb-4 text-sm leading-relaxed text-gray-600 line-clamp-3">{event.description}</p>
+                      <p className="mb-2 text-sm font-medium text-amber-600">{event.tagline}</p>
+                      <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-600">{event.description}</p>
                       <div className="mb-4">
                         <div className="flex flex-wrap gap-1">
                           {event.features.slice(0, 2).map((feature, idx) => (
@@ -489,7 +490,7 @@ const ScheduledEventsPage = () => {
                         </div>
                         <div className="flex items-center text-gray-500 transition-colors duration-300 group-hover:text-gray-600">
                           <MapPin className="mr-2 size-4 transition-transform duration-300 group-hover:scale-110" />
-                          <span className="text-sm line-clamp-1">{event.location}</span>
+                          <span className="line-clamp-1 text-sm">{event.location}</span>
                         </div>
                       </div>
                       <div className="mb-4 flex items-center justify-between">
