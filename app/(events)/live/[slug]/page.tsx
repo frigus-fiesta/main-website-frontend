@@ -223,9 +223,9 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
           </div>
         </div>
       </div>
-      <div className="px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-3">
+      <div className="py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
               <div className="mb-8">
@@ -243,16 +243,16 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
               {ticketPricing.length > 0 && (
                 <div className="mb-8">
                   <h3 className="mb-4 text-2xl font-bold text-gray-900">Ticket Pricing</h3>
-                  <div className="grid gap-4 md:grid-cols-2">
+                  <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                     {ticketPricing.map((ticket: any, index: number) => (
-                      <div key={index} className="rounded-xl border border-gray-200 p-4 transition-colors hover:border-yellow-300">
-                        <div className="mb-2 flex items-center justify-between">
-                          <h4 className="font-semibold text-gray-900">{ticket.type}</h4>
+                      <div key={index} className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-yellow-300 hover:shadow-md">
+                        <div className="mb-4 flex items-center justify-between">
+                          <h4 className="text-lg font-semibold text-gray-900">{ticket.type}</h4>
                           <span className="text-2xl font-bold text-yellow-600">
                             ${ticket.price}
                           </span>
                         </div>
-                        <button className="w-full rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-2 font-semibold text-white transition-all duration-300 hover:shadow-lg">
+                        <button className="w-full rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg">
                           Book Now
                         </button>
                       </div>
@@ -261,7 +261,7 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
                 </div>
               )}
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6 lg:space-y-8">
               <div className="rounded-2xl bg-white p-6 shadow-lg">
                 <h3 className="mb-4 text-xl font-bold text-gray-900">Event Status</h3>
                 <div className="flex items-center gap-3">
@@ -304,26 +304,26 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
                       <Users className="size-5 text-yellow-500" />
                       <span className="font-semibold text-gray-700">{hostedBy.name}</span>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       <button 
                         onClick={() => window.open(`tel:${hostedBy.phone}`, '_blank')}
-                        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-200"
+                        className="flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 transition-all duration-300 hover:scale-105 hover:bg-gray-200"
                       >
                         <Phone className="size-4" />
-                        Call
+                        <span className="hidden sm:inline">Call</span>
                       </button>
                       <button 
                         onClick={() => window.open(`mailto:${hostedBy.email}`, '_blank')}
-                        className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-200"
+                        className="flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-4 py-3 text-gray-700 transition-all duration-300 hover:scale-105 hover:bg-gray-200"
                       >
                         <Mail className="size-4" />
-                        Email
+                        <span className="hidden sm:inline">Email</span>
                       </button>
                     </div>
                     {hostedBy.website && (
                       <button 
                         onClick={() => window.open(hostedBy.website, '_blank')}
-                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-4 py-2 font-semibold text-white transition-all duration-300 hover:shadow-lg"
+                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-yellow-500 to-amber-500 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
                       >
                         <Globe className="size-4" />
                         Visit Website
@@ -376,8 +376,26 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
           animation: fade-in-up 0.8s ease-out;
         }
       `}</style>
-      <ImageGallery slug={event.slug}/>
-      <Reviews slug={event.slug} />
+      {/* Image Gallery Section */}
+      <div className="bg-gray-50 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">Event Gallery</h2>
+            <p className="text-lg text-gray-600">Explore photos from this amazing event</p>
+          </div>
+          <ImageGallery slug={event.slug} />
+        </div>
+      </div>
+      {/* Reviews Section */}
+      <div className="py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">What People Say</h2>
+            <p className="text-lg text-gray-600">Reviews and testimonials from attendees</p>
+          </div>
+          <Reviews slug={event.slug} />
+        </div>
+      </div>
       <Footer />
     </>
   );

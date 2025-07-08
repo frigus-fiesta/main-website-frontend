@@ -165,19 +165,6 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ slug }) => {
 
   return (
     <div className="w-full">
-      {/* Event Header */}
-      <div className="mb-8 text-center">
-        <h1 className="mb-2 text-3xl font-bold text-gray-900 md:text-4xl">{event.title}</h1>
-        <p className="text-lg text-gray-600">{event.tagline}</p>
-        <div className="mt-4 flex items-center justify-center space-x-4 text-sm text-gray-500">
-          <span className="flex items-center">
-            📅 {new Date(event.eventDate).toLocaleDateString()}
-          </span>
-          <span className="flex items-center">
-            📍 {event.venue}
-          </span>
-        </div>
-      </div>
       {/* Image Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {images.map((image, index) => (
