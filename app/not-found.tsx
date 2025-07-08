@@ -27,6 +27,7 @@ const Sparkles = () => (
       const height = 6 + Math.random() * 8;
       const left = Math.random() * 100;
       const top = Math.random() * 100;
+      
       return (
         <div
           key={i}
