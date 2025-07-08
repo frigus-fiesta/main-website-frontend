@@ -116,12 +116,12 @@ const HomeClients = () => {
       >
         We`ve had the privilege of working with renowned artists and musical legends from around the world. 
       </motion.p>
-      <div className="relative w-full max-w-8xl overflow-x-hidden mt-10">
+      <div className="max-w-8xl relative mt-10 w-full overflow-x-hidden">
         <div className="scrolling-carousel flex items-center gap-12" style={{ width: 'max-content', overflowY: 'hidden' }}>
           {repeatedClients.map((client, idx) => (
             <motion.div
               key={client.image + idx}
-              className="group relative flex aspect-[4/3] w-72 min-w-[16rem] flex-col justify-end overflow-hidden rounded-2xl border border-yellow-100 bg-white shadow-xl transition-all duration-300"
+              className="group relative flex aspect-[4/3] w-72 min-w-64 flex-col justify-end overflow-hidden rounded-2xl border border-yellow-100 bg-white shadow-xl transition-all duration-300"
               transition={{ duration: 0.7, delay: (idx % 5) * 0.1 }}
               viewport={{ once: true }}
             >

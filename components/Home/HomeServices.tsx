@@ -125,7 +125,7 @@ const HomeServices = () => {
           {services.map((service) => (
             <Link href={service.href} key={service.title}>
               <motion.div
-                className="group mx-auto flex w-full min-w-[270px] max-w-xs cursor-pointer flex-col items-center rounded-3xl border border-yellow-100 bg-white/90 p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+                className="group relative mx-auto flex w-full min-w-[270px] max-w-xs cursor-pointer flex-col items-center overflow-hidden rounded-3xl border border-yellow-100 bg-white/90 p-6 shadow-xl transition-all duration-300 hover:-translate-y-1"
                 variants={cardVariants}
                 initial="initial"
                 whileInView="animate"
@@ -136,7 +136,7 @@ const HomeServices = () => {
                     src="/assets/friguslogo.svg"
                     alt="Frigus Fiesta Logo Watermark"
                     fill
-                    className="object-contain opacity-10 scale-150"
+                    className="scale-150 object-contain opacity-10"
                     sizes="(max-width: 768px) 100vw, 40vw"
                     priority={false}
                   />

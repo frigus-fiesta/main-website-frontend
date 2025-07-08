@@ -18,7 +18,7 @@ import WorldMap from "./ui/world-map";
 const Footer = () => {
   return (
     <footer className="relative mt-10 overflow-hidden bg-gray-200">
-      <div className="absolute inset-0 size-full opacity-40 hidden md:block">
+      <div className="absolute inset-0 hidden size-full opacity-40 md:block">
         <WorldMap fullSize={true} />
       </div>
       <div className="container relative z-10 mx-auto px-6 py-8">
@@ -29,12 +29,12 @@ const Footer = () => {
               width={120}
               height={120}
               alt="Frigus Fiesta"
-              className="h-14 w-auto mb-10 mt-5"
+              className="mb-10 mt-5 h-14 w-auto"
             />
           </Link>
           <div className="grid w-full max-w-4xl grid-cols-1 gap-6 text-center md:grid-cols-3">
             <div>
-              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 backdrop-blur-sm ring-1 ring-black/5">
+              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 ring-1 ring-black/5 backdrop-blur-sm">
                 <MapPin className="size-5 text-gray-700" />
               </div>
               <p className="mb-1 text-base font-bold text-gray-800">
@@ -52,7 +52,7 @@ const Footer = () => {
               </a>
             </div>
             <div>
-              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 backdrop-blur-sm ring-1 ring-black/5">
+              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 ring-1 ring-black/5 backdrop-blur-sm">
                 <Phone className="size-5 text-gray-700" />
               </div>
               <p className="mb-1 text-base font-bold text-gray-800">
@@ -66,7 +66,7 @@ const Footer = () => {
               </a>
             </div>
             <div>
-              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 backdrop-blur-sm ring-1 ring-black/5">
+              <div className="mb-3 inline-flex items-center justify-center rounded-full bg-white/50 p-3 ring-1 ring-black/5 backdrop-blur-sm">
                 <Mail className="size-5 text-gray-700" />
               </div>
               <p className="mb-1 text-base font-bold text-gray-800">
@@ -103,7 +103,7 @@ const Footer = () => {
             <Link
               key={index}
               href={href}
-              className="flex size-12 items-center justify-center rounded-full bg-white/50 text-gray-700 backdrop-blur-sm ring-1 ring-black/5 transition-all duration-300 hover:bg-yellow-300 hover:text-black"
+              className="flex size-12 items-center justify-center rounded-full bg-white/50 text-gray-700 ring-1 ring-black/5 backdrop-blur-sm transition-all duration-300 hover:bg-yellow-300 hover:text-black"
               aria-label={label}
               target="_blank"
               rel="noopener noreferrer"

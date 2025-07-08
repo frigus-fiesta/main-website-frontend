@@ -4,8 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaFeatherAlt } from "react-icons/fa";
 
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const floatingCircles = [
   { size: "120px", top: "10%", left: "5%", delay: 0 },
@@ -220,7 +220,7 @@ const PrivacyPolicyPage = () => {
                 {section.text.split("\n\n").map((para, idx) => (
                   <motion.p
                     key={idx}
-                    className="text-base text-gray-700 mb-2"
+                    className="mb-2 text-base text-gray-700"
                     initial={false}
                     animate={false}
                   >

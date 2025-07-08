@@ -63,12 +63,47 @@ export default function BookAppointmentPage() {
     setIsVisible(true);
   }, []);
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-    setFormData({ name: '', email: '', phone: '', service: '', date: '', time: '', message: '' });
-    setCurrentStep(1);
+    
+    try {
+      // Prepare the data according to the API specification
+      const requestData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        date: formData.date,
+        time: formData.time,
+        services: [formData.service], // Convert single service to array
+        description: formData.message
+      };
+
+      const response = await fetch('https://backend-server.developer-frigus-fiesta.workers.dev/general/book-appointment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (response.ok) {
+        // Success - reset form and show success message
+        setFormData({ name: '', email: '', phone: '', service: '', date: '', time: '', message: '' });
+        setCurrentStep(1);
+        console.log('Appointment booked successfully!');
+      } else {
+        // Handle error response
+        const errorData = await response.json();
+        console.error('Failed to book appointment:', errorData);
+        alert('Failed to book appointment. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error booking appointment:', error);
+      alert('An error occurred while booking your appointment. Please try again.');
+    } finally {
+      setTimeout(() => setIsSubmitted(false), 3000);
+    }
   };
 
   const handleChange = (e: { target: { name: any; value: any; }; }) => {

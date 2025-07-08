@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Users, Star, Music, Sparkles, Mic2, Calendar } from 'lucide-react';
 
-import Header from '../../../components/Header';
-import Footer from '../../../components/Footer';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const images = [
   '/assets/11.JPG', '/assets/12.JPG', '/assets/13.JPG', '/assets/14.JPG', '/assets/15.JPG', '/assets/16.JPG', '/assets/17.JPG', '/assets/18.JPG', '/assets/19.JPG', '/assets/20.JPG',
@@ -89,7 +89,7 @@ export default function LiveEventsPage() {
             <div key={idx} className="group relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-500">
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-200 to-yellow-100 opacity-10 transition-opacity duration-300 group-hover:opacity-20"></div>
               <div className="relative p-8 text-center">
-                <div className="mx-auto mb-4 size-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:rotate-6">
+                <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-lg transition-transform duration-300 group-hover:rotate-6">
                   <card.icon className="size-8 text-white" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold text-amber-900 transition-colors duration-300 group-hover:text-amber-700">{card.title}</h3>
@@ -147,11 +147,11 @@ export default function LiveEventsPage() {
         </div>
       </section>
       <section className="container mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-center mb-8 text-yellow-700">Gallery</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <h2 className="mb-8 text-center text-3xl font-bold text-yellow-700">Gallery</h2>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {images.map((src, i) => (
-            <div key={i} className="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
-              <Image src={src} alt={`Live Event ${i+1}`} width={400} height={300} className="object-cover w-full h-48" />
+            <div key={i} className="overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+              <Image src={src} alt={`Live Event ${i+1}`} width={400} height={300} className="h-48 w-full object-cover" />
             </div>
           ))}
         </div>

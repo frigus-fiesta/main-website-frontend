@@ -193,13 +193,13 @@ const FAQPage = () => {
               animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between text-md font-semibold text-black outline-none transition-colors duration-200 group-open:text-yellow-900 md:text-xl">
-                <span className="flex-grow">{faq.q}</span>
-                <span className="ml-4 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">
+              <summary className="text-md flex cursor-pointer list-none items-center justify-between font-semibold text-black outline-none transition-colors duration-200 group-open:text-yellow-900 md:text-xl">
+                <span className="grow">{faq.q}</span>
+                <span className="ml-4 shrink-0 transition-transform duration-300 group-open:rotate-180">
                   <svg width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                 </span>
               </summary>
-              <div className="group-open:animate-fade-in mt-4 flex-grow text-base text-gray-700 transition-all duration-300">
+              <div className="group-open:animate-fade-in mt-4 grow text-base text-gray-700 transition-all duration-300">
                 {faq.a}
               </div>
             </motion.details>
