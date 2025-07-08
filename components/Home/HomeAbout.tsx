@@ -69,7 +69,7 @@ const HomeAbout = () => {
           Are you looking to add a touch of magic to your events in India? Look no further than Frigus Fiesta! As one of the leading entertainment websites in the country, Frigus Fiesta specializes in organizing a wide array of events and services, ranging from corporate gatherings to electrifying live concerts and vibrant social events. With a presence in key cities like Pune, Hyderabad, Delhi, and Bangalore, Frigus Fiesta brings the joy of celebration to every corner of the nation.
         </motion.p>
       </div>
-      <div className="flex flex-1 items-center justify-center px-4 py-8 xl:px-8 w-full">
+      <div className="flex w-full flex-1 items-center justify-center px-4 py-8 xl:px-8">
         <motion.div
           className="relative w-full max-w-2xl"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -83,7 +83,7 @@ const HomeAbout = () => {
               title="Frigus Fiesta Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="absolute inset-0 h-full w-full"
+              className="absolute inset-0 size-full"
             />
           </div>
         </motion.div>

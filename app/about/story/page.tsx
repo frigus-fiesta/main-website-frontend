@@ -144,11 +144,11 @@ const AboutStoryPage = () => {
               </div>
             </div>
           </div>
-          <div className="mb-16 text-center mt-40">
+          <div className="mb-16 mt-40 text-center">
             <h2 className="animate-fade-in-up mb-10 text-4xl font-extrabold text-black md:text-5xl">
               <span className="text-black">Locations</span>
             </h2>
-            <div className="mx-auto max-w-4xl text-gray-700 md:text-lg text-center">
+            <div className="mx-auto max-w-4xl text-center text-gray-700 md:text-lg">
               <p>
                 With a presence in key cities across India, including Pune, Hyderabad, Delhi, and Bangalore, Frigus Fiesta is strategically positioned to serve clients nationwide. Whether you're planning an event in the heart of the city or a scenic countryside retreat, we have the resources and infrastructure to bring your vision to life.
               </p>

@@ -174,7 +174,7 @@ export default function PaymentPage() {
       <Header />
       <div className="relative z-10 px-6 py-12 pt-40">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className={`mb-4 text-4xl md:text-5xl font-bold text-black transition-all duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          <h1 className={`mb-4 text-4xl font-bold text-black transition-all duration-1000 ease-out md:text-5xl ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
             Book Your <span className='text-yellow-500'>Event</span>
           </h1>
           <p className={`text-lg text-amber-700 transition-all delay-300 duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
@@ -185,7 +185,7 @@ export default function PaymentPage() {
       <div className="relative z-10 px-6 pb-8">
         <div className="mx-auto max-w-2xl">
           <div className="flex justify-center">
-            <div className="flex rounded-2xl bg-white/80 backdrop-blur-sm p-2 shadow-lg">
+            <div className="flex rounded-2xl bg-white/80 p-2 shadow-lg backdrop-blur-sm">
               <button
                 onClick={() => handleCurrencyToggle('USD')}
                 className={`rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 ${
@@ -215,10 +215,10 @@ export default function PaymentPage() {
           <div className="flex items-center justify-center space-x-8">
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex items-center">
-                <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition-all duration-300 ${
+                <div className={`flex size-10 items-center justify-center rounded-full text-sm font-medium transition-all duration-300 ${
                   currentStep >= step 
                     ? 'bg-amber-500 text-white shadow-lg' 
-                    : 'bg-white text-amber-500 border-2 border-amber-200'
+                    : 'border-2 border-amber-200 bg-white text-amber-500'
                 }`}>
                   {step}
                 </div>
@@ -240,7 +240,7 @@ export default function PaymentPage() {
       <div className="relative z-10 px-6 pb-20">
         <div className="mx-auto max-w-2xl">
           {currentStep === 1 && (
-            <div className="animate-fade-in rounded-3xl bg-white/80 backdrop-blur-sm p-12 shadow-xl">
+            <div className="animate-fade-in rounded-3xl bg-white/80 p-12 shadow-xl backdrop-blur-sm">
               <h2 className="mb-8 text-center text-2xl font-light text-amber-900">Your Details</h2>
               <div className="space-y-6">
                 <div>
@@ -287,7 +287,7 @@ export default function PaymentPage() {
                   className={`rounded-2xl px-8 py-4 font-medium transition-all duration-300 ${
                     isFormValid
                       ? 'bg-yellow-500 text-white hover:bg-yellow-400 hover:shadow-lg'
-                      : 'bg-yellow-200 text-amber-500 cursor-not-allowed'
+                      : 'cursor-not-allowed bg-yellow-200 text-amber-500'
                   }`}
                 >
                   Continue to Event Fee
@@ -296,7 +296,7 @@ export default function PaymentPage() {
             </div>
           )}
           {currentStep === 2 && (
-            <div className="animate-fade-in rounded-3xl bg-white/80 backdrop-blur-sm p-12 shadow-xl">
+            <div className="animate-fade-in rounded-3xl bg-white/80 p-12 shadow-xl backdrop-blur-sm">
               <h2 className="mb-8 text-center text-2xl font-light text-amber-900">Enter Event Fee</h2>
               <div className="space-y-6">
                 <div>
@@ -304,14 +304,14 @@ export default function PaymentPage() {
                     Event Fee ({selectedCurrency === 'USD' ? 'USD' : 'INR'})
                   </label>
                   <div className="relative">
-                    <span className="absolute left-6 top-1/2 transform -translate-y-1/2 text-amber-700 text-xl font-medium">
+                    <span className="absolute left-6 top-1/2 -translate-y-1/2 text-xl font-medium text-amber-700">
                       {selectedCurrency === 'USD' ? '$' : '₹'}
                     </span>
                     <input
                       type="text"
                       value={eventFee}
                       onChange={handleFeeChange}
-                      className="w-full rounded-2xl border-0 pl-12 pr-6 py-4 text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 text-xl"
+                      className="w-full rounded-2xl border-0 py-4 pl-12 pr-6 text-xl text-amber-900 ring-1 ring-amber-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400"
                       placeholder="0.00"
                       required
                     />
@@ -322,7 +322,7 @@ export default function PaymentPage() {
                 </div>
                 {eventFee && parseFloat(eventFee) > 0 && (
                   <div className="rounded-2xl bg-amber-50 p-4">
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <span className="text-amber-700">Total Amount:</span>
                       <span className="text-2xl font-bold text-amber-900">
                         {formatPrice(eventFee)}
@@ -344,7 +344,7 @@ export default function PaymentPage() {
                   className={`rounded-2xl px-8 py-4 font-medium transition-all duration-300 ${
                     eventFee && parseFloat(eventFee) > 0
                       ? 'bg-yellow-500 text-white hover:bg-yellow-400 hover:shadow-lg'
-                      : 'bg-yellow-200 text-amber-500 cursor-not-allowed'
+                      : 'cursor-not-allowed bg-yellow-200 text-amber-500'
                   }`}
                 >
                   Continue to Payment
@@ -353,7 +353,7 @@ export default function PaymentPage() {
             </div>
           )}
           {currentStep === 3 && eventFee && (
-            <div className="animate-fade-in rounded-3xl bg-white/80 backdrop-blur-sm p-12 shadow-xl">
+            <div className="animate-fade-in rounded-3xl bg-white/80 p-12 shadow-xl backdrop-blur-sm">
               <h2 className="mb-8 text-center text-2xl font-light text-amber-900">Complete Payment</h2>
               <div className="mb-8 rounded-2xl bg-amber-50 p-6">
                 <h3 className="mb-4 font-semibold text-amber-900">Order Summary</h3>
@@ -374,10 +374,10 @@ export default function PaymentPage() {
                     <span className="text-amber-700">Payment Method:</span>
                     <span className="text-amber-900">{selectedCurrency === 'USD' ? 'PayPal' : 'PhonePe'}</span>
                   </div>
-                  <div className="border-t border-amber-200 pt-2 mt-4">
+                  <div className="mt-4 border-t border-amber-200 pt-2">
                     <div className="flex justify-between font-semibold">
                       <span className="text-amber-700">Total:</span>
-                      <span className="text-amber-900 text-xl">
+                      <span className="text-xl text-amber-900">
                         {formatPrice(eventFee)}
                       </span>
                     </div>
@@ -388,7 +388,7 @@ export default function PaymentPage() {
                 <div className="mb-6">
                   {!paypalReady && (
                     <div className="flex flex-col items-center justify-center py-8">
-                      <div className="w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mb-4"></div>
+                      <div className="mb-4 size-12 animate-spin rounded-full border-4 border-yellow-400 border-t-transparent"></div>
                       <span className="text-amber-700">Loading PayPal...</span>
                     </div>
                   )}
@@ -450,25 +450,25 @@ export default function PaymentPage() {
                   <button
                     onClick={handlePhonePePayment}
                     disabled={phonePeLoading}
-                    className={`w-full rounded-2xl py-4 px-6 font-medium transition-all duration-300 ${
+                    className={`w-full rounded-2xl px-6 py-4 font-medium transition-all duration-300 ${
                       phonePeLoading
-                        ? 'bg-purple-300 text-purple-600 cursor-not-allowed'
+                        ? 'cursor-not-allowed bg-purple-300 text-purple-600'
                         : 'bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg'
                     }`}
                   >
                     {phonePeLoading ? (
                       <div className="flex items-center justify-center">
-                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                        <div className="mr-2 size-6 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
                         Processing PhonePe Payment...
                       </div>
                     ) : (
                       <div className="flex items-center justify-center">
-                        <span className="text-2xl mr-2">📱</span>
+                        <span className="mr-2 text-2xl">📱</span>
                         Pay with PhonePe - {formatPrice(eventFee)}
                       </div>
                     )}
                   </button>
-                  <p className="mt-2 text-xs text-amber-600 text-center">
+                  <p className="mt-2 text-center text-xs text-amber-600">
                     You will be redirected to PhonePe to complete the payment
                   </p>
                 </div>
