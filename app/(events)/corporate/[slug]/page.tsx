@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Reviews from '@/components/Reviews';
+import ImageGallery from '@/components/event/image-gallery';
 
 interface EventData {
   id: number;
@@ -376,7 +377,26 @@ export default function CorporateEventSlugPage({ params }: { params: { slug: str
           animation: fade-in-up 0.8s ease-out;
         }
       `}</style>
-      <Reviews slug={event.slug}/>
+      {/* Image Gallery Section */}
+      <div className="bg-gray-50 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">Event Gallery</h2>
+            <p className="text-lg text-gray-600">Explore photos from this amazing event</p>
+          </div>
+          <ImageGallery slug={event.slug} />
+        </div>
+      </div>
+      {/* Reviews Section */}
+      <div className="py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">What People Say</h2>
+            <p className="text-lg text-gray-600">Reviews and testimonials from attendees</p>
+          </div>
+          <Reviews slug={event.slug} />
+        </div>
+      </div>
       <Footer />
     </>
   );
