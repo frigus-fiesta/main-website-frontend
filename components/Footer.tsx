@@ -23,13 +23,13 @@ const Footer = () => {
       </div>
       <div className="container relative z-10 mx-auto px-6 py-8">
         <div className="mb-6 flex flex-col items-center">
-          <Link href={`/`} className="mb-4">
+          <Link href={`/`}>
             <Image
-              src="/assets/friguslogo.svg"
-              width={120}
-              height={120}
+              src="/assets/friguslogo.png"
+              width={1200000}
+              height={1200000}
               alt="Frigus Fiesta"
-              className="mb-10 mt-5 h-14 w-auto"
+              className="mb-10 mt-5 h-40 w-auto"
             />
           </Link>
           <div className="grid w-full max-w-4xl grid-cols-1 gap-6 text-center md:grid-cols-3">
