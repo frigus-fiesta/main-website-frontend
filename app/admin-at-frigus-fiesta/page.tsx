@@ -574,7 +574,7 @@ const DashboardPage = () => {
                         <div className="flex items-center">
                           <div className="size-10 shrink-0">
                             <Image
-                              src={profile.avatar_url || '/default-avatar.png'}
+                              src={profile.avatar_url && profile.avatar_url.trim() !== '' ? profile.avatar_url : '/assets/default.jpg'}
                               alt={profile.full_name}
                               width={40}
                               height={40}
