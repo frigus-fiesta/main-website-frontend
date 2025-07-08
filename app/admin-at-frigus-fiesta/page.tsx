@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 import React, { useState, useEffect } from 'react';
 // import { NavbarDemo } from '@/components/Navbar';
