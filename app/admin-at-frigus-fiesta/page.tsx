@@ -506,7 +506,7 @@ const DashboardPage = () => {
         </div>
         {/* Tab Navigation */}
         <div className="mb-8 border-b border-gray-200">
-          <nav className="flex space-x-8 overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <nav className="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 -mx-4 flex space-x-8 overflow-x-auto overflow-y-hidden px-4 sm:mx-0 sm:px-0">
             <button
               onClick={() => setActiveTab('profiles')}
               className={`${

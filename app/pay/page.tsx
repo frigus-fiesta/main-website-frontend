@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+// import Header from '@/components/Header';
+// import Footer from '@/components/Footer';
 
 const MinimalBackground = () => (
   <div className="pointer-events-none absolute left-0 top-0 -z-10 size-full">
@@ -171,15 +171,11 @@ export default function PaymentPage() {
     <div className="relative min-h-screen">
       <MinimalBackground />
       <GoldAnimatedBackground/>
-      <Header />
+      {/* <Header /> */}
       <div className="relative z-10 px-6 py-12 pt-40">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className={`mb-4 text-4xl font-bold text-black transition-all duration-1000 ease-out md:text-5xl ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-            Book Your <span className='text-yellow-500'>Event</span>
-          </h1>
-          <p className={`text-lg text-amber-700 transition-all delay-300 duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-            Simple, secure, and straightforward
-          </p>
+          <h1 className={`mb-4 text-4xl font-bold text-black transition-all duration-1000 ease-out md:text-5xl ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>Book Your <span className='text-yellow-500'>Event</span></h1>
+          <p className={`text-lg text-amber-700 transition-all delay-300 duration-1000 ease-out ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>Simple, secure, and straightforward</p>
         </div>
       </div>
       <div className="relative z-10 px-6 pb-8">
@@ -188,21 +184,13 @@ export default function PaymentPage() {
             <div className="flex rounded-2xl bg-white/80 p-2 shadow-lg backdrop-blur-sm">
               <button
                 onClick={() => handleCurrencyToggle('USD')}
-                className={`rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 ${
-                  selectedCurrency === 'USD'
-                    ? 'bg-amber-500 text-white shadow-md'
-                    : 'text-amber-700 hover:bg-amber-50'
-                }`}
+                className={`rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 ${selectedCurrency === 'USD' ? 'bg-amber-500 text-white shadow-md' : 'text-amber-700 hover:bg-amber-50'}`}
               >
                 🇺🇸 USD (PayPal)
               </button>
               <button
                 onClick={() => handleCurrencyToggle('INR')}
-                className={`rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 ${
-                  selectedCurrency === 'INR'
-                    ? 'bg-amber-500 text-white shadow-md'
-                    : 'text-amber-700 hover:bg-amber-50'
-                }`}
+                className={`rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 ${selectedCurrency === 'INR' ? 'bg-amber-500 text-white shadow-md' : 'text-amber-700 hover:bg-amber-50'}`}
               >
                 🇮🇳 INR (PhonePe)
               </button>
@@ -215,17 +203,9 @@ export default function PaymentPage() {
           <div className="flex items-center justify-center space-x-8">
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex items-center">
-                <div className={`flex size-10 items-center justify-center rounded-full text-sm font-medium transition-all duration-300 ${
-                  currentStep >= step 
-                    ? 'bg-amber-500 text-white shadow-lg' 
-                    : 'border-2 border-amber-200 bg-white text-amber-500'
-                }`}>
-                  {step}
-                </div>
+                <div className={`flex size-10 items-center justify-center rounded-full text-sm font-medium transition-all duration-300 ${currentStep >= step ? 'bg-amber-500 text-white shadow-lg' : 'border-2 border-amber-200 bg-white text-amber-500'}`}>{step}</div>
                 {step < 3 && (
-                  <div className={`h-0.5 w-16 transition-all duration-300 ${
-                    currentStep > step ? 'bg-amber-500' : 'bg-amber-200'
-                  }`} />
+                  <div className={`h-0.5 w-16 transition-all duration-300 ${currentStep > step ? 'bg-amber-500' : 'bg-amber-200'}`} />
                 )}
               </div>
             ))}
@@ -284,11 +264,7 @@ export default function PaymentPage() {
                 <button
                   onClick={handleNextStep}
                   disabled={!isFormValid}
-                  className={`rounded-2xl px-8 py-4 font-medium transition-all duration-300 ${
-                    isFormValid
-                      ? 'bg-yellow-500 text-white hover:bg-yellow-400 hover:shadow-lg'
-                      : 'cursor-not-allowed bg-yellow-200 text-amber-500'
-                  }`}
+                  className={`rounded-2xl px-8 py-4 font-medium transition-all duration-300 ${isFormValid ? 'bg-yellow-500 text-white hover:bg-yellow-400 hover:shadow-lg' : 'cursor-not-allowed bg-yellow-200 text-amber-500'}`}
                 >
                   Continue to Event Fee
                 </button>
@@ -341,11 +317,7 @@ export default function PaymentPage() {
                 <button
                   onClick={handleNextStep}
                   disabled={!eventFee || parseFloat(eventFee) <= 0}
-                  className={`rounded-2xl px-8 py-4 font-medium transition-all duration-300 ${
-                    eventFee && parseFloat(eventFee) > 0
-                      ? 'bg-yellow-500 text-white hover:bg-yellow-400 hover:shadow-lg'
-                      : 'cursor-not-allowed bg-yellow-200 text-amber-500'
-                  }`}
+                  className={`rounded-2xl px-8 py-4 font-medium transition-all duration-300 ${eventFee && parseFloat(eventFee) > 0 ? 'bg-yellow-500 text-white hover:bg-yellow-400 hover:shadow-lg' : 'cursor-not-allowed bg-yellow-200 text-amber-500'}`}
                 >
                   Continue to Payment
                 </button>
@@ -450,11 +422,7 @@ export default function PaymentPage() {
                   <button
                     onClick={handlePhonePePayment}
                     disabled={phonePeLoading}
-                    className={`w-full rounded-2xl px-6 py-4 font-medium transition-all duration-300 ${
-                      phonePeLoading
-                        ? 'cursor-not-allowed bg-purple-300 text-purple-600'
-                        : 'bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg'
-                    }`}
+                    className={`w-full rounded-2xl px-6 py-4 font-medium transition-all duration-300 ${phonePeLoading ? 'cursor-not-allowed bg-purple-300 text-purple-600' : 'bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg'}`}
                   >
                     {phonePeLoading ? (
                       <div className="flex items-center justify-center">
@@ -500,7 +468,7 @@ export default function PaymentPage() {
           animation: fade-in 0.5s ease-out;
         }
       `}</style>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
