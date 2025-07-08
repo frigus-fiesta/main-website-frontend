@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Reviews from '@/components/Reviews';
+import ImageGallery from '@/components/event/image-gallery';
 
 interface EventData {
   id: number;
@@ -375,6 +376,7 @@ export default function LiveEventSlugPage({ params }: { params: { slug: string }
           animation: fade-in-up 0.8s ease-out;
         }
       `}</style>
+      <ImageGallery slug={event.slug}/>
       <Reviews slug={event.slug} />
       <Footer />
     </>
