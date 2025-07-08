@@ -442,7 +442,7 @@ const DashboardPage = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'upcoming': return 'bg-blue-100 text-blue-800';
+      case 'upcoming': return 'bg-yellow-100 text-yellow-800';
       case 'ongoing': return 'bg-green-100 text-green-800';
       case 'completed': return 'bg-gray-100 text-gray-800';
       case 'cancelled': return 'bg-red-100 text-red-800';
@@ -465,7 +465,7 @@ const DashboardPage = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                 placeholder="Enter password"
                 required
               />
@@ -475,7 +475,7 @@ const DashboardPage = () => {
             )}
             <button
               type="submit"
-              className="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-md bg-yellow-600 px-4 py-2 text-white hover:bg-yellow-700 focus:outline-none"
             >
               Access Dashboard
             </button>
@@ -489,7 +489,7 @@ const DashboardPage = () => {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-gray-100">
         <div className="flex flex-col items-center">
-          <div className="size-16 animate-spin rounded-full border-t-4 border-solid border-blue-600"></div>
+          <div className="size-16 animate-spin rounded-full border-t-4 border-solid border-yellow-600"></div>
           <p className="mt-4 text-lg text-gray-700">Loading Dashboard...</p>
         </div>
       </div>
@@ -506,12 +506,12 @@ const DashboardPage = () => {
         </div>
         {/* Tab Navigation */}
         <div className="mb-8 border-b border-gray-200">
-          <nav className="flex space-x-8">
+          <nav className="flex space-x-8 overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 -mx-4 px-4 sm:mx-0 sm:px-0">
             <button
               onClick={() => setActiveTab('profiles')}
               className={`${
                 activeTab === 'profiles'
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-yellow-500 text-yellow-600'
                   : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
               } flex items-center gap-2 whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
             >
@@ -522,7 +522,7 @@ const DashboardPage = () => {
               onClick={() => setActiveTab('reviews')}
               className={`${
                 activeTab === 'reviews'
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-yellow-500 text-yellow-600'
                   : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
               } flex items-center gap-2 whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
             >
@@ -533,7 +533,7 @@ const DashboardPage = () => {
               onClick={() => setActiveTab('events')}
               className={`${
                 activeTab === 'events'
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-yellow-500 text-yellow-600'
                   : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
               } flex items-center gap-2 whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
             >
@@ -544,7 +544,7 @@ const DashboardPage = () => {
               onClick={() => setActiveTab('appointments')}
               className={`${
                 activeTab === 'appointments'
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-yellow-500 text-yellow-600'
                   : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
               } flex items-center gap-2 whitespace-nowrap border-b-2 px-1 py-4 text-sm font-medium`}
             >
@@ -606,7 +606,7 @@ const DashboardPage = () => {
                         {new Date(profile.created_at).toLocaleDateString()}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-sm font-medium">
-                        <button className="flex items-center gap-1 text-blue-600 hover:text-blue-900">
+                        <button className="flex items-center gap-1 text-yellow-600 hover:text-yellow-900">
                           <Eye className="size-4" />
                           View
                         </button>
@@ -675,7 +675,7 @@ const DashboardPage = () => {
                     setSelectedEvent(null);
                     setIsEventModalOpen(true);
                   }}
-                  className="flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                  className="flex items-center gap-2 rounded-md bg-yellow-600 px-4 py-2 text-white hover:bg-yellow-700"
                 >
                   <Calendar className="size-4" />
                   Add New Event
@@ -737,7 +737,7 @@ const DashboardPage = () => {
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => handleEditEvent(event)}
-                              className="flex items-center gap-1 text-blue-600 hover:text-blue-900"
+                              className="flex items-center gap-1 text-yellow-600 hover:text-yellow-900"
                             >
                               <Edit className="size-4" />
                               Edit
@@ -783,7 +783,7 @@ const DashboardPage = () => {
                       <td className="px-6 py-4">
                         <div className="text-sm text-gray-900">
                           {JSON.parse(appointment.services).map((service: string, index: number) => (
-                            <span key={index} className="mb-1 mr-1 inline-block rounded bg-blue-100 px-2 py-1 text-xs text-blue-800">
+                            <span key={index} className="mb-1 mr-1 inline-block rounded bg-yellow-100 px-2 py-1 text-xs text-yellow-800">
                               {service}
                             </span>
                           ))}

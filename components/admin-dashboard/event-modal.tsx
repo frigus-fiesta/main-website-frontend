@@ -226,7 +226,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -238,7 +238,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="text"
                     value={formData.slug}
                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -249,7 +249,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   >
                     <option value="">Select Category</option>
@@ -266,7 +266,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="datetime-local"
                     value={formData.eventDate ? formData.eventDate.slice(0, 16) : ''}
                     onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -278,7 +278,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="text"
                     value={formData.tagline}
                     onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -289,7 +289,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                   <select
                     value={formData.eventStatus}
                     onChange={(e) => setFormData({ ...formData, eventStatus: e.target.value as Event['eventStatus'] })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   >
                     <option value="upcoming">Upcoming</option>
@@ -306,7 +306,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="text"
                     value={formData.venue}
                     onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -318,7 +318,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="number"
                     value={formData.eventPrice}
                     onChange={(e) => setFormData({ ...formData, eventPrice: parseFloat(e.target.value) })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -336,7 +336,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="text"
                     value={organizer.name}
                     onChange={(e) => setOrganizer({ ...organizer, name: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -348,7 +348,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="email"
                     value={organizer.email}
                     onChange={(e) => setOrganizer({ ...organizer, email: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -360,7 +360,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="tel"
                     value={organizer.phone}
                     onChange={(e) => setOrganizer({ ...organizer, phone: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -372,7 +372,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     type="url"
                     value={organizer.website}
                     onChange={(e) => setOrganizer({ ...organizer, website: e.target.value })}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                   />
                 </div>
               </div>
@@ -384,7 +384,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                 <button
                   type="button"
                   onClick={addTicketPricing}
-                  className="flex items-center gap-2 rounded-md bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
+                  className="flex items-center gap-2 rounded-md bg-yellow-600 px-3 py-1 text-sm text-white hover:bg-yellow-700"
                 >
                   <Plus className="size-4" />
                   Add Pricing Tier
@@ -401,7 +401,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                         type="text"
                         value={pricing.type}
                         onChange={(e) => updateTicketPricing(index, 'type', e.target.value)}
-                        className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                         required
                       />
                     </div>
@@ -413,7 +413,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                         type="number"
                         value={pricing.price}
                         onChange={(e) => updateTicketPricing(index, 'price', parseFloat(e.target.value))}
-                        className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                         required
                       />
                     </div>
@@ -490,7 +490,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={4}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     required
                   />
                 </div>
@@ -502,7 +502,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
                     value={formData.importantInfo}
                     onChange={(e) => setFormData({ ...formData, importantInfo: e.target.value })}
                     rows={3}
-                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
                     placeholder="Parking information, dress code, special requirements..."
                   />
                 </div>
@@ -520,7 +520,7 @@ const EventModal = ({ isOpen, onClose, event, onSave, isLoading = false }: Event
               <button
                 type="submit"
                 disabled={isLoading}
-                className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="rounded-md bg-yellow-600 px-4 py-2 text-white hover:bg-yellow-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isLoading ? (
                   <div className="flex items-center gap-2">
