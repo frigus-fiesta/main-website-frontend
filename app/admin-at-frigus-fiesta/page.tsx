@@ -576,7 +576,7 @@ const DashboardPage = () => {
             className="flex items-center gap-2 rounded-md bg-yellow-600 px-4 py-2 text-white hover:bg-yellow-700"
           >
             <Mail className="size-4" />
-              Mail
+            Mail
           </button>
         </div>
         {/* Tab Navigation */}
