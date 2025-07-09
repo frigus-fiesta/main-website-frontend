@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import clsx from "clsx";
+import {clsx} from "clsx";
 
 export interface PinContainerProps {
   title?: string;
