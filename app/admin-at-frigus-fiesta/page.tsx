@@ -568,15 +568,15 @@ const DashboardPage = () => {
       <div className="mx-auto max-w-7xl px-4 py-8 pt-24 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-            <p className="mt-2 text-gray-600">Manage your website data and content</p>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+            <p className="mt-2 text-gray-600 text-sm md:text-md">Manage your website data and content</p>
           </div>
           <button
             onClick={() => setIsMailModalOpen(true)}
             className="flex items-center gap-2 rounded-md bg-yellow-600 px-4 py-2 text-white hover:bg-yellow-700"
           >
             <Mail className="size-4" />
-            Send Mail
+              Mail
           </button>
         </div>
         {/* Tab Navigation */}
