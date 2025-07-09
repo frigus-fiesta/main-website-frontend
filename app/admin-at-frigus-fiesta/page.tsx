@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // import { NavbarDemo } from '@/components/Navbar';
 import Image from 'next/image';
 import { Users, Star, Calendar, MessageSquare, Edit, Trash2, Eye, MapPin, User, Clock, CheckCircle, X, Mail, Phone, Globe } from 'lucide-react';
@@ -286,6 +286,71 @@ const EventPageModal = ({ isOpen, onClose, event }: EventPageModalProps) => {
   );
 };
 
+const MailModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const [name, setName] = useState('');
+  const [subject, setSubject] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setName('');
+      setSubject('');
+      setEmail('');
+      setMessage('');
+      if (formRef.current) formRef.current.reset();
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  const handleSend = (e: React.FormEvent) => {
+    e.preventDefault();
+    // For now, just log the values
+    console.log({ name, subject, email, message });
+    onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+      <div className="max-h-[95vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl border border-yellow-200">
+        <div className="p-8">
+          <div className="mb-6 flex items-center justify-between">
+            <h3 className="text-2xl font-bold text-yellow-700 flex items-center gap-2">
+              <Mail className="size-6 text-black" /> Send Mail
+            </h3>
+            <button onClick={onClose} className="text-gray-400 hover:text-yellow-600 transition-colors">
+              <X className="size-7" />
+            </button>
+          </div>
+          <form ref={formRef} onSubmit={handleSend} className="space-y-6">
+            <div>
+              <label className="mb-1 block text-sm font-semibold text-gray-700">Name *</label>
+              <input type="text" value={name} onChange={e => setName(e.target.value)} className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none transition-all" required />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-semibold text-gray-700">Subject *</label>
+              <input type="text" value={subject} onChange={e => setSubject(e.target.value)} className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none transition-all" required />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-semibold text-gray-700">Email *</label>
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none transition-all" required />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-semibold text-gray-700">Message *</label>
+              <textarea value={message} onChange={e => setMessage(e.target.value)} className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none transition-all min-h-[100px]" required />
+            </div>
+            <button type="submit" className="w-full rounded-lg bg-yellow-500 px-4 py-2 text-white font-bold shadow hover:bg-yellow-600 focus:outline-none transition-all">
+              Send Mail
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const DashboardPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -304,6 +369,7 @@ const DashboardPage = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isEventPageModalOpen, setIsEventPageModalOpen] = useState(false);
   const [selectedEventForPage, setSelectedEventForPage] = useState<Event | null>(null);
+  const [isMailModalOpen, setIsMailModalOpen] = useState(false);
 
   const correctPassword = '2025';
 
@@ -500,9 +566,18 @@ const DashboardPage = () => {
     <div className="min-h-screen bg-gray-100">
       <Header />
       <div className="mx-auto max-w-7xl px-4 py-8 pt-24 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-          <p className="mt-2 text-gray-600">Manage your website data and content</p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+            <p className="mt-2 text-gray-600 text-sm md:text-md">Manage your website data and content</p>
+          </div>
+          <button
+            onClick={() => setIsMailModalOpen(true)}
+            className="flex items-center gap-2 rounded-md bg-yellow-600 px-4 py-2 text-white hover:bg-yellow-700"
+          >
+            <Mail className="size-4" />
+            Mail
+          </button>
         </div>
         {/* Tab Navigation */}
         <div className="mb-8 border-b border-gray-200">
@@ -836,6 +911,10 @@ const DashboardPage = () => {
         isOpen={isEventPageModalOpen}
         onClose={() => setIsEventPageModalOpen(false)}
         event={selectedEventForPage}
+      />
+      <MailModal
+        isOpen={isMailModalOpen}
+        onClose={() => setIsMailModalOpen(false)}
       />
     </div>
   );
