@@ -73,7 +73,7 @@ const GoldAnimatedBackground = () => (
   </div>
 );
 
-type Currency = 'USD' | 'INR';
+type Currency = 'USD' | 'INR' | 'RAZORPAY';
 
 export default function PaymentPage() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
@@ -133,6 +133,8 @@ export default function PaymentPage() {
       : `₹${numAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
   };
 
+  // handle Razorpay payment gateway
+  
   // PhonePe payment handler
   const handlePhonePePayment = async () => {
     setPhonePeLoading(true);
@@ -193,6 +195,12 @@ export default function PaymentPage() {
                 className={`rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 ${selectedCurrency === 'INR' ? 'bg-amber-500 text-white shadow-md' : 'text-amber-700 hover:bg-amber-50'}`}
               >
                 🇮🇳 INR (PhonePe)
+              </button>
+              <button
+                onClick={() => handleCurrencyToggle('RAZORPAY' as Currency)}
+                className={`rounded-xl px-6 py-3 text-sm font-medium transition-all duration-300 ${selectedCurrency === 'RAZORPAY' ? 'bg-green-600 text-white shadow-md' : 'text-green-700 hover:bg-green-50'}`}
+              >
+                🪒 INR (Razorpay)
               </button>
             </div>
           </div>
@@ -344,7 +352,11 @@ export default function PaymentPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-amber-700">Payment Method:</span>
-                    <span className="text-amber-900">{selectedCurrency === 'USD' ? 'PayPal' : 'PhonePe'}</span>
+                    <span className="text-amber-900">
+                      {selectedCurrency === 'USD' && 'PayPal'}
+                      {selectedCurrency === 'INR' && 'PhonePe'}
+                      {selectedCurrency === 'RAZORPAY' && 'Razorpay'}
+                    </span>
                   </div>
                   <div className="mt-4 border-t border-amber-200 pt-2">
                     <div className="flex justify-between font-semibold">
@@ -417,7 +429,7 @@ export default function PaymentPage() {
                     />
                   </PayPalScriptProvider>
                 </div>
-              ) : (
+              ) : selectedCurrency === 'INR' ? (
                 <div className="mb-6">
                   <button
                     onClick={handlePhonePePayment}
@@ -440,7 +452,22 @@ export default function PaymentPage() {
                     You will be redirected to PhonePe to complete the payment
                   </p>
                 </div>
-              )}
+              ) : selectedCurrency === 'RAZORPAY' ? (
+                <div className="mb-6">
+                  <button
+                    onClick={() => alert(`Razorpay payment of ₹${eventFee} triggered!`)}
+                    className="w-full rounded-2xl bg-green-600 px-6 py-4 font-medium text-white transition-all duration-300 hover:bg-green-700 hover:shadow-lg"
+                  >
+                    <div className="flex items-center justify-center">
+                      <span className="mr-2 text-2xl">🪒</span>
+                      Pay with Razorpay - {formatPrice(eventFee)}
+                    </div>
+                  </button>
+                  <p className="mt-2 text-center text-xs text-green-700">
+                    (Demo) Razorpay payment will be handled here
+                  </p>
+                </div>
+              ) : null}
               <div className="text-center">
                 <button
                   onClick={handleBackStep}
